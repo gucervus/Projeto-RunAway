@@ -9,7 +9,7 @@ if (__name__ == "__main__"):
     salas = salaVermelha()
     salas.chave = False
 
-    opcao = input("Qual atributo você escolhe? ")
+    opcao = input("Qual atributo você escolhe?? ")
 
     print()
     print("Você acorda em uma sala com paredes vermelhas!")
