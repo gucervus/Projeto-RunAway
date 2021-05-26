@@ -22,6 +22,8 @@ if (__name__ == "__main__"):
             return 'o'
         elif gen == 'feminino':
             return 'a'
+        else:
+            return 'e'
 
     def tempo():
         if personagem.velocidade == True:
@@ -257,5 +259,5 @@ if (__name__ == "__main__"):
                 print('Você é frac{} demais pra isso'.format(gen))
                 tempo()
         
-  sala = ""
+  #sala = ""
 
