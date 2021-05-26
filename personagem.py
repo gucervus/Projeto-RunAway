@@ -10,13 +10,6 @@ class Personagem:
         self.escolha = False
 
     def __str__(self):
-<<<<<<< Updated upstream
-        return "Você escolheu" + (f" {self.escolha}")
-=======
-
         return "Você escolheu" + (f" {self.escolha} cabrunco")
 
-# gen()
-# nome
-# altura
->>>>>>> Stashed changes
+
