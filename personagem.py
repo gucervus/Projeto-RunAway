@@ -10,5 +10,8 @@ class Personagem:
 
         return "Você escolheu" + (f" {self.escolha} cabrunco")
 
- 
+#gen()
+#nome
+#altura
+
 
