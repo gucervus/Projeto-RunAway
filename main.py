@@ -3,75 +3,121 @@ from personagem import Personagem
 from salas import salaVermelha
 from CORES import cores
 from time import sleep
+import sys
+
+
 if (__name__ == "__main__"):
-    personagem = Personagem()
-    relogio = Relógio(30)
-    salas = salaVermelha()
-    salas.chave = False
+    def animation(a, b):
+        for cont in a:
+            print(cont, end='')
+            if b == 1:
+                sys.stdout.flush()
+                sleep(0.1)
+            elif b == 2:
+                sys.stdout.flush()
+                sleep(0.2)
+
+    def genero(gen):
+        if gen == 'masculino':
+            return 'o'
+        elif gen == 'feminino':
+            return 'a'
+
     def tempo():
         if personagem.velocidade == True:
             relogio.corretempo(1)
         else:
             relogio.corretempo(2)
-    gen='x'
-    print(' [1] - Força\n', 
-          '[2] - Velocidade\n',
-          '[3] - Inteligência\n',
-          '[4] - Sorte\n')
-    opcao = input("Qual atributo você escolhe?? ")
 
     print()
-    print("Você acorda em uma sala com paredes vermelhas!")
+    print('-~'*4, 'RunAway', '-~'*4, '\n'*2)
+
+    print(' '*7, '[CADASTRO]', ' '*7, '\n')
+    nome = input("Digite seu nome: ")
+    gen = input("Digite seu gênero: ").lower()
+    alt = float(input("Digite sua altura: "))
+    print()
     print()
 
-    if opcao == "1":
+    bemVindo = f"-~-~-~-~ Bem vind{genero(gen)} -~-~-~-~\n\n"
+    animation(bemVindo, 1)
+
+    atributo = '»»»» Escolha um atributo ««««\n\n'
+    animation(atributo, 1)
+
+    personagem = Personagem(nome, gen, alt)
+    relogio = Relógio(30)
+    salas = salaVermelha()
+    salas.chave = False
+
+    sleep(1)
+    print(''' [1] - Força
+ [2] - Velocidade
+ [3] - Inteligência
+ [4] - Sorte''')
+    sleep(.5)
+
+    print()
+    print()
+    print("Qual atributo você escolhe? \n")
+    opcao = int(input('»» '))
+    print()
+    if opcao == 1:
         personagem.forca = True
         personagem.escolha = "Força"
-        print(personagem)
-        print()
-        print("Você pode se dar melhor arrastando objetos pesados")
+        frase = f'{personagem}, você pode se dar melhor arrastando objetos pesados!'
+        animation(frase, 1)
 
-    elif opcao == "2":
+    elif opcao == 2:
         personagem.velocidade = True
         personagem.escolha = "Velocidade"
-        print(personagem)
-        print()
-        print("Você perderá menos tempo a cada escolha")
-    elif opcao == '3':
+        frase = f'{personagem}, você perderá menos tempo a cada escolha"'
+        animation(frase, 1)
+
+    elif opcao == 3:
         personagem.inteligencia = True
         personagem.escolha = 'Inteligência'
-        print(personagem)
-        print()
-        print("Você pensa fora da caixinha! E terá algumas dicas")
+        frase = f'{personagem}, você pensa fora da caixinha! E terá algumas dicas!'
+        animation(frase, 1)
 
-    elif opcao == '4':
+    elif opcao == 4:
         personagem.sorte = True
         personagem.escolha = "Sorte"
-        print(personagem)
-        print()
-        print('Você pode ter escolhas especiais')
+        frase = f'{personagem}, você pode ter escolhas especiais!'
+        animation(frase, 1)
+
+    print('\n'*2)
+    print('', '__________________________')
+    print('|', ' '*24, '|')
+    print('|', ' '*7, ' SALA 1 ', ' '*7, '|')
+    print('|__________________________|')
+    print('\n'*2)
+
+    sala = "Você acorda em uma sala com paredes vermelhas!\n\n"
+    animation(sala, 1)
+
+    fraseSala1 = f"Você consegue ver uma porta e em cima da porta, um {cores['red']}relógio {cores['limpa']}marcando {relogio.minutos} minutos!\n\n"
+    animation(fraseSala1, 1)
+    sleep(1)
 
     while True:
-        print(
-            f"Você consegue ver uma porta e em cima da porta, um {cores['red']}relógio {cores['limpa']}marcando {relogio.minutos} minutos!")
-        print()
+        print(f"Você tem {relogio.minutos} minutos para escapar da sala!")
         print("O que você deseja fazer? ")
         print(" [1] - Abrir a porta\n",
               "[2] - Vasculhar a sala\n",
-              "[3] - Quebrar porta")
+              "[3] - Quebrar porta\n")
 
-        opcao2 = int(input("Escolha: "))
+        opcao2 = int(input("»» "))
+        print()
 
         if opcao2 == 1:
-            print("Tentar abrir a porta")
 
             tempo()
-
             print("A porta está trancada...")
-            print(f"Restam {relogio.minutos}")
 
             if salas.chave == False:
                 print("Você não tem a chave! Vasculhe a sala para encontra-la")
+                print()
             else:
                 deseja = input("Você deseja usar a chave? ")
                 if deseja == "sim":
@@ -79,7 +125,6 @@ if (__name__ == "__main__"):
                         "Parabéns!! Você abriu a porta e avançou para a próxima sala!")
                     relogio.minutos += 30
                     break
-                    
                 elif deseja == "nao":
                     print("Você achou melhor guardar a chave.")
 
@@ -212,7 +257,5 @@ if (__name__ == "__main__"):
                 print('Você é frac{} demais pra isso'.format(gen))
                 tempo()
         
+  sala = ""
 
-
-
-            #
