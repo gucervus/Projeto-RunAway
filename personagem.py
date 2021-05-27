@@ -11,5 +11,3 @@ class Personagem:
 
     def __str__(self):
         return "Você escolheu" + (f" {self.escolha} cabrunco")
-
-
