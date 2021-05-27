@@ -8,8 +8,9 @@ import sys
 import os
 
 pygame.init()
-tecla = pygame.mixer.Sound('teclando.ogg')
-musica = pygame.mixer.music.load('dd-Battle-music50k.ogg')
+tecla = pygame.mixer.Sound('teclado.ogg')
+pygame.mixer.music.load('trilhasuspensa.ogg')
+pygame.mixer.music.set_volume(0.1)
 pygame.mixer.music.play(-1)
 
 if (__name__ == "__main__"):
@@ -30,11 +31,12 @@ if (__name__ == "__main__"):
         elif gen == 'feminino':
             return 'a'
 
-    def tempo():
-        if personagem.velocidade == True:
-            relogio.corretempo(1)
+    def tempo(minuto):
+        if personagem.velocidade == 10:
+            total = minuto // 2
+            relogio.corretempo(total)
         else:
-            relogio.corretempo(2)
+            relogio.corretempo(minuto)
     os.system('clear')
 
     print("{:^60}\n\n".format("RunAway"))
@@ -71,7 +73,7 @@ if (__name__ == "__main__"):
     print()
 
     if opcao == 1:
-        personagem.forca = True
+        personagem.forca += 10
         personagem.escolha = "Força"
 
         tecla.play(-1)
@@ -83,7 +85,7 @@ if (__name__ == "__main__"):
         os.system('clear')
 
     elif opcao == 2:
-        personagem.velocidade = True
+        personagem.velocidade += 10
         personagem.escolha = "Velocidade"
 
         tecla.play(-1)
@@ -95,7 +97,7 @@ if (__name__ == "__main__"):
         os.system('clear')
 
     elif opcao == 3:
-        personagem.inteligencia = True
+        personagem.inteligencia += 10
         personagem.escolha = 'Inteligência'
 
         tecla.play(-1)
@@ -107,7 +109,7 @@ if (__name__ == "__main__"):
         os.system('clear')
 
     elif opcao == 4:
-        personagem.sorte = True
+        personagem.sorte += 10
         personagem.escolha = "Sorte"
 
         tecla.play(-1)
@@ -134,7 +136,7 @@ if (__name__ == "__main__"):
 
     fraseSala1 = f"Você consegue ver uma porta e em cima da porta, um {cores['red']}relógio {cores['limpa']}marcando {relogio.minutos} minutos,\n"
     animation(fraseSala1, 1)
-    fraseSala2 = "consegue ver uma escrivaninha, uma estante, um armário, uma guitarra e uma mesa de bilhar...\n\n"
+    fraseSala2 = "consegue ver uma escrivaninha, um toca disco, um armário, uma guitarra e uma mesa de bilhar...\n\n"
     animation(fraseSala2, 1)
     tecla.stop()
     sleep(1)
@@ -172,14 +174,14 @@ if (__name__ == "__main__"):
 
         if opcao2 == 1:
 
-            tempo()
+            tempo(1)
             print("A porta está trancada...")
 
             if salas.chave == False:
                 print("Você não tem a chave! Vasculhe a sala para encontra-la")
                 print()
             else:
-                deseja = input("Você deseja usar a chave? ")
+                deseja = input("Você deseja usar a chave[sim/não]? ")
 
                 if deseja == "sim":
                     print(
@@ -198,7 +200,7 @@ if (__name__ == "__main__"):
             sleep(1)
             print("Qual item deseja vasculhar?\n\n",
                   "[1] - Escrivaninha\n",
-                  "[2] - Estante\n",
+                  "[2] - Toca disco\n",
                   "[3] - Armário\n",
                   "[4] - Guitarra\n",
                   "[5] - Mesa de bilhar\n")
@@ -219,21 +221,21 @@ if (__name__ == "__main__"):
                 opcEscrivaninha = int(input(">> "))
 
                 if opcEscrivaninha == 1:
-                    tempo()
+                    tempo(4)
                     print()
                     print("Você não encontrou nada, só tem lixo!")
                     sleep(5)
                     os.system('clear')
                 elif opcEscrivaninha == 2:
-                    tempo()
+                    tempo(4)
                     print()
                     print("É uma escrivaninha bonita e resistente!")
                     sleep(5)
                     os.system('clear')
                 elif opcEscrivaninha == 3:
-                    tempo()
+                    tempo(4)
 
-                    if personagem.forca == True:
+                    if personagem.forca == 10:
                         print()
                         print("Você empurrou a escrivaninha até a parede.")
                         sleep(5)
@@ -251,48 +253,45 @@ if (__name__ == "__main__"):
                         print(
                             'Você pode ver uma pequena saida de ventilação próxima ao teto.')
                         sleep(5)
-                        tempo()
+                        tempo(4)
                         os.system('clear')
                     else:
                         print()
                         print('O chão parece mais distante')
                         sleep(5)
-                        tempo()
+                        tempo(4)
                         os.system('clear')
 
             elif escolha == 2:
                 print('Você deseja:\n\n',
-                      '[1] - Vasculhar Estante\n',
-                      '[2] - Olhar Estante\n',
-                      '[3] - Empurrar Estante\n\n')
+                      '[1] - Vasculhar toca disco\n',
+                      '[2] - Olhar toca disco\n',
+                      '[3] - Tocar o disco\n\n')
 
                 escolhaEstante = int(input('>> '))
 
                 if escolhaEstante == 1:
                     print()
-                    tempo()
-                    print('Você encontra os seguintes livros: "O segredo", "A arte da guerra", "A lei da atração", "O capital", "Harry Potter e a Pedra filosofal". ')
+                    tempo(4)
+                    print(
+                        'Você descobriu a modelo do toca disco: Toca disco vinil air LP ion IT55')
                     sleep(5)
                     os.system('clear')
                 elif escolhaEstante == 2:
                     print()
-                    print('Tem alguns livros na estante.')
+                    print(
+                        'Econtrei um vinil,esta em ótimo estado, sera que o toca disco funciona? ')
                     sleep(5)
-                    tempo()
+                    tempo(4)
                     os.system('clear')
                 elif escolhaEstante == 3:
-                    tempo()
-                    if personagem.forca == True:
-                        print()
-                        print("Você derrubou a estante.")
-                        sleep(5)
-                        os.system('clear')
-
+                    tempo(4)
+                    if personagem.inteligencia == 10:
+                        print('**While my guitar gently weeps tem um lindo solo!')
                     else:
-                        print()
-                        print("Você não tem força para empurrar a estante!")
-                        sleep(5)
-                        os.system('clear')
+                        print('O toca disco não funciona!')
+
+                    os.system('clear')
             elif escolha == 3:
                 print('Você deseja:\n\n',
                       '[1] - Abrir o armário\n',
@@ -306,29 +305,33 @@ if (__name__ == "__main__"):
                     print(
                         'Dentro do armário vc encontra um bilhete escrito: "Pare de perder tempo!')
                     sleep(5)
-                    tempo()
+                    tempo(4)
                     os.system('clear')
                 elif escolhaArm == 2:
                     print()
                     print('Você está tentando aprender marcenaria?')
                     sleep(5)
-                    tempo()
+                    tempo(4)
                     os.system('clear')
                 elif escolhaArm == 3:
-                    if personagem.forca == True:
+                    if personagem.forca == 10:
                         print()
                         print("Você derrubou o Armário.")
                         print('E encontrou uma dica: {}HOJE É DIA DE ROCK BEBÊ!!!{}'.format(
                             cores['azul'], cores['limpa']))
                         sleep(5)
-                        tempo()
+                        tempo(4)
                         os.system('clear')
 
                     else:
                         print()
-                        print("Você não tem força para empurrar o Armário!")
+                        if ima == True:
+                            print("Você conseguiu pegar a chave com o imã!")
+                            salas.chave = True
+                        else:
+                            print("Você não tem força para empurrar o Armário!")
                         sleep(5)
-                        tempo()
+                        tempo(4)
                         os.system('clear')
             elif escolha == 4:
                 print('É uma linda lespaul sunburn Stevie Ray signature 2001\n')
@@ -344,47 +347,65 @@ if (__name__ == "__main__"):
                     print()
                     print('Por que isso é importante?')
                     sleep(5)
-                    tempo()
+                    tempo(4)
                     os.system('clear')
                 elif escolhaGuitarra == 2:
                     print()
-                    tempo()
-                    tempo()
-                    tempo()
-                    print('Você quebrou a guitarra e uma chave caiu na sua cabeça!')
+                    tempo(8)
+                    print(
+                        'Você quebrou a guitarra e a chave caiu embaixo do armário, procure algo para pegá-la, voce perdeu 8 minutos')
+                    guitarQuebrada = True
                     sleep(5)
                     os.system('clear')
                 elif escolhaGuitarra == 3:
                     print()
-                    tempo()
-                    # play
-                    print('Que música linda! Os deuses do rock estão satisfeitos...')
-                    sleep(.5)
-                    print('.')
-                    sleep(.5)
-                    print('.')
-                    sleep(.5)
-                    print('.')
-                    sleep(.5)
-                    print('.')
-                    sleep(.5)
-                    print('.')
-                    print('Uma chave caiu em sua cabeça!')
-                    sleep(5)
-                    salas.chave = True
+                    tempo(4)
+                    if guitarQuebrada == True:
+                        print(
+                            "Você tentou tocar uma guitarra quebrada, e perdeu 10 minutos")
+                    else:
+                        print(
+                            'Que música linda! Os deuses do rock estão satisfeitos...')
+                        sleep(.5)
+                        print('.')
+                        sleep(.5)
+                        print('.')
+                        sleep(.5)
+                        print('.')
+                        sleep(.5)
+                        print('.')
+                        sleep(.5)
+                        print('.')
+                        print('Uma chave caiu em sua cabeça!')
+                        sleep(5)
+                        salas.chave = True
                     os.system('clear')
             elif escolha == 5:
                 print()
-                print('Tá com saudade do boteco né minha filha?')
-                tempo()
-                sleep(5)
+                print('Tá com saudade do boteco né minha filha?\n')
+                print('Oq deseja fazer:\n\n',
+                      '[1] - Jogar bilhar\n',
+                      '[2] - Olhar em baixo da mesa\n\n')
+
+                opcMesa = int(input('>> '))
+
+                if opcMesa == 1:
+                    print('Você decidiu jogar bilhar e perdeu 5 minutos')
+                    tempo(5)
+                    sleep(5)
+                elif opcMesa == 2:
+                    print("Você encontrou um imã, agora consegue atrair metal")
+                    tempo(4)
+                    sleep(5)
+                    ima = True
                 os.system('clear')
 
         elif opcao2 == 3:
-            if personagem.forca == True:
+            if personagem.forca == 10:
                 print()
                 print("A porta é de madeira e você conseguiu quebra-la!")
                 print("Parabéns, você é forte o suficiente para a próxima sala!")
+                personagem.forca -= 2
                 sleep(5)
                 relogio.minutos += 30
                 os.system('clear')
@@ -393,7 +414,7 @@ if (__name__ == "__main__"):
             else:
                 print('Você é frac{} demais pra isso'.format(genero(gen)))
                 sleep(5)
-                tempo()
+                tempo(4)
                 os.system('clear')
 
     sala = ""
