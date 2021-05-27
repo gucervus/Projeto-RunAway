@@ -3,13 +3,11 @@ class Personagem:
         self.nome = nome
         self.altura = altura
         self.genero = genero
-        self.forca = False
-        self.velocidade = False
-        self.inteligencia = False
-        self.sorte = False
-        self.escolha = False
+        self.forca = 0
+        self.velocidade = 0
+        self.inteligencia = 0
+        self.sorte = 0
+        self.escolha = 0
 
     def __str__(self):
         return "Você escolheu" + (f" {self.escolha} cabrunco")
-
-
