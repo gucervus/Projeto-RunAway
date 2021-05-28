@@ -1,4 +1,5 @@
 class salaVermelha():
+
   def __init__(self):
     self.escrivaninha = False
     self.estante = False
@@ -12,3 +13,4 @@ class salaVermelha():
       print('Boa escolha')
     else:
       print('Se fodeu')
+
