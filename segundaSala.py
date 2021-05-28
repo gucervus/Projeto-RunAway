@@ -9,9 +9,9 @@ class salaBranca:
     def acao(self):
       while True:
         print('[1] - cadeira\n[2] - espelho\n[3] - quadro\n[4] - baú\n[5] - estatua\n[6] - candelabro\n[7] - estojo de remédios\n')
-        objeto = int(input('Qual objeto deseja interagir escolha?: '))
+        objeto = input('Qual objeto deseja interagir escolha?: ')
 
-        if objeto == 1:
+        if objeto == '1':
           print('Você escolheu a cadeira...')
           print('[1] - Vasculhar cadeira\n[2] - Jogar cadeira na parede\n[3] - Sentar para descansar')
           escolha= int(input('>>> '))
@@ -47,8 +47,8 @@ class salaBranca:
             print('O que deseja fazer?')
 
             print('[1] - cadeira\n[2] - espelho\n[3] - quadro\n[4] - luminaria\n[5] - estatua\n[6] - candelabro\n[7] - estojo de remédios\n')
-            objeto = int(input('Qual objeto deseja interagir escolha?: '))
-            if objeto == 2:
+            objeto = input('Qual objeto deseja interagir escolha?: ')
+            if objeto == '2':
               print('O que você viu no espelho?')
               print('[1] - Dinossauro\n[2] - guarda - roupa\n[3] - Estatua')
               visualizar = int(input('>>> '))
@@ -72,7 +72,7 @@ class salaBranca:
                 elif estatua == 3:
                   continue
 
-        elif objeto == 2:
+        elif objeto == '2':
           print('O que você viu no espelho?')
           print('[1] - Seu próprio reflexo\n[2] - Qudaro \n[3] - Violão')
           visualizar = int(input('>>> '))
@@ -111,15 +111,15 @@ class salaBranca:
                 print('Você encontrou dentrou do quadro uma chave... O que deseja fazer?')
                 chave == True
                 print('[1] - cadeira\n[2] - espelho\n[3] - quadro\n[4] - luminaria\n[5] - estatua\n[6] - candelabro\n[7] - estojo de remédios\n')
-                objeto = int(input('Qual objeto deseja interagir escolha?: '))
-                if objeto == 5 and chave == True:
+                objeto = input('Qual objeto deseja interagir escolha?: ')
+                if objeto == '5' and chave == True:
                   print('Abrir o baú com a chave foi uma ótima escolha, nele se encontra uma foto')
                   print('Nela se encontra Rodin, ao lado de uma de suas obras mais famósas')
                   print('Porque alguém guardaria essa foto em um baú?')
 
                   print('[1] - cadeira\n[2] - espelho\n[3] - quadro\n[4] - luminaria\n[5] - estatua\n[6] - candelabro\n[7] - estojo de remédios\n')
-                objeto = int(input('Qual objeto deseja interagir escolha?: '))
-                if objeto == 6 and chave == True:
+                objeto = input('Qual objeto deseja interagir escolha?: ')
+                if objeto == '6' and chave == True:
                   print('Que bela estátua, é uma répica da obra "O Pensador de Agusto Rodin"')
                   print('''
                 [1] - Quebrar a estatua 
@@ -133,9 +133,6 @@ class salaBranca:
                 else:
                   print('Nada de diferente aconteceu, talvez fosse apenas uma impressão sua...')
               
-
-sala = salaBranca()
-sala.acao()
 
 
   
