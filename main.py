@@ -412,10 +412,10 @@ if (__name__ == "__main__"):
                 relogio.minutos += 30
                 os.system('clear')
                 break
+            else:
                 print('Você é frac{} demais pra isso'.format(genero(gen)))
                 sleep(5)
                 tempo(4)
                 os.system('clear')
-
 
     sala = ""
