@@ -4,17 +4,14 @@ class Relógio:
         self.minutos = minutos
         self.fimdotempo = False
 
-    def __str__(self):
-        return f'{self.minutos:02d}'
-    
     def corretempo(self, minutos):
         self.minutos -= minutos
-        if minutos<=0:
-            fimdotempo=True
-fimdotempo=False
-relogio = Relógio(30)
 
-#Parte de teste
+    def __str__(self):
+        return f'{self.minutos:02d}'
+
+
+# Parte de teste
 """while fimdotempo == False:
     print("---")
     print("Ainda restam "+str(relogio)+" minutos")
@@ -35,7 +32,3 @@ relogio = Relógio(30)
         print('Tente amanhã!')
         break
     """
-
-    
-
-    
