@@ -9,20 +9,44 @@ import pygame
 
 class salaVermelha(Personagem):
 
-    def __init__(self, nome, altura, genero):
+    def __init__(self, nome, altura, genero, escolha):
         self.escrivaninha = False
         self.estante = False
         self.armario = False
         self.guitarra = True
         self.mesaBilhar = False
         self.chave = False
-        super().__init__(nome, altura, genero)
+        super().__init__(nome, altura, genero, escolha)
 
     def acao(self):
-        personagem = Personagem(self.nome, self.altura, self.genero)
-        relogio = Relógio(30)
-        func = Funções(self.nome, self.altura, self.genero)
+        personagem = Personagem(self.nome, self.altura,
+                                self.genero, self.escolha)
+        relogio = Relógio(30, self.nome, self.altura,
+                          self.genero, self.escolha)
+        func = Funções(self.nome, self.altura, self.genero, self.escolha)
         numeroSala = False
+
+        print(' '*20, end='')
+        print('', '__________________________')
+        print(' '*20, end='')
+        print('|', ' '*24, '|')
+        print(' '*20, end='')
+        print('|', ' '*7, ' SALA 1 ', ' '*7, '|')
+        print(' '*20, end='')
+        print('|__________________________|')
+        print('\n'*2)
+
+        # tecla.play(-1)
+        sala = "Você acorda em uma sala com paredes vermelhas!\n\n"
+        # func.animation(sala)
+
+        fraseSala1 = f"Você consegue ver uma porta e em cima da porta, um {cores['red']}relógio {cores['limpa']}marcando {relogio.minutos} minutos,\n"
+        # func.animation(fraseSala1)
+        fraseSala2 = "consegue ver uma escrivaninha, um toca disco, um armário, uma guitarra e uma mesa de bilhar...\n\n"
+        # func.animation(fraseSala2)
+        # tecla.stop()
+        sleep(1)
+
         pygame.init()
         tecla = pygame.mixer.Sound('teclado.ogg')
         while True:
@@ -57,7 +81,7 @@ class salaVermelha(Personagem):
 
             if opcao2 == 1:
 
-                func.tempo(4)
+                relogio.corretempo(4)
                 print("A porta está trancada...")
 
                 if self.chave == False:

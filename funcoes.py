@@ -6,8 +6,8 @@ from relogio import Relógio
 
 
 class Funções(Personagem):
-    def __init__(self, nome, altura, genero):
-        super().__init__(nome, altura, genero)
+    def __init__(self, nome, altura, genero, escolha):
+        super().__init__(nome, altura, genero, escolha)
 
     def animation(self, frase):
         for cont in frase:
@@ -22,12 +22,3 @@ class Funções(Personagem):
             return 'a'
         else:
             return 'e'
-
-    def tempo(self, minuto):
-        personagem = Personagem(self.nome, self.altura, self.genero)
-        relogio = Relógio(30)
-        if personagem.velocidade == True:
-            total = minuto // 2
-            relogio.corretempo(total)
-        else:
-            relogio.corretempo(minuto)
