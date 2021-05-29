@@ -25,14 +25,17 @@ if (__name__ == "__main__"):
     alt = float(input("Digite sua altura: "))
     gen = input("Digite seu gênero: ").lower()
     os.system('clear')
-    # tecla.play(-1)
+
+    func = Funções(genero=gen)
+
+    tecla.play(-1)
     print(' '*25, end='')
-    bemVindo = f"Bem vindo {nome}\n\n"
-    # func.animation(bemVindo)
+    bemVindo = f"Bem vind{func.generos()} {nome}\n\n"
+    func.animation(bemVindo)
     print(' '*20, end='')
     atributo = '»»»» Escolha um atributo ««««\n\n\n\n'
-    # func.animation(atributo)
-    # tecla.stop()
+    func.animation(atributo)
+    tecla.stop()
 
     sleep(1)
     print("Qual atributo você escolhe? \n\n",
@@ -46,49 +49,19 @@ if (__name__ == "__main__"):
     print()
 
     if opcao == 1:
-        escolha = "Força"
+        atributo = "Força"
     elif opcao == 2:
-        escolha = "Velocidade"
+        atributo = "Velocidade"
     elif opcao == 3:
-        escolha = 'Inteligência'
+        atributo = 'Inteligência'
     elif opcao == 4:
-        escolha = "Sorte"
+        atributo = "Sorte"
 
-    personagem = Personagem(nome, alt, gen, escolha)
-    func = Funções(nome, alt, gen, escolha)
-    relogio = Relógio(30, nome, alt, gen, escolha)
-    salas = salaVermelha(nome, alt, gen, escolha)
+    personagem = Personagem(nome, alt, atributo)
+
+    salas = salaVermelha(nome=nome, altura=alt, atributo = atributo, genero=gen)
     sala2 = salaBranca()
-    salas.chave = False
-    if opcao == 1:
-        # tecla.play(-1)
-        frase = f'{personagem}, você pode se dar melhor arrastando objetos pesados!\n\n'
-        func.animation(frase)
-        # tecla.stop()
-        input("aperte enter para prosseguir...")
-        os.system('clear')
-    elif opcao == 2:
-        # tecla.play(-1)
-        frase = f'{personagem}, você perderá menos tempo a cada escolha\n\n'
-        func.animation(frase)
-        # tecla.stop()
-        input("aperte enter para prosseguir...")
-        os.system('clear')
-    elif opcao == 3:
-        # tecla.play(-1)
-        frase = f'{personagem}, você pensa fora da caixinha! E terá algumas dicas!\n\n'
-        func.animation(frase)
-        # tecla.stop()
-        input("aperte enter para prosseguir...")
-        os.system('clear')
-    elif opcao == 4:
-        # tecla.play(-1)
-        frase = f'{personagem}, você pode ter escolhas especiais!\n\n'
-        func.animation(frase)
-        # tecla.stop()
-
-        input("aperte enter para prosseguir...")
-        os.system('clear')
+    personagem.escolhaAtributo()
 
     salas.acao()
 

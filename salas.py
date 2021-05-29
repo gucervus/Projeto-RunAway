@@ -7,23 +7,21 @@ import os
 import pygame
 
 
-class salaVermelha(Personagem):
+class salaVermelha(Funções, Personagem):
 
-    def __init__(self, nome, altura, genero, escolha):
+    def __init__(self, *args, genero, **kwargs):
         self.escrivaninha = False
         self.estante = False
         self.armario = False
         self.guitarra = True
         self.mesaBilhar = False
         self.chave = False
-        super().__init__(nome, altura, genero, escolha)
+        super().__init__(*args, genero=genero, **kwargs)
 
     def acao(self):
-        personagem = Personagem(self.nome, self.altura,
-                                self.genero, self.escolha)
-        relogio = Relógio(30, self.nome, self.altura,
-                          self.genero, self.escolha)
-        func = Funções(self.nome, self.altura, self.genero, self.escolha)
+
+        relogio = Relógio(30, self.nome, self.altura, self.atributos)
+
         numeroSala = False
 
         print(' '*20, end='')
@@ -66,7 +64,7 @@ class salaVermelha(Personagem):
 
                 tecla.play(-1)
                 contador = f"Restam {relogio.minutos} minutos para escapar da sala!\n\n"
-                func.animation(contador)
+                self.animation(contador)
                 tecla.stop()
 
             numeroSala = True
@@ -128,21 +126,21 @@ class salaVermelha(Personagem):
                     opcEscrivaninha = int(input(">> "))
 
                     if opcEscrivaninha == 1:
-                        func.tempo(4)
+                        relogio.corretempo(4)
                         print()
                         print("Você não encontrou nada, só tem lixo!")
                         sleep(5)
                         os.system('clear')
                     elif opcEscrivaninha == 2:
-                        func.tempo(4)
+                        relogio.corretempo(4)
                         print()
                         print("É uma escrivaninha bonita e resistente!")
                         sleep(5)
                         os.system('clear')
                     elif opcEscrivaninha == 3:
-                        func.tempo(4)
+                        relogio.corretempo(4)
 
-                        if personagem.forca == 10:
+                        if self.atributo == 'Força':
                             print()
                             print("Você empurrou a escrivaninha até a parede.")
                             sleep(5)
@@ -160,13 +158,13 @@ class salaVermelha(Personagem):
                             print(
                                 'Você pode ver uma pequena saida de ventilação próxima ao teto.')
                             sleep(5)
-                            func.tempo(4)
+                            relogio.corretempo(4)
                             os.system('clear')
                         else:
                             print()
                             print('O chão parece mais distante')
                             sleep(5)
-                            func.tempo(4)
+                            relogio.corretempo(4)
                             os.system('clear')
 
                 elif escolha == 2:
@@ -179,7 +177,7 @@ class salaVermelha(Personagem):
 
                     if escolhaEstante == 1:
                         print()
-                        func.tempo(4)
+                        relogio.corretempo(4)
                         print(
                             'Você descobriu a modelo do toca disco: Toca disco vinil air LP ion IT55')
                         sleep(5)
@@ -189,11 +187,11 @@ class salaVermelha(Personagem):
                         print(
                             'Econtrei um vinil,esta em ótimo estado, sera que o toca disco funciona? ')
                         sleep(5)
-                        func.tempo(4)
+                        relogio.corretempo(4)
                         os.system('clear')
                     elif escolhaEstante == 3:
-                        func.tempo(4)
-                        if personagem.inteligencia == 10:
+                        relogio.corretempo(4)
+                        if self.atributo == 'Inteligência':
                             print(
                                 '**While my guitar gently weeps tem um lindo solo!')
                         else:
@@ -213,22 +211,22 @@ class salaVermelha(Personagem):
                         print(
                             'Dentro do armário vc encontra um bilhete escrito: "Pare de perder tempo!')
                         sleep(5)
-                        func.tempo(4)
+                        relogio.corretempo(4)
                         os.system('clear')
                     elif escolhaArm == 2:
                         print()
                         print('Você está tentando aprender marcenaria?')
                         sleep(5)
-                        func.tempo(4)
+                        relogio.corretempo(4)
                         os.system('clear')
                     elif escolhaArm == 3:
-                        if personagem.forca == 10:
+                        if self.atributo == 'Força':
                             print()
                             print("Você derrubou o Armário.")
                             print('E encontrou uma dica: {}HOJE É DIA DE ROCK BEBÊ!!!{}'.format(
                                 cores['azul'], cores['limpa']))
                             sleep(5)
-                            func.tempo(4)
+                            relogio.corretempo(4)
                             os.system('clear')
 
                         else:
@@ -239,7 +237,7 @@ class salaVermelha(Personagem):
                             else:
                                 print("Você não tem força para empurrar o Armário!")
                             sleep(5)
-                            func.tempo(4)
+                            relogio.corretempo(4)
                             os.system('clear')
                 elif escolha == 4:
                     print('É uma linda lespaul sunburn Stevie Ray signature 2001\n')
@@ -255,11 +253,11 @@ class salaVermelha(Personagem):
                         print()
                         print('Por que isso é importante?')
                         sleep(5)
-                        func.tempo(4)
+                        relogio.corretempo(4)
                         os.system('clear')
                     elif escolhaGuitarra == 2:
                         print()
-                        func.tempo(8)
+                        relogio.corretempo(8)
                         print(
                             'Você quebrou a guitarra e a chave caiu embaixo do armário, procure algo para pegá-la, voce perdeu 8 minutos')
                         guitarQuebrada = True
@@ -267,7 +265,7 @@ class salaVermelha(Personagem):
                         os.system('clear')
                     elif escolhaGuitarra == 3:
                         print()
-                        func.tempo(4)
+                        relogio.corretempo(4)
                         if guitarQuebrada == True:
                             print(
                                 "Você tentou tocar uma guitarra quebrada, e perdeu 10 minutos")
@@ -299,28 +297,27 @@ class salaVermelha(Personagem):
 
                     if opcMesa == 1:
                         print('Você decidiu jogar bilhar e perdeu 5 minutos')
-                        func.tempo(5)
+                        relogio.corretempo(5)
                         sleep(5)
                     elif opcMesa == 2:
                         print("Você encontrou um imã, agora consegue atrair metal")
-                        func.tempo(4)
+                        relogio.corretempo(4)
                         sleep(5)
                         ima = True
                     os.system('clear')
 
             elif opcao2 == 3:
-                if personagem.forca == 10:
+                if self.atributo == 'Força':
                     print()
                     print("A porta é de madeira e você conseguiu quebra-la!")
                     print("Parabéns, você é forte o suficiente para a próxima sala!")
-                    personagem.forca -= 2
                     sleep(5)
                     relogio.minutos += 30
                     os.system('clear')
                     break
                 else:
                     print('Você é frac{} demais pra isso'.format(
-                        func.genero(self.genero)))
+                        self.generos()))
                     sleep(5)
-                    func.tempo(4)
+                    relogio.corretempo(4)
                     os.system('clear')

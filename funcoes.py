@@ -1,13 +1,11 @@
-from personagem import Personagem
 import sys
-import os
 from time import sleep
-from relogio import Relógio
 
 
-class Funções(Personagem):
-    def __init__(self, nome, altura, genero, escolha):
-        super().__init__(nome, altura, genero, escolha)
+class Funções:
+    def __init__(self, *args, genero, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.genero = genero
 
     def animation(self, frase):
         for cont in frase:

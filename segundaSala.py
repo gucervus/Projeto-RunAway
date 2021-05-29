@@ -1,22 +1,51 @@
-class salaBranca:
-    def __init__(self):
+from personagem import Personagem
+from relogio import Relógio
+from funcoes import Funções
+from time import sleep
+from CORES import cores
+import os
+import pygame
+class salaBranca(Funções, Personagem):
+    def __init__(self, *args, genero, **kwargs):
         self.cadeira = True
         self.abajur = True
         self.quadro = True
         self.luminaria = True
         self.estatua = True
+        self.escolha = 0
+        self.objeto = 0
+        super().__init__(*args, genero = genero, **kwargs)
 
     def acao(self):
+        relogio = Relógio(30, self.nome, self.altura, self.atributo)
+        
+        numeroSala = False
+        
+        print(' '*20, end='')
+        print('', '__________________________')
+        print(' '*20, end='')
+        print('|', ' '*24, '|')
+        print(' '*20, end='')
+        print('|', ' '*7, ' SALA 2 ', ' '*7, '|')
+        print(' '*20, end='')
+        print('|__________________________|')
+        print('\n'*2)
+        
+        sala = 'Após a sua primeira vitória, você segue para uma sala branca'
+        
+        fraseSala = f"Lembre-se que acima da porta a um {cores['red']}relógio {cores['limpa']}marcando {relogio.minutos} minutos,\n'
         while True:
+            
+            
             print('[1] - cadeira\n[2] - espelho\n[3] - quadro\n[4] - baú\n[5] - estatua\n[6] - candelabro\n[7] - estojo de remédios\n')
-            objeto = input('Qual objeto deseja interagir escolha?: ')
+            self.objeto = input('Qual objeto deseja interagir escolha?: ')
 
-            if objeto == '1':
+            if self.objeto == '1':
                 print('Você escolheu a cadeira...')
                 print(
                     '[1] - Vasculhar cadeira\n[2] - Jogar cadeira na parede\n[3] - Sentar para descansar')
-                escolha = int(input('>>> '))
-                if escolha == 1:
+                self.escolha = int(input('>>> '))
+                if self.escolha == 1:
                     ler = input(
                         'Você encontrou uma carta grudada na cadeira, deseja ler?[sim/não]: ').upper()
                     if ler == 'SIM':
@@ -25,7 +54,7 @@ class salaBranca:
                             'Começamos bem, porém ainda não encontramos uma forma de sair daqui, vamos continuar')
                     else:
                         print('Ok, vamos continuar')
-                elif escolha == 2:
+                elif self.escolha == 2:
                     print(
                         "Você quebrou a cadeira na parede, mas um pedaço de farpa machucou seu braço")
                     print('**Decrementa tempo**')
@@ -49,15 +78,15 @@ class salaBranca:
                             # Decrementa 5 minutos a cada 10 minutos passados
                             continue
 
-                elif escolha == 3:
+                elif self.escolha == 3:
                     print('Que situação maluca, descansar é sempre bom!')
                     print('Você conseguiu enxergar o reflexo de alguma coisa')
                     print('O que deseja fazer?')
 
                     print(
                         '[1] - cadeira\n[2] - espelho\n[3] - quadro\n[4] - luminaria\n[5] - estatua\n[6] - candelabro\n[7] - estojo de remédios\n')
-                    objeto = input('Qual objeto deseja interagir escolha?: ')
-                    if objeto == '2':
+                    self.objeto = input('Qual objeto deseja interagir escolha?: ')
+                    if self.objeto == '2':
                         print('O que você viu no espelho?')
                         print(
                             '[1] - Dinossauro\n[2] - guarda - roupa\n[3] - Estatua')
@@ -86,7 +115,7 @@ class salaBranca:
                             elif estatua == 3:
                                 continue
 
-            elif objeto == '2':
+            elif self.objeto == '2':
                 print('O que você viu no espelho?')
                 print('[1] - Seu próprio reflexo\n[2] - Qudaro \n[3] - Violão')
                 visualizar = int(input('>>> '))
@@ -131,9 +160,9 @@ class salaBranca:
                             chave = True
                             print(
                                 '[1] - cadeira\n[2] - espelho\n[3] - quadro\n[4] - luminaria\n[5] - estatua\n[6] - candelabro\n[7] - estojo de remédios\n')
-                            objeto = input(
+                            self.objeto = input(
                                 'Qual objeto deseja interagir escolha?: ')
-                            if objeto == '5' and chave == True:
+                            if self.objeto == '5' and chave == True:
                                 print(
                                     'Abrir o baú com a chave foi uma ótima escolha, nele se encontra uma foto')
                                 print(
@@ -143,9 +172,9 @@ class salaBranca:
 
                                 print(
                                     '[1] - cadeira\n[2] - espelho\n[3] - quadro\n[4] - luminaria\n[5] - estatua\n[6] - candelabro\n[7] - estojo de remédios\n')
-                            objeto = input(
+                            self.objeto = input(
                                 'Qual objeto deseja interagir escolha?: ')
-                            if objeto == '6' and chave == True:
+                            if self.objeto == '6' and chave == True:
                                 print(
                                     'Que bela estátua, é uma répica da obra "O Pensador de Agusto Rodin"')
                                 print('''

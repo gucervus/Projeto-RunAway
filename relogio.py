@@ -2,13 +2,14 @@ from personagem import Personagem
 
 
 class Relógio(Personagem):
-    def __init__(self, minutos, nome, altura, genero, escolha):
+    def __init__(self, minutos, nome, altura, atributo):
         self.minutos = minutos
-        super().__init__(nome, altura, genero, escolha)
+        super().__init__(nome, altura, atributo)
+
 
     def corretempo(self, minutos):
 
-        if self.escolha == 'Velocidade':
+        if self.atributo == 'Velocidade':
             total = minutos // 2
             self.minutos -= total
         else:
