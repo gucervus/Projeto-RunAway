@@ -5,6 +5,8 @@ from time import sleep
 from CORES import cores
 import os
 import pygame
+
+
 class salaBranca(Funções, Personagem):
     def __init__(self, *args, genero, **kwargs):
         self.cadeira = True
@@ -14,13 +16,13 @@ class salaBranca(Funções, Personagem):
         self.estatua = True
         self.escolha = 0
         self.objeto = 0
-        super().__init__(*args, genero = genero, **kwargs)
+        super().__init__(*args, genero=genero, **kwargs)
 
     def acao(self):
         relogio = Relógio(30, self.nome, self.altura, self.atributo)
-        
+
         numeroSala = False
-        
+
         print(' '*20, end='')
         print('', '__________________________')
         print(' '*20, end='')
@@ -30,13 +32,12 @@ class salaBranca(Funções, Personagem):
         print(' '*20, end='')
         print('|__________________________|')
         print('\n'*2)
-        
+
         sala = 'Após a sua primeira vitória, você segue para uma sala branca'
-        
-        fraseSala = f"Lembre-se que acima da porta a um {cores['red']}relógio {cores['limpa']}marcando {relogio.minutos} minutos,\n'
+
+        fraseSala = f"Lembre-se que acima da porta a um {cores['red']} relógio {cores['limpa']}marcando {relogio.minutos} minutos,\n"
         while True:
-            
-            
+
             print('[1] - cadeira\n[2] - espelho\n[3] - quadro\n[4] - baú\n[5] - estatua\n[6] - candelabro\n[7] - estojo de remédios\n')
             self.objeto = input('Qual objeto deseja interagir escolha?: ')
 
@@ -85,7 +86,8 @@ class salaBranca(Funções, Personagem):
 
                     print(
                         '[1] - cadeira\n[2] - espelho\n[3] - quadro\n[4] - luminaria\n[5] - estatua\n[6] - candelabro\n[7] - estojo de remédios\n')
-                    self.objeto = input('Qual objeto deseja interagir escolha?: ')
+                    self.objeto = input(
+                        'Qual objeto deseja interagir escolha?: ')
                     if self.objeto == '2':
                         print('O que você viu no espelho?')
                         print(

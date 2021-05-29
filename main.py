@@ -11,7 +11,6 @@ import os
 
 
 pygame.init()
-tecla = pygame.mixer.Sound('teclado.ogg')
 pygame.mixer.music.load('trilhasuspensa.ogg')
 pygame.mixer.music.set_volume(0.1)
 pygame.mixer.music.play(-1)
@@ -27,6 +26,7 @@ if (__name__ == "__main__"):
     os.system('clear')
 
     func = Funções(genero=gen)
+    tecla = func.teclando()
 
     tecla.play(-1)
     print(' '*25, end='')
@@ -59,10 +59,10 @@ if (__name__ == "__main__"):
 
     personagem = Personagem(nome, alt, atributo)
 
-    salas = salaVermelha(nome=nome, altura=alt, atributo = atributo, genero=gen)
-    sala2 = salaBranca()
+    salas = salaVermelha(nome=nome, altura=alt, atributo=atributo, genero=gen)
+    sala2 = salaBranca(nome=nome, altura=alt, atributo=atributo, genero=gen)
     personagem.escolhaAtributo()
 
-    salas.acao()
+    # salas.acao()
 
     sala2.acao()

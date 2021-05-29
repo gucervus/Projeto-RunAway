@@ -19,8 +19,10 @@ class salaVermelha(Funções, Personagem):
         super().__init__(*args, genero=genero, **kwargs)
 
     def acao(self):
-
-        relogio = Relógio(30, self.nome, self.altura, self.atributos)
+        pygame.init()
+        func = Funções(genero='')
+        tecla = func.teclando()
+        relogio = Relógio(30, self.nome, self.altura, self.atributo)
 
         numeroSala = False
 
@@ -34,19 +36,17 @@ class salaVermelha(Funções, Personagem):
         print('|__________________________|')
         print('\n'*2)
 
-        # tecla.play(-1)
-        sala = "Você acorda em uma sala com paredes vermelhas!\n\n"
-        # func.animation(sala)
+        tecla.play(-1)
+        fraseAnimation = "Você acorda em uma sala com paredes vermelhas!\n\n"
+        self.animation(fraseAnimation)
 
-        fraseSala1 = f"Você consegue ver uma porta e em cima da porta, um {cores['red']}relógio {cores['limpa']}marcando {relogio.minutos} minutos,\n"
-        # func.animation(fraseSala1)
-        fraseSala2 = "consegue ver uma escrivaninha, um toca disco, um armário, uma guitarra e uma mesa de bilhar...\n\n"
-        # func.animation(fraseSala2)
-        # tecla.stop()
+        fraseAnimation = f"Você consegue ver uma porta e em cima da porta, um {cores['red']}relógio {cores['limpa']}marcando {relogio.minutos} minutos,\n"
+        self.animation(fraseAnimation)
+        fraseAnimation = "consegue ver uma escrivaninha, um toca disco, um armário, uma guitarra e uma mesa de bilhar...\n\n"
+        self.animation(fraseAnimation)
+        tecla.stop()
         sleep(1)
 
-        pygame.init()
-        tecla = pygame.mixer.Sound('teclado.ogg')
         while True:
 
             if numeroSala == True:
@@ -63,8 +63,8 @@ class salaVermelha(Funções, Personagem):
                 print('\n'*2)
 
                 tecla.play(-1)
-                contador = f"Restam {relogio.minutos} minutos para escapar da sala!\n\n"
-                self.animation(contador)
+                fraseAnimation = f"Restam {relogio.minutos} minutos para escapar da sala!\n\n"
+                self.animation(fraseAnimation)
                 tecla.stop()
 
             numeroSala = True
