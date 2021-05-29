@@ -33,12 +33,12 @@ if (__name__ == "__main__"):
     bemVindo = f"Bem vind{func.generos()} {nome}\n\n"
     func.animation(bemVindo)
     print(' '*20, end='')
-    atributo = '»»»» Escolha um atributo ««««\n\n\n\n'
+    atributo = '»»»» Escolha um \033[33matributo\033[m ««««\n\n\n\n'
     func.animation(atributo)
     tecla.stop()
 
     sleep(1)
-    print("Qual atributo você escolhe? \n\n",
+    print("Qual \033[33matributo\033[m você escolhe? \n\n",
           '[1] - Força\n',
           '[2] - Velocidade\n',
           '[3] - Inteligência\n',
@@ -59,7 +59,8 @@ if (__name__ == "__main__"):
 
     personagem = Personagem(nome, alt, atributo)
 
-    salas = salaVermelha(nome=nome, altura=alt, atributo=atributo, genero=gen)
+    salas = salaVermelha(nome=nome, altura=alt, atributo = atributo, genero=gen)
+
     sala2 = salaBranca(nome=nome, altura=alt, atributo=atributo, genero=gen)
     personagem.escolhaAtributo()
 

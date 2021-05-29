@@ -34,8 +34,8 @@ class salaBranca(Funções, Personagem):
         print('\n'*2)
 
         sala = 'Após a sua primeira vitória, você segue para uma sala branca'
-
-        fraseSala = f"Lembre-se que acima da porta a um {cores['red']} relógio {cores['limpa']}marcando {relogio.minutos} minutos,\n"
+        
+        fraseSala = f"Lembre-se que acima da porta a um {cores['red']}relógio {cores['limpa']}marcando {relogio.minutos} minutos,\n"
         while True:
 
             print('[1] - cadeira\n[2] - espelho\n[3] - quadro\n[4] - baú\n[5] - estatua\n[6] - candelabro\n[7] - estojo de remédios\n')
