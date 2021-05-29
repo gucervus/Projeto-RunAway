@@ -33,7 +33,7 @@ class salaBranca(Funções, Personagem):
         
         sala = 'Após a sua primeira vitória, você segue para uma sala branca'
         
-        fraseSala = f"Lembre-se que acima da porta a um {cores['red']}relógio {cores['limpa']}marcando {relogio.minutos} minutos,\n'
+        fraseSala = f"Lembre-se que acima da porta a um {cores['red']}relógio {cores['limpa']}marcando {relogio.minutos} minutos,\n"
         while True:
             
             
