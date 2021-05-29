@@ -86,10 +86,10 @@ class salaVermelha(Funções, Personagem):
                 print("A porta está trancada...")
 
                 if self.chave == False:
-                    print("Você não tem a chave! Vasculhe a sala para encontra-la")
+                    print("Você não tem a \033[4;31mchave\033[m! Vasculhe a sala para encontra-la")
                     print()
                 else:
-                    deseja = input("Você deseja usar a chave[sim/nã o]? ")
+                    deseja = input("Você deseja usar a \033[4;31mchave\033[m[sim/não]? ")
 
                     if deseja == "sim":
                         print(
@@ -151,7 +151,7 @@ class salaVermelha(Funções, Personagem):
                             escrivaninhanaparede = True
                             os.system('clear')
                         else:
-                            print("Você não tem força para empurrar a escrivaninha!")
+                            print("Você não tem \033[33mforça\033[m para empurrar a escrivaninha!")
                             print()
                             sleep(3)
                             os.system('clear')
@@ -264,10 +264,12 @@ class salaVermelha(Funções, Personagem):
                           '[1] - Limpar a Guitarra\n',
                           '[2] - Quebrar a Guitarra\n',
                           '[3] - Tocar a Guitarra\n\n ')
+                    guitarQuebrada=False
 
                     escolhaGuitarra = int(input('>> '))
 
                     if escolhaGuitarra == 1:
+                        guitarQuebrada=False
                         print()
                         print('Por que isso é importante?')
                         sleep(3)

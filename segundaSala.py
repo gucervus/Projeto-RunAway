@@ -7,7 +7,7 @@ import os
 import pygame
 
 
-class salaVermelha(Funções, Personagem):
+class salaBranca(Funções, Personagem):
 
     def __init__(self, *args, genero, **kwargs):
         self.cadeira = False
@@ -213,7 +213,7 @@ class salaVermelha(Funções, Personagem):
 
                             if visualizar != 3:
                                 print(
-                                    'Você está muito cansado, é impossível isso estar na sala, descanse 5 minutos')
+                                    'Você está muito cansado, é impossível isso estar na sala, descanse {}5 minutos{}'.format(cores['red'], cores['limpa']))
 
                                 relogio.corretempo(5)
                                 sleep(5)
@@ -271,7 +271,7 @@ class salaVermelha(Funções, Personagem):
                         os.system('clear')
 
                         if quadro == 'SIM':
-                            print('O quadro da sala é a Dama com Arminho de Leonardo da Vince\n',
+                            print('O quadro da sala é a Dama com Arminho de Leonardo da Vinci\n',
                                   'Que linda peça!')
 
                             print()
@@ -289,7 +289,7 @@ class salaVermelha(Funções, Personagem):
                             elif acaoQuadro == 2:
 
                                 print('Essa realmente é uma obra muito bonita, entendo você querer adimirá-la\n',
-                                      'Porem seu tempo está correndo')
+                                      f'Porem seu {cores['red']}tempo{cores['limpa']} está correndo')
                                 relogio.corretempo(5)
 
                             elif acaoQuadro == 3:
@@ -297,7 +297,7 @@ class salaVermelha(Funções, Personagem):
                                 print('Que loucura rasgar um quadro tão lindo quanto esse...\n',
                                       'Da Vince acaba de se revirar no tumulo\n',
                                       'Porem situações desesperadas pedem medidas desesperadas\n',
-                                      'Você encontrou dentrou do quadro uma chave...')
+                                      'Você encontrou dentrou do quadro uma {}chave{}...'.format(cores['red'],cores['limpa']))
                                 self.chaveBau = True
 
                                 sleep(5)
