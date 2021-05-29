@@ -26,10 +26,6 @@ if (__name__ == "__main__"):
     gen = input("Digite seu gênero: ").lower()
     os.system('clear')
 
-    personagem = Personagem(nome, gen, alt)
-    relogio = Relógio(30)
-    salas = salaVermelha()
-    salas.chave = False
     func = Funções(genero=gen)
 
     tecla.play(-1)
