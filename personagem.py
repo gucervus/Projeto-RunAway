@@ -3,38 +3,38 @@ import os
 
 
 class Personagem:
-    def __init__(self, nome, altura, escolha):
+    def __init__(self, nome, altura, atributo):
         self.nome = nome
         self.altura = altura
-        self.escolha = escolha
+        self.atributo = atributo
 
     def escolhaAtributo(self):
         func = Funções(genero='')
-        if self.escolha == 'Força':
+        if self.atributo == 'Força':
             # tecla.play(-1)
-            frase = f'Você escolheu {self.escolha} cabrunco, você pode se dar melhor arrastando objetos pesados!\n\n'
+            frase = f'Você escolheu {self.atributo} cabrunco, você pode se dar melhor arrastando objetos pesados!\n\n'
             func.animation(frase)
 
             input("aperte enter para prosseguir...")
             # tecla.stop()
             os.system('clear')
-        elif self.escolha == 'Velocidade':
+        elif self.atributo == 'Velocidade':
             # tecla.play(-1)
-            frase = f'Você escolheu {self.escolha} cabrunco, você perderá menos tempo a cada escolha\n\n'
+            frase = f'Você escolheu {self.atributo} cabrunco, você perderá menos tempo a cada escolha\n\n'
             func.animation(frase)
             # tecla.stop()
             input("aperte enter para prosseguir...")
             os.system('clear')
-        elif self.escolha == 'Inteligência':
+        elif self.atributo == 'Inteligência':
             # tecla.play(-1)
-            frase = f'Você escolheu {self.escolha} cabrunco, você pensa fora da caixinha! E terá algumas dicas!\n\n'
+            frase = f'Você escolheu {self.atributo} cabrunco, você pensa fora da caixinha! E terá algumas dicas!\n\n'
             func.animation(frase)
             # tecla.stop()
             input("aperte enter para prosseguir...")
             os.system('clear')
-        elif self.escolha == 'Sorte':
+        elif self.atributo == 'Sorte':
             # tecla.play(-1)
-            frase = f'Você escolheu {self.escolha} cabrunco, você pode ter escolhas especiais!\n\n'
+            frase = f'Você escolheu {self.atributo} cabrunco, você pode ter escolhas especiais!\n\n'
             func.animation(frase)
             # tecla.stop()
             input("aperte enter para prosseguir...")

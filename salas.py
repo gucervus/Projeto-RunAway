@@ -20,7 +20,7 @@ class salaVermelha(Funções, Personagem):
 
     def acao(self):
 
-        relogio = Relógio(30, self.nome, self.altura, self.escolha)
+        relogio = Relógio(30, self.nome, self.altura, self.atributos)
 
         numeroSala = False
 
@@ -140,7 +140,7 @@ class salaVermelha(Funções, Personagem):
                     elif opcEscrivaninha == 3:
                         relogio.corretempo(4)
 
-                        if self.escolha == 'Força':
+                        if self.atributo == 'Força':
                             print()
                             print("Você empurrou a escrivaninha até a parede.")
                             sleep(5)
@@ -191,7 +191,7 @@ class salaVermelha(Funções, Personagem):
                         os.system('clear')
                     elif escolhaEstante == 3:
                         relogio.corretempo(4)
-                        if self.escolha == 'Inteligência':
+                        if self.atributo == 'Inteligência':
                             print(
                                 '**While my guitar gently weeps tem um lindo solo!')
                         else:
@@ -220,7 +220,7 @@ class salaVermelha(Funções, Personagem):
                         relogio.corretempo(4)
                         os.system('clear')
                     elif escolhaArm == 3:
-                        if self.escolha == 'Força':
+                        if self.atributo == 'Força':
                             print()
                             print("Você derrubou o Armário.")
                             print('E encontrou uma dica: {}HOJE É DIA DE ROCK BEBÊ!!!{}'.format(
@@ -307,7 +307,7 @@ class salaVermelha(Funções, Personagem):
                     os.system('clear')
 
             elif opcao2 == 3:
-                if self.escolha == 'Força':
+                if self.atributo == 'Força':
                     print()
                     print("A porta é de madeira e você conseguiu quebra-la!")
                     print("Parabéns, você é forte o suficiente para a próxima sala!")

@@ -49,17 +49,17 @@ if (__name__ == "__main__"):
     print()
 
     if opcao == 1:
-        escolha = "Força"
+        atributo = "Força"
     elif opcao == 2:
-        escolha = "Velocidade"
+        atributo = "Velocidade"
     elif opcao == 3:
-        escolha = 'Inteligência'
+        atributo = 'Inteligência'
     elif opcao == 4:
-        escolha = "Sorte"
+        atributo = "Sorte"
 
-    personagem = Personagem(nome, alt, escolha)
+    personagem = Personagem(nome, alt, atributo)
 
-    salas = salaVermelha(nome=nome, altura=alt, escolha=escolha, genero=gen)
+    salas = salaVermelha(nome=nome, altura=alt, atributo = atributo, genero=gen)
     sala2 = salaBranca()
     personagem.escolhaAtributo()
 
