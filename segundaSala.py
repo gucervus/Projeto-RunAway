@@ -7,7 +7,7 @@ import os
 import pygame
 
 
-class salaVermelha(Funções, Personagem):
+class salaBranca(Funções, Personagem):
 
     def __init__(self, *args, genero, **kwargs):
         self.cadeira = False
@@ -39,12 +39,12 @@ class salaVermelha(Funções, Personagem):
 
         # tecla.play(-1)
         sala = "Você está em uma sala com paredes brancas!\n\n"
-        # func.animation(sala)
+        self.animation(sala)
 
         fraseSala1 = f"Lembre-se que acima da porta há um {cores['red']}relógio {cores['limpa']},marcando agora {relogio.minutos} minutos,\n"
-        # func.animation(fraseSala1)
+        self.animation(fraseSala1)
         fraseSala2 = "Você consegue ver uma cadeira, um espelho, um quadro, um bau, uma estátua e uma bolsa de...\n\n"
-        # func.animation(fraseSala2)
+        self.animation(fraseSala2)
         # tecla.stop()
         sleep(1)
 
@@ -133,15 +133,18 @@ class salaVermelha(Funções, Personagem):
                         print()
                         ler = input(
                             "Você não encontrou uma carta grudada na cadeira, deseja ler? [sim/não]: ").upper()
-                        sleep(5)
-                        os.system('clear')
+                        print()
 
                         if ler == 'SIM':
                             print('***Mensagem sobre a vida***')
                             print(
                                 'Começamos bem, porém ainda não encontramos uma forma de sair daqui, vamos continuar')
+                            sleep(5)
+                            os.system('clear')
                         else:
                             print('Ok, vamos continuar')
+                            sleep(5)
+                            os.system('clear')
 
                     elif opcaoCadeira == 2:
                         print(

@@ -48,9 +48,9 @@ class salaVermelha(Funções, Personagem):
         tecla.stop()
         sleep(1)
 
+        escrivaninhanaparede = False
+        ima = False
         while True:
-            escrivaninhanaparede = False
-            ima = False
 
             if numeroSala == True:
 
@@ -81,26 +81,36 @@ class salaVermelha(Funções, Personagem):
             print()
 
             if opcao2 == 1:
-
+                tecla.play(-1)
                 relogio.corretempo(4)
-                print("A porta está trancada...")
+                fraseAnimation = "A porta está trancada...\n\n"
+                self.animation(fraseAnimation)
 
                 if self.chave == False:
-                    print("Você não tem a chave! Vasculhe a sala para encontra-la")
+
+                    fraseAnimation = "Você não tem a chave! Vasculhe a sala para encontra-la\n\n"
+                    self.animation(fraseAnimation)
+                    tecla.stop()
                     print()
                 else:
-                    deseja = input("Você deseja usar a chave[sim/nã o]? ")
+                    tecla.stop()
+                    deseja = input("Você deseja usar a chave[sim/não]? ")
 
                     if deseja == "sim":
-                        print(
-                            "Parabéns!! Você abriu a porta e avançou para a próxima sala!")
+                        tecla.play(-1)
+                        fraseAnimation = "Parabéns!! Você abriu a porta e avançou para a próxima sala!\n\n"
+                        self.animation(fraseAnimation)
+                        tecla.stop()
                         relogio.minutos += 30
                         input("Aperte enter para prosseguir...")
                         break
                     elif deseja == "nao":
-                        print("Você achou melhor guardar a chave.")
+                        tecla.play(-1)
+                        fraseAnimation = "Você achou melhor guardar a chave.\n\n"
+                        self.animation(fraseAnimation)
+                        tecla.stop()
 
-                sleep(3)
+                sleep(2)
                 os.system('clear')
 
             elif opcao2 == 2:
@@ -131,54 +141,80 @@ class salaVermelha(Funções, Personagem):
                     if opcEscrivaninha == 1:
                         relogio.corretempo(4)
                         print()
-                        print("Você não encontrou nada, {}só tem lixo!{}".format(
-                            cores['red'], cores['limpa']))
-                        sleep(3)
+                        tecla.play(-1)
+                        fraseAnimation = "Você não encontrou nada, {}só tem lixo!{}\n\n".format(
+                            cores['red'], cores['limpa'])
+                        self.animation(fraseAnimation)
+                        tecla.stop()
+                        sleep(2)
                         os.system('clear')
                     elif opcEscrivaninha == 2:
                         relogio.corretempo(4)
                         print()
-                        print("É uma escrivaninha bonita e resistente!")
-                        sleep(3)
+                        tecla.play(-1)
+                        fraseAnimation = "É uma escrivaninha bonita e resistente!\n\n"
+                        self.animation(fraseAnimation)
+                        tecla.stop()
+                        sleep(2)
                         os.system('clear')
                     elif opcEscrivaninha == 3:
                         relogio.corretempo(4)
 
                         if self.atributo == 'Força':
                             print()
-                            print("Você empurrou a escrivaninha até a parede.")
-                            sleep(3)
+                            tecla.play(-1)
+                            fraseAnimation = "Você empurrou a escrivaninha até a parede.\n\n"
+                            self.animation(fraseAnimation)
+                            tecla.stop()
+                            sleep(2)
                             escrivaninhanaparede = True
                             os.system('clear')
                         else:
-                            print("Você não tem força para empurrar a escrivaninha!")
                             print()
-                            sleep(3)
+                            tecla.play(-1)
+                            fraseAnimation = "Você não tem força para empurrar a escrivaninha!\n\n"
+                            self.animation(fraseAnimation)
+                            tecla.stop()
+                            print()
+                            sleep(2)
                             os.system('clear')
                     elif opcEscrivaninha == 4:
 
                         if escrivaninhanaparede == True:
                             print()
-                            print(
-                                'Você pode ver uma pequena {}saída{} de ventilação próxima ao teto.'.format(cores['red'], cores['limpa']))
-                            sleep(5)
+                            tecla.play(-1)
+                            fraseAnimation = 'Você pode ver uma pequena {}saída{} de ventilação próxima ao teto.\n\n'.format(
+                                cores['red'], cores['limpa'])
+                            self.animation(fraseAnimation)
+                            tecla.stop()
+                            sleep(2)
                             relogio.corretempo(4)
-                            os.system('clear')
+
                             if self.altura >= 1.8:
                                 print('Você alcança a saída, deseja subir?')
                                 janelinha = int(input('1-S / 0-N >>> '))
                                 if janelinha == 0:
+                                    os.system('clear')
                                     break
                                 elif janelinha == 1:
-                                    print('Você pode se pendurar na janela, mas não tem {}força{} para passar para o outro lado, na parede do lado oposto está escrita a seguinte mensagem:'.format(
-                                        cores['amarelo'], cores['limpa']))
-                                    print('{}O conhecimento liberta!{}'.format(
-                                        cores['amarelo'], cores['limpa']))
+                                    tecla.play(-1)
+                                    fraseAnimation = 'Você pode se pendurar na janela, mas não tem {}força{} para passar para o outro lado, na parede do lado oposto está escrita a seguinte mensagem:\n\n'.format(
+                                        cores['amarelo'], cores['limpa'])
+                                    self.animation(fraseAnimation)
+                                    fraseAnimation = '{}O conhecimento liberta!{}\n\n'.format(
+                                        cores['amarelo'], cores['limpa'])
+                                    self.animation(fraseAnimation)
+                                    tecla.stop()
+                                    sleep(2)
+                                    os.system('clear')
 
                         else:
                             print()
-                            print('O chão parece mais distante')
-                            sleep(5)
+                            tecla.play(-1)
+                            fraseAnimation = 'O chão parece mais distante\n\n'
+                            self.animation(fraseAnimation)
+                            tecla.stop()
+                            sleep(2)
                             relogio.corretempo(4)
                             os.system('clear')
 
@@ -193,68 +229,108 @@ class salaVermelha(Funções, Personagem):
                     if escolhaEstante == 1:
                         print()
                         relogio.corretempo(4)
-                        print(
-                            'Você descobriu a modelo do {}toca{} disco: Toca disco vinil air LP ion IT55'.format(cores['azul'], cores['limpa']))
-                        sleep(3)
+                        tecla.play(-1)
+                        fraseAnimation = 'Você descobriu o modelo do {}toca{} disco: Toca disco vinil air LP ion IT55\n\n'.format(
+                            cores['azul'], cores['limpa'])
+                        self.animation(fraseAnimation)
+                        tecla.stop()
+                        sleep(2)
                         os.system('clear')
                     elif escolhaEstante == 2:
                         print()
-                        print(
-                            'Econtrei um vinil,esta em ótimo estado, sera que o toca disco funciona? ')
-                        sleep(3)
+                        tecla.play(-1)
+                        fraseAnimation = 'Econtrou um vinil,esta em ótimo estado, sera que o toca disco funciona?\n\n '
+                        self.animation(fraseAnimation)
+                        tecla.stop()
+                        sleep(2)
                         relogio.corretempo(4)
                         os.system('clear')
                     elif escolhaEstante == 3:
                         relogio.corretempo(4)
                         if self.atributo == 'Inteligência':
-                            print(
-                                '**While my {}guitar{} gently weeps tem um lindo {}solo{}!'.format(cores['azul'], cores['limpa'], cores['amarelo', cores['limpa']]))
+                            tecla.play(-1)
+                            fraseAnimation = '**While my {}guitar{} gently weeps tem um lindo {}solo{}!\n\n'.format(
+                                cores['azul'], cores['limpa'], cores['amarelo', cores['limpa']])
+                            self.animation(fraseAnimation)
+                            tecla.stop()
+                            sleep(2)
+
                         else:
-                            print('O toca disco não funciona!')
+                            print()
+                            tecla.play(-1)
+                            fraseAnimation = 'O toca disco não funciona!\n\n'
+                            self.animation(fraseAnimation)
+                            tecla.stop()
+                            sleep(2)
 
                         os.system('clear')
                 elif escolha == 3:
-                    print('Você deseja:\n\n',
-                          '[1] - Abrir o armário\n',
-                          '[2] - Olhar o armário\n',
-                          '[3] - Empurrar o armário\n\n')
+                    if ima == True:
+                        print('Você deseja:\n\n',
+                              '[1] - Abrir o armário\n',
+                              '[2] - Olhar o armário\n',
+                              '[3] - Empurrar o armário\n',
+                              '[4] - Pegar a chave embaixo do armário\n\n')
 
-                    escolhaArm = int(input('>> '))
+                        escolhaArm = int(input('>> '))
+                    else:
+                        print('Você deseja:\n\n',
+                              '[1] - Abrir o armário\n',
+                              '[2] - Olhar o armário\n',
+                              '[3] - Empurrar o armário\n\n')
+
+                        escolhaArm = int(input('>> '))
 
                     if escolhaArm == 1:
                         print()
-                        print(
-                            'Dentro do armário vc encontra um bilhete escrito: "Pare de perder {}tempo!{}'.format(cores['red'], cores['limpa']))
-                        sleep(3)
+                        tecla.play(-1)
+                        fraseAnimation = 'Dentro do armário vc encontra um bilhete escrito: "Pare de perder {}tempo!{}\n\n'.format(
+                            cores['red'], cores['limpa'])
+                        self.animation(fraseAnimation)
+                        tecla.stop()
+                        sleep(2)
                         relogio.corretempo(4)
                         os.system('clear')
                     elif escolhaArm == 2:
                         print()
-                        print('Você está {}tentando{} aprender marcenaria?'.format(
-                            cores['red'], cores['limpa']))
-                        sleep(5)
+                        tecla.play(-1)
+                        fraseAnimation = 'Você está {}tentando{} aprender marcenaria?\n\n'.format(
+                            cores['red'], cores['limpa'])
+                        self.animation(fraseAnimation)
+                        tecla.stop()
+                        sleep(2)
                         relogio.corretempo(4)
                         os.system('clear')
                     elif escolhaArm == 3:
                         if self.atributo == 'Força':
                             print()
-                            print("Você derrubou o Armário.")
-                            print('E encontrou uma dica: {}HOJE É DIA DE ROCK BEBÊ!!!{}'.format(
-                                cores['azul'], cores['limpa']))
-                            sleep(3)
+                            tecla.play(-1)
+                            fraseAnimation = "Você derrubou o Armário.\n"
+                            self.animation(fraseAnimation)
+                            fraseAnimation = 'E encontrou uma dica: {}HOJE É DIA DE ROCK BEBÊ!!!{}\n\n'.format(
+                                cores['azul'], cores['limpa'])
+                            self.animation(fraseAnimation)
+                            tecla.stop()
+                            sleep(2)
                             relogio.corretempo(4)
                             os.system('clear')
 
                         else:
                             print()
                             if ima == True:
-                                print("Você conseguiu pegar a {}chave{} com o {}imã!{}".format(
-                                    cores['red'], cores['limpa'], cores['azul'], cores['limpa']))
+                                tecla.play(-1)
+                                fraseAnimation = "Você conseguiu pegar a {}chave{} com o {}imã!{}\n\n".format(
+                                    cores['red'], cores['limpa'], cores['azul'], cores['limpa'])
+                                self.animation(fraseAnimation)
+                                tecla.stop()
                                 self.chave = True
                             else:
-                                print("Você não tem {}força{} para empurrar o Armário!".format(
-                                    cores['amarelo'], cores['limpa']))
-                            sleep(3)
+                                tecla.play(-1)
+                                fraseAnimation = "Você não tem {}força{} para empurrar o Armário! Mas consegue olhar embaixo dele.\n\n".format(
+                                    cores['amarelo'], cores['limpa'])
+                                self.animation(fraseAnimation)
+                                tecla.stop()
+                            sleep(2)
                             relogio.corretempo(4)
                             os.system('clear')
                 elif escolha == 4:
@@ -269,27 +345,39 @@ class salaVermelha(Funções, Personagem):
 
                     if escolhaGuitarra == 1:
                         print()
-                        print('Por que isso é importante?')
-                        sleep(3)
+                        tecla.play(-1)
+                        fraseAnimation = 'Por que isso é importante?\n\n'
+                        self.animation(fraseAnimation)
+                        tecla.stop()
+                        sleep(2)
                         relogio.corretempo(4)
                         os.system('clear')
                     elif escolhaGuitarra == 2:
                         print()
                         relogio.corretempo(8)
-                        print(
-                            'Você quebrou a guitarra e a {}chave{} caiu embaixo do armário, procure algo para pegá-la, voce perdeu {}8 minutos{}'.format(cores['red'], cores['limpa'], cores['red'], cores['limpa']))
+                        tecla.play(-1)
+                        fraseAnimation = 'Você quebrou a guitarra e a {}chave{} caiu embaixo do armário, procure algo para pegá-la, voce perdeu {}8 minutos{}\n\n'.format(
+                            cores['red'], cores['limpa'], cores['red'], cores['limpa'])
+                        self.animation(fraseAnimation)
+                        tecla.stop()
                         guitarQuebrada = True
-                        sleep(3)
+                        sleep(2)
                         os.system('clear')
                     elif escolhaGuitarra == 3:
                         print()
                         relogio.corretempo(4)
                         if guitarQuebrada == True:
-                            print(
-                                "Você tentou tocar uma guitarra quebrada, e perdeu {}10 minutos{}".format(cores['red'], cores['limpa']))
+                            tecla.play(-1)
+                            fraseAnimation = "Você tentou tocar uma guitarra quebrada, e perdeu {}10 minutos{}\n\n".format(
+                                cores['red'], cores['limpa'])
+                            self.animation(fraseAnimation)
+                            tecla.stop()
+                            sleep(2)
                         else:
-                            print(
-                                'Que música linda! Os deuses do rock estão satisfeitos...')
+                            tecla.play(-1)
+                            fraseAnimation = 'Que música linda! Os deuses do rock estão satisfeitos...\n\n'
+                            self.animation(fraseAnimation)
+                            tecla.stop()
                             sleep(.5)
                             print('.')
                             sleep(.5)
@@ -300,8 +388,11 @@ class salaVermelha(Funções, Personagem):
                             print('.')
                             sleep(.5)
                             print('.')
-                            print('Uma chave caiu em sua cabeça!')
-                            sleep(5)
+                            tecla.play(-1)
+                            fraseAnimation = 'Uma chave caiu em sua cabeça!\n\n'
+                            self.animation(fraseAnimation)
+                            tecla.stop()
+                            sleep(2)
                             self.chave = True
                         os.system('clear')
                 elif escolha == 5:
@@ -314,31 +405,44 @@ class salaVermelha(Funções, Personagem):
                     opcMesa = int(input('>> '))
 
                     if opcMesa == 1:
-                        print('Você decidiu jogar bilhar e perdeu {}5 minutos{}'.format(
-                            cores['red'], cores['limpa']))
+                        tecla.play(-1)
+                        fraseAnimation = 'Você decidiu jogar bilhar e perdeu {}5 minutos{}\n\n'.format(
+                            cores['red'], cores['limpa'])
+                        self.animation(fraseAnimation)
+                        tecla.stop()
                         relogio.corretempo(5)
-                        sleep(5)
+                        sleep(2)
                     elif opcMesa == 2:
-                        print("Você encontrou um {}imã{}, agora consegue atrair metal".format(
-                            cores['azul'], cores['limpa']))
+                        tecla.play(-1)
+                        fraseAnimation = "Você encontrou um {}imã{}, agora consegue atrair metal\n\n".format(
+                            cores['azul'], cores['limpa'])
+                        self.animation(fraseAnimation)
+                        tecla.stop()
                         relogio.corretempo(4)
-                        sleep(5)
+                        sleep(2)
                         ima = True
                     os.system('clear')
 
             elif opcao2 == 3:
                 if self.atributo == 'Força':
                     print()
-                    print("A porta é de madeira e você conseguiu quebra-la!")
-                    print("Parabéns, você é {}forte{} o suficiente para a próxima sala!".format(
-                        cores['amarelo'], cores['limpa']))
-                    sleep(5)
+                    tecla.play(-1)
+                    fraseAnimation = "A porta é de madeira e você conseguiu quebra-la! Mas uma farpa de madeira te machucou.\n\n"
+                    self.animation(fraseAnimation)
+                    fraseAnimation = "Parabéns, você é {}forte{} o suficiente para a próxima sala! Mas perderá mais tempo por estar machucado!\n\n".format(
+                        cores['amarelo'], cores['limpa'])
+                    self.animation(fraseAnimation)
+                    tecla.stop()
                     relogio.minutos += 30
+                    input('Aperte enter para continuar...')
                     os.system('clear')
                     break
                 else:
-                    print('Você é frac{} demais pra isso'.format(
-                        self.generos()))
-                    sleep(5)
+                    tecla.play(-1)
+                    fraseAnimation = 'Você é frac{} demais pra isso\n\n'.format(
+                        self.generos())
+                    self.animation(fraseAnimation)
+                    tecla.stop()
+                    sleep(2)
                     relogio.corretempo(4)
                     os.system('clear')
