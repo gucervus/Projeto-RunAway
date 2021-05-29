@@ -89,7 +89,7 @@ class salaVermelha(Funções, Personagem):
                     print("Você não tem a chave! Vasculhe a sala para encontra-la")
                     print()
                 else:
-                    deseja = input("Você deseja usar a chave[sim/não]? ")
+                    deseja = input("Você deseja usar a chave[sim/nã o]? ")
 
                     if deseja == "sim":
                         print(
