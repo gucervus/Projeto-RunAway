@@ -44,6 +44,7 @@ if (__name__ == "__main__"):
     gen = input("Digite seu gênero: ").lower()
     alt = float(input("Digite sua altura: "))
     os.system('clear')
+<<<<<<< Updated upstream
 
     tecla.play(-1)
     print(' '*25, end='')
@@ -58,6 +59,18 @@ if (__name__ == "__main__"):
     relogio = Relógio(30)
     salas = salaVermelha()
     salas.chave = False
+=======
+    func = Funções(genero=gen)
+
+    tecla.play(-1)
+    print(' '*25, end='')
+    bemVindo = f"Bem vind{func.generos()} {nome}\n\n"
+    func.animation(bemVindo)
+    print(' '*20, end='')
+    atributo = '»»»» Escolha um atributo ««««\n\n\n\n'
+    func.animation(atributo)
+    tecla.stop()
+>>>>>>> Stashed changes
 
     sleep(1)
     print("Qual atributo você escolhe? \n\n",
@@ -74,6 +87,7 @@ if (__name__ == "__main__"):
         personagem.forca = True
         personagem.escolha = "Força"
 
+<<<<<<< Updated upstream
         tecla.play(-1)
         frase = f'{personagem}, você pode se dar melhor arrastando objetos pesados!\n\n'
         animation(frase, 1)
@@ -114,9 +128,13 @@ if (__name__ == "__main__"):
         frase = f'{personagem}, você pode ter escolhas especiais!\n\n'
         animation(frase, 1)
         tecla.stop()
+=======
+    personagem = Personagem(nome, alt, escolha)
+>>>>>>> Stashed changes
 
-        input("aperte enter para prosseguir...")
-        os.system('clear')
+    salas = salaVermelha(nome=nome, altura=alt, escolha=escolha, genero=gen)
+    sala2 = salaBranca()
+    personagem.escolhaAtributo()
 
     print(' '*20, end='')
     print('', '__________________________')

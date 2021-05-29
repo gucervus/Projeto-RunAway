@@ -1,8 +1,24 @@
 
+<<<<<<< Updated upstream
 class Relógio:
     def __init__(self, minutos):
         self.minutos = minutos
         self.fimdotempo = False
+=======
+
+class Relógio(Personagem):
+    def __init__(self, minutos, nome, altura, escolha):
+        self.minutos = minutos
+        super().__init__(nome, altura, escolha)
+
+    def corretempo(self, minutos):
+
+        if self.escolha == 'Velocidade':
+            total = minutos // 2
+            self.minutos -= total
+        else:
+            self.minutos -= minutos
+>>>>>>> Stashed changes
 
     def __str__(self):
         return f'{self.minutos:02d}'
