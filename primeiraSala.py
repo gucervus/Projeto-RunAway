@@ -20,7 +20,7 @@ class salaVermelha(Funções, Personagem):
 
     def acao(self):
 
-        relogio = Relógio(30, self.nome, self.altura, self.atributos)
+        relogio = Relógio(30, self.nome, self.altura, self.atributo)
 
         numeroSala = False
 
@@ -86,7 +86,7 @@ class salaVermelha(Funções, Personagem):
                     print("Você não tem a chave! Vasculhe a sala para encontra-la")
                     print()
                 else:
-                    deseja = input("Você deseja usar a chave[sim/não]? ")
+                    deseja = input("Você deseja usar a chave[sim/nã o]? ")
 
                     if deseja == "sim":
                         print(

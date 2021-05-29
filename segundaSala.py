@@ -5,189 +5,353 @@ from time import sleep
 from CORES import cores
 import os
 import pygame
-class salaBranca(Funções, Personagem):
+
+
+class salaVermelha(Funções, Personagem):
+
     def __init__(self, *args, genero, **kwargs):
-        self.cadeira = True
-        self.abajur = True
-        self.quadro = True
-        self.luminaria = True
+        self.cadeira = False
+        self.espelho = False
+        self.quadro = False
+        self.bau = False
         self.estatua = True
-        self.escolha = 0
-        self.objeto = 0
-        super().__init__(*args, genero = genero, **kwargs)
+        self.bolsaRemedios = False
+        self.chaveBau = False
+        self.chavePorta = False
+        
+        super().__init__(*args, genero=genero, **kwargs)
 
     def acao(self):
+
         relogio = Relógio(30, self.nome, self.altura, self.atributo)
-        
+
         numeroSala = False
-        
+
         print(' '*20, end='')
         print('', '__________________________')
         print(' '*20, end='')
         print('|', ' '*24, '|')
         print(' '*20, end='')
-        print('|', ' '*7, ' SALA 2 ', ' '*7, '|')
+        print('|', ' '*7, ' SALA BRANCA ', ' '*7, '|')
         print(' '*20, end='')
         print('|__________________________|')
         print('\n'*2)
         
-        sala = 'Após a sua primeira vitória, você segue para uma sala branca'
+        # tecla.play(-1)
+        sala = "Você está em uma sala com paredes brancas!\n\n"
+        # func.animation(sala)
+
+        fraseSala1 = f"Lembre-se que acima da porta há um {cores['red']}relógio {cores['limpa']},marcando agora {relogio.minutos} minutos,\n"
+        # func.animation(fraseSala1)
+        fraseSala2 = "Você consegue ver uma cadeira, um espelho, um quadro, um bau, uma estátua e uma bolsa de...\n\n"
+        # func.animation(fraseSala2)
+        # tecla.stop()
+        sleep(1)
+
+        pygame.init()
+        tecla = pygame.mixer.Sound('teclado.ogg')
         
-        fraseSala = f"Lembre-se que acima da porta a um {cores['red']}relógio {cores['limpa']}marcando {relogio.minutos} minutos,\n'
         while True:
-            
-            
-            print('[1] - cadeira\n[2] - espelho\n[3] - quadro\n[4] - baú\n[5] - estatua\n[6] - candelabro\n[7] - estojo de remédios\n')
-            self.objeto = input('Qual objeto deseja interagir escolha?: ')
+            if numeroSala == True:
+        
+                tecla.play()
+                print(' '*20, end='')
+                print('', '__________________________')
+                print(' '*20, end='')
+                print('|', ' '*24, '|')
+                print(' '*20, end='')
+                print('|', ' '*7, ' SALA BRANCA ', ' '*7, '|')
+                print(' '*20, end='')
+                print('|__________________________|')
+                print('\n'*2)
 
-            if self.objeto == '1':
-                print('Você escolheu a cadeira...')
-                print(
-                    '[1] - Vasculhar cadeira\n[2] - Jogar cadeira na parede\n[3] - Sentar para descansar')
-                self.escolha = int(input('>>> '))
-                if self.escolha == 1:
-                    ler = input(
-                        'Você encontrou uma carta grudada na cadeira, deseja ler?[sim/não]: ').upper()
-                    if ler == 'SIM':
-                        print('***Mensagem sobre a vida***')
+                tecla.play(-1)
+                contador = f"Restam {relogio.minutos} minutos para escapar da sala!\n\n"
+                self.animation(contador)
+                tecla.stop()
+
+            numeroSala = True
+            
+            print("O que você deseja fazer?\n\n",
+                  "[1] - Abrir a porta\n",
+                  "[2] - Vasculhar a sala\n",
+                  "[3] - Quebrar porta\n")
+
+            escolha = int(input("»» "))
+            print()
+            
+            if escolha == 1:
+    
+                relogio.corretempo(4)
+                print("A porta está trancada...")
+
+                if self.chavePorta == False:
+                    print("Você não tem a chave! Vasculhe a sala para encontra-la")
+                    print()
+                else:
+                    escolha = input("Você deseja usar a chave[sim/não]? ")
+
+                    if escolha == "sim":
                         print(
-                            'Começamos bem, porém ainda não encontramos uma forma de sair daqui, vamos continuar')
-                    else:
-                        print('Ok, vamos continuar')
-                elif self.escolha == 2:
-                    print(
-                        "Você quebrou a cadeira na parede, mas um pedaço de farpa machucou seu braço")
-                    print('**Decrementa tempo**')
-                    ler = input(
-                        'Você percebeu que nos pedaços de madeira quebrados tem uma carta, deseja ler?').upper()
-                    if ler == 'SIM':
-                        print(
-                            'Você está um pouco "sonzo", e esta perdendo tempo lendo essa carta, vá enfaixar seu braço')
-                        print('Caso contrário perderá mais tempo que o normal')
-                        print('**decrementa tempo**')
+                            "Parabéns!! Você abriu a porta e avançou para a próxima sala!")
+                        relogio.minutos += 30
+                        input("Aperte enter para prosseguir...")
+                        break
+                    elif escolha == "nao":
+                        print("Você achou melhor guardar a chave.")
+
+                sleep(5)
+                os.system('clear')
+                
+            elif escolha == 2:
+    
+                sleep(1)
+                print("Qual item deseja vasculhar?\n\n",
+                      "[1] - Cadeira\n",
+                      "[2] - Espelho\n",
+                      "[3] - Quadro\n",
+                      "[4] - Bau\n",
+                      "[5] - Estátua\n",
+                      "[6] - Bolsa de remédios")
+
+                sleep(1)
+                print()
+                objetos = int(input('>> '))
+                print()
+                
+                if objetos == 1:
+    
+                    print("Você deseja: \n\n",
+                          "[1] - Vasculhar cadeira\n",
+                          "[2] - Quebrar a cadeira\n",
+                          "[3] - Subir na cadeira\n",)
+
+                    opcaoCadeira = int(input(">> "))
+                    
+                    if opcaoCadeira == 1:
+                        relogio.corretempo(4)
                         print()
-                        print(
-                            '[1] - cadeira\n[2] - abajur\n[3] - quadro\n[4] - luminaria\n[5] - estatua\n[6] - candelabro\n[7] - estojo de remédios\n')
-                        recuperarVida = int(input('>>> '))
-                        if recuperarVida == 7:
-                            print(
-                                'Boa escolha, dentro do estojo de remédios temos analgésicos e gaze para o seu machucado')
-                            print("Pode continuar sem nenhum problema")
-                            # Decrementa normalmente
+                        ler = input("Você não encontrou uma carta grudada na cadeira, deseja ler? [sim/não]: ").upper()
+                        sleep(5)
+                        os.system('clear')
+                        
+                        if ler == 'SIM':
+                            print('***Mensagem sobre a vida***')
+                            print('Começamos bem, porém ainda não encontramos uma forma de sair daqui, vamos continuar')
                         else:
-                            # Decrementa 5 minutos a cada 10 minutos passados
-                            continue
-
-                elif self.escolha == 3:
-                    print('Que situação maluca, descansar é sempre bom!')
-                    print('Você conseguiu enxergar o reflexo de alguma coisa')
-                    print('O que deseja fazer?')
-
-                    print(
-                        '[1] - cadeira\n[2] - espelho\n[3] - quadro\n[4] - luminaria\n[5] - estatua\n[6] - candelabro\n[7] - estojo de remédios\n')
-                    self.objeto = input('Qual objeto deseja interagir escolha?: ')
-                    if self.objeto == '2':
-                        print('O que você viu no espelho?')
-                        print(
-                            '[1] - Dinossauro\n[2] - guarda - roupa\n[3] - Estatua')
-                        visualizar = int(input('>>> '))
-                        if visualizar != 3:
-                            print(
-                                'Você está muito cansado, é impossível isso estar na sala, descanse 5 minutos')
-                            # Decrementa 5 mintuos
-                        else:
-                            print(
-                                'A sala realmente tem uma estatua, o que quer fazer?')
-                            print('''
-                [1] - Quebrar a estatua 
-                [2] - Girar a estatua
-                [3] - Não fazer nada
-                ''')
-                            estatua = int(input('>>> '))
-                            if estatua == 1:
-                                print(
-                                    'Seu emocional está quebrado... Você está quebrando objetos como se não ouvesse consequencias')
-                                # Decrementa 1 minuto
-                            elif estatua == 2:  # =================\\FIM //============================
-                                print(
-                                    'Boa escolha, você girou a estatua com delicadeza, isso possibilitou a porta de saida abrir')
-                                break
-                            elif estatua == 3:
-                                continue
-
-            elif self.objeto == '2':
-                print('O que você viu no espelho?')
-                print('[1] - Seu próprio reflexo\n[2] - Qudaro \n[3] - Violão')
-                visualizar = int(input('>>> '))
-
-                if visualizar == 1:
-                    print('''
-            Você é uma pessoa muito bonita, porém 
-            já tem problemas o suficiente para ficar se olhando no espelho
-            ''')
-                    # Decrementa 5 minutos
-                elif visualizar == 2:
-                    print('''
-            É um quadro lindo, deseja chegar mais perto?
-            ''')
-                    quadro = input(' ').upper()
-
-                    if quadro == 'SIM':
-                        print(
-                            'O quadro da sala é a Dama com Arminho de Leonardo da Vince')
-                        print('Que linda peça!')
-                        print('''
-              [1] - Vasculhar o quadro
-              [2] - Admirar o quadro
-              [3] - Rasgar o quadro''')
-                        acao = input('O que deseja fazer? ')
-
-                        if acao == 1:
-                            print('Você não encontrou nada...')
-                            # Decrementa 5
-                        elif acao == 2:
-                            print(
-                                'Essa realmente é uma obra muito bonita, entendo você querer adimirá-la')
-                            print('Porem seu tempo está correndo')
-                            # Decrementa 5 minutos
-                        elif acao == 3:
-                            print(
-                                'Que loucura rasgar um quadro tão lindo quanto esse...Da Vince acaba de se revirar no tumulo')
-                            print(
-                                'Porem situações desesperadas pedem medidas desesperadas')
-                            print(
-                                'Você encontrou dentrou do quadro uma chave... O que deseja fazer?')
-                            chave = True
-                            print(
-                                '[1] - cadeira\n[2] - espelho\n[3] - quadro\n[4] - luminaria\n[5] - estatua\n[6] - candelabro\n[7] - estojo de remédios\n')
-                            self.objeto = input(
-                                'Qual objeto deseja interagir escolha?: ')
-                            if self.objeto == '5' and chave == True:
-                                print(
-                                    'Abrir o baú com a chave foi uma ótima escolha, nele se encontra uma foto')
-                                print(
-                                    'Nela se encontra Rodin, ao lado de uma de suas obras mais famósas')
-                                print(
-                                    'Porque alguém guardaria essa foto em um baú?')
-
-                                print(
-                                    '[1] - cadeira\n[2] - espelho\n[3] - quadro\n[4] - luminaria\n[5] - estatua\n[6] - candelabro\n[7] - estojo de remédios\n')
-                            self.objeto = input(
-                                'Qual objeto deseja interagir escolha?: ')
-                            if self.objeto == '6' and chave == True:
-                                print(
-                                    'Que bela estátua, é uma répica da obra "O Pensador de Agusto Rodin"')
-                                print('''
-                [1] - Quebrar a estatua 
-                [2] - Girar a estatua
-                [3] - Não fazer nada
-                ''')
-                            estatua = int(
-                                input('O que deseja fazer com ela? '))
-                            if estatua == 2:
-                                print(
-                                    'Boa escolha, você girou a estatua com delicadeza, isso possibilitou a porta de saida abrir')
-                                break
+                            print('Ok, vamos continuar')
+                
+                    elif opcaoCadeira == 2 :
+                        print("Você quebrou a cadeira na parede, mas um pedaço de farpa machucou seu braço")
+                        print('Você perdeu x minutos')
+                        sleep(5)
+                        os.system('clear')
+                        # Decrementa tempo
+                        
+                        ler = input('Você percebeu que nos pedaços de madeira quebrados tem uma carta, deseja ler?').upper()
+                        sleep(5)
+                        os.system('clear')
+                        
+                        if ler == 'SIM':
+                            print("Você está um pouco sonzo, e esta perdendo tempo lendo essa carta, vá enfaixar seu braço\n",
+                            "Caso contrário perderá mais tempo que o normal\n")
+                            sleep(5)
+                            os.system('clear')
+                            # Decrementa tempo
+                            
+                            sleep(1)
+                            print("Qual item deseja vasculhar?\n\n",
+                                "[1] - Cadeira\n",
+                                "[2] - Espelho\n",
+                                "[3] - Quadro\n",
+                                "[4] - Bau\n",
+                                "[5] - Estátua\n",
+                                "[6] - Bolsa de remédios")
+                            
+                            sleep(1)
+                            print()
+                            
+                            recuperaVida = int(input(">> "))
+                            
+                            if recuperaVida == 6:
+                                print("Boa escolha, dentro do estojo de remédios temos analgésicos e gaze para o seu machucado\n"
+                                "Pode continuar sem nenhum problema\n")
+                                sleep(5)
+                                os.system('clear')
                             else:
-                                print(
-                                    'Nada de diferente aconteceu, talvez fosse apenas uma impressão sua...')
+                                # Decrementa 5 minutos a cada 10 minutos passados
+                                continue
+                            
+                    elif opcaoCadeira == 3:
+                        print('Que situação maluca, descansar é sempre bom!\n',
+                        'Você conseguiu enxergar o reflexo de alguma coisa\n')
+                        
+                        sleep(5)
+                        os.system('clear')
+                        
+                        print("Qual item deseja vasculhar?\n\n",
+                        "[1] - Cadeira\n",
+                        "[2] - Espelho\n",
+                        "[3] - Quadro\n",
+                        "[4] - Bau\n",
+                        "[5] - Estátua\n",
+                        "[6] - Bolsa de remédios")
+                        
+                        opcaoEspelho = int(input('>> ')) 
+                        
+                        if opcaoEspelho == 2:
+                            print('O que você viu no espelho?\n',
+                            '[1] - Dinossauro\n',
+                            '[2] - guarda-roupa\n',
+                            '[3] - Estatua')
+                            
+                            visualizar = int(input('>> '))
+                        
+                            if visualizar != 3:
+                                print('Você está muito cansado, é impossível isso estar na sala, descanse 5 minutos')
+                                
+                                relogio.corretempo(5)
+                                sleep(5)
+                                os.system('clear')
+                                
+                            else:
+                                print('A sala realmente tem uma estatua, o que quer fazer?')
+                                print('[1] - Olhar a estatua\n', 
+                                      '[2] - Girar a estatua\n',
+                                      '[3] - Não fazer nada')
+                                estatua = int(input('>>> '))
+                                sleep(5)
+                                os.system('clear')
+                                
+                                if estatua == 1:
+                                    print('Nada de diferente aconteceu, talvez fosse apenas uma impressão sua...')
+                                    
+                                    relogio.corretempo(1)
+                                    sleep(5)
+                                    os.system('clear')
+                                elif estatua == 2:  # =================\\ 1° FINAL //============================
+                                    print('Boa escolha, você girou a estatua com delicadeza\n',
+                                          'Um buraco se abre no peito da estátua\n',
+                                          'lhe dando acesso a chave que abre a porta de saída ...')
+                                    
+                                    self.chavePorta = True  # Como usar a chave da porta?
+                                    sleep(5)
+                                    os.system('clear')
+                                elif estatua == 3:
+                                    continue
+                elif objetos ==  2:
+                    print('O que você viu no espelho?\n',
+                    '[1] - Seu próprio reflexo\n',
+                    '[2] - Qudaro \n',
+                    '[3] - Violão')
+                    
+                    visualizar = int(input('>> '))
+                    sleep(5)
+                    os.system('clear')
+                    
+                    if visualizar == 1:
+                        
+                        print('Você é uma pessoa muito bonita, porém\n',
+                        'já tem problemas o suficiente para ficar se olhando no espelho')
+                        relogio.corretempo(5)
+                        
+                    elif visualizar == 2:
+                        print('É um quadro lindo, deseja chegar mais perto? [sim/não]')
+                        quadro = input(' ').upper()
+                        
+                        sleep(5)
+                        os.system('clear')
+
+                        if quadro == 'SIM':
+                            print('O quadro da sala é a Dama com Arminho de Leonardo da Vince\n',
+                            'Que linda peça!')
+                            
+                            print()
+                            print('[1] - Vasculhar o quadro\n',
+                                  '[2] - Admirar o quadro\n',
+                                  '[3] - Rasgar o quadro')
+                            
+                            acaoQuadro = int(input('>> '))
+                            
+                            if acaoQuadro == 1:
+                                
+                                print('Você não encontrou nada...')
+                                relogio.corretempo(2)
+                                
+                            elif acaoQuadro == 2:
+                                
+                                print('Essa realmente é uma obra muito bonita, entendo você querer adimirá-la\n',
+                                      'Porem seu tempo está correndo')
+                                relogio.corretempo(5)
+                                
+                            elif acaoQuadro == 3:
+                                
+                                print('Que loucura rasgar um quadro tão lindo quanto esse...\n',
+                                      'Da Vince acaba de se revirar no tumulo\n',
+                                      'Porem situações desesperadas pedem medidas desesperadas\n',
+                                      'Você encontrou dentrou do quadro uma chave...')
+                                self.chaveBau = True
+                                
+                                sleep(5)
+                                os.system('clear')
+                                
+                                print("Qual item deseja vasculhar?\n\n",
+                                    "[1] - Cadeira\n",
+                                    "[2] - Espelho\n",
+                                    "[3] - Quadro\n",
+                                    "[4] - Bau\n",
+                                    "[5] - Estátua\n",
+                                    "[6] - Bolsa de remédios")
+                                
+                                opcaoChaveBau = int(input('>> ')) 
+                                sleep(5)
+                                os.system('clear')
+                                
+                                if opcaoChaveBau == 4 and self.chaveBau == True:
+                                    
+                                    print('Abrir o baú com a chave foi uma ótima escolha, nele se encontra uma foto\n',
+                                    'Nela se encontra Rodin, ao lado de uma de suas obras mais famósas\n',
+                                    'Porque alguém guardaria essa foto em um baú?')
+                                    
+                                    print("Qual item deseja vasculhar?\n\n",
+                                    "[1] - Cadeira\n",
+                                    "[2] - Espelho\n",
+                                    "[3] - Quadro\n",
+                                    "[4] - Bau\n",
+                                    "[5] - Estátua\n",
+                                    "[6] - Bolsa de remédios")
+                                    
+                                    estatua = int(input('>> '))
+                                    sleep(5)
+                                    os.system('clear')
+                                    
+                                    if estatua == 5 and self.chaveBau == True:
+                                        
+                                        print('Que bela estátua, é uma répica da obra "O Pensador de Agusto Rodin"\n',
+                                        '[1] - Olhar a estatua\n', 
+                                        '[2] - Girar a estatua\n',
+                                        '[3] - Não fazer nada')
+
+                                        acaoEstatua = int(input(">> "))
+                                        
+                                        sleep(5)
+                                        os.system('clear')
+
+                                        if acaoEstatua == 2 and self.chaveBau == True:  # ===============\\ 2° FINAL //===================
+                                            print('Boa escolha, você girou a estatua com delicadeza\n',
+                                                'Um buraco se abre no peito da estátua\n',
+                                                'lhe dando acesso a chave que abre a porta de saída ...')
+                                            
+                                            self.chavePorta = True
+                                            sleep(5)
+                                            os.system('clear')
+                                        else:
+                                            print('Nada de diferente aconteceu, talvez fosse apenas uma impressão sua...')
+                                    
+                                
+                                
+                                
+                        
+                        
+                                
+                    
