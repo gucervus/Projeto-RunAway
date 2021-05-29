@@ -1,6 +1,6 @@
 from relogio import Relógio
 from personagem import Personagem
-from salas import salaVermelha
+from primeiraSala import salaVermelha
 from segundaSala import salaBranca
 from funcoes import Funções
 from CORES import cores
