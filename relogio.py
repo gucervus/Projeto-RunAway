@@ -2,9 +2,10 @@ from personagem import Personagem
 
 
 class Relógio(Personagem):
-    def __init__(self, minutos, nome, altura, genero, escolha):
+    def __init__(self, minutos, nome, altura, escolha):
         self.minutos = minutos
-        super().__init__(nome, altura, genero, escolha)
+        super().__init__(nome, altura, escolha)
+
 
     def corretempo(self, minutos):
 
