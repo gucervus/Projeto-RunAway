@@ -49,6 +49,8 @@ class salaVermelha(Funções, Personagem):
         sleep(1)
 
         while True:
+            escrivaninhanaparede = False
+            ima = False
 
             if numeroSala == True:
 
@@ -129,7 +131,8 @@ class salaVermelha(Funções, Personagem):
                     if opcEscrivaninha == 1:
                         relogio.corretempo(4)
                         print()
-                        print("Você não encontrou nada, {}só tem lixo!{}".format(cores['red'], cores['limpa']))
+                        print("Você não encontrou nada, {}só tem lixo!{}".format(
+                            cores['red'], cores['limpa']))
                         sleep(3)
                         os.system('clear')
                     elif opcEscrivaninha == 2:
@@ -157,18 +160,20 @@ class salaVermelha(Funções, Personagem):
                         if escrivaninhanaparede == True:
                             print()
                             print(
-                                'Você pode ver uma pequena {}saída{} de ventilação próxima ao teto.'.format(cores['red'],cores['limpa']))
+                                'Você pode ver uma pequena {}saída{} de ventilação próxima ao teto.'.format(cores['red'], cores['limpa']))
                             sleep(5)
                             relogio.corretempo(4)
                             os.system('clear')
                             if self.altura >= 1.8:
                                 print('Você alcança a saída, deseja subir?')
-                                janelinha=int(input('1-S / 0-N >>> '))
+                                janelinha = int(input('1-S / 0-N >>> '))
                                 if janelinha == 0:
                                     break
                                 elif janelinha == 1:
-                                    print('Você pode se pendurar na janela, mas não tem {}força{} para passar para o outro lado, na parede do lado oposto está escrita a seguinte mensagem:'.format(cores['amarelo'],cores['limpa']))
-                                    print('{}O conhecimento liberta!{}'.format(cores['amarelo'],cores['limpa']))
+                                    print('Você pode se pendurar na janela, mas não tem {}força{} para passar para o outro lado, na parede do lado oposto está escrita a seguinte mensagem:'.format(
+                                        cores['amarelo'], cores['limpa']))
+                                    print('{}O conhecimento liberta!{}'.format(
+                                        cores['amarelo'], cores['limpa']))
 
                         else:
                             print()
@@ -189,7 +194,7 @@ class salaVermelha(Funções, Personagem):
                         print()
                         relogio.corretempo(4)
                         print(
-                            'Você descobriu a modelo do {}toca{} disco: Toca disco vinil air LP ion IT55'.format(cores['azul'],cores['limpa']))
+                            'Você descobriu a modelo do {}toca{} disco: Toca disco vinil air LP ion IT55'.format(cores['azul'], cores['limpa']))
                         sleep(3)
                         os.system('clear')
                     elif escolhaEstante == 2:
@@ -203,7 +208,7 @@ class salaVermelha(Funções, Personagem):
                         relogio.corretempo(4)
                         if self.atributo == 'Inteligência':
                             print(
-                                '**While my {}guitar{} gently weeps tem um lindo {}solo{}!'.format(cores['azul'],cores['limpa'],cores['amarelo',cores['limpa']]))
+                                '**While my {}guitar{} gently weeps tem um lindo {}solo{}!'.format(cores['azul'], cores['limpa'], cores['amarelo', cores['limpa']]))
                         else:
                             print('O toca disco não funciona!')
 
@@ -219,13 +224,14 @@ class salaVermelha(Funções, Personagem):
                     if escolhaArm == 1:
                         print()
                         print(
-                            'Dentro do armário vc encontra um bilhete escrito: "Pare de perder {}tempo!{}'.format(cores['red'],cores['limpa']))
+                            'Dentro do armário vc encontra um bilhete escrito: "Pare de perder {}tempo!{}'.format(cores['red'], cores['limpa']))
                         sleep(3)
                         relogio.corretempo(4)
                         os.system('clear')
                     elif escolhaArm == 2:
                         print()
-                        print('Você está {}tentando{} aprender marcenaria?'.format(cores['red'], cores['limpa']))
+                        print('Você está {}tentando{} aprender marcenaria?'.format(
+                            cores['red'], cores['limpa']))
                         sleep(5)
                         relogio.corretempo(4)
                         os.system('clear')
@@ -242,10 +248,12 @@ class salaVermelha(Funções, Personagem):
                         else:
                             print()
                             if ima == True:
-                                print("Você conseguiu pegar a {}chave{} com o {}imã!{}".format(cores['red'],cores['limpa'],cores['azul'],cores['limpa']))
+                                print("Você conseguiu pegar a {}chave{} com o {}imã!{}".format(
+                                    cores['red'], cores['limpa'], cores['azul'], cores['limpa']))
                                 self.chave = True
                             else:
-                                print("Você não tem {}força{} para empurrar o Armário!".format(cores['amarelo'],cores['limpa']))
+                                print("Você não tem {}força{} para empurrar o Armário!".format(
+                                    cores['amarelo'], cores['limpa']))
                             sleep(3)
                             relogio.corretempo(4)
                             os.system('clear')
@@ -269,7 +277,7 @@ class salaVermelha(Funções, Personagem):
                         print()
                         relogio.corretempo(8)
                         print(
-                            'Você quebrou a guitarra e a {}chave{} caiu embaixo do armário, procure algo para pegá-la, voce perdeu {}8 minutos{}'.format(cores['red'],cores['limpa'],cores['red'],cores['limpa']))
+                            'Você quebrou a guitarra e a {}chave{} caiu embaixo do armário, procure algo para pegá-la, voce perdeu {}8 minutos{}'.format(cores['red'], cores['limpa'], cores['red'], cores['limpa']))
                         guitarQuebrada = True
                         sleep(3)
                         os.system('clear')
@@ -278,7 +286,7 @@ class salaVermelha(Funções, Personagem):
                         relogio.corretempo(4)
                         if guitarQuebrada == True:
                             print(
-                                "Você tentou tocar uma guitarra quebrada, e perdeu {}10 minutos{}".format(cores['red'],cores['limpa']))
+                                "Você tentou tocar uma guitarra quebrada, e perdeu {}10 minutos{}".format(cores['red'], cores['limpa']))
                         else:
                             print(
                                 'Que música linda! Os deuses do rock estão satisfeitos...')
@@ -306,11 +314,13 @@ class salaVermelha(Funções, Personagem):
                     opcMesa = int(input('>> '))
 
                     if opcMesa == 1:
-                        print('Você decidiu jogar bilhar e perdeu {}5 minutos{}'.format(cores['red'],cores['limpa']))
+                        print('Você decidiu jogar bilhar e perdeu {}5 minutos{}'.format(
+                            cores['red'], cores['limpa']))
                         relogio.corretempo(5)
                         sleep(5)
                     elif opcMesa == 2:
-                        print("Você encontrou um {}imã{}, agora consegue atrair metal".format(cores['azul'],cores['limpa']))
+                        print("Você encontrou um {}imã{}, agora consegue atrair metal".format(
+                            cores['azul'], cores['limpa']))
                         relogio.corretempo(4)
                         sleep(5)
                         ima = True
@@ -320,7 +330,8 @@ class salaVermelha(Funções, Personagem):
                 if self.atributo == 'Força':
                     print()
                     print("A porta é de madeira e você conseguiu quebra-la!")
-                    print("Parabéns, você é {}forte{} o suficiente para a próxima sala!".format(cores['amarelo'],cores['limpa']))
+                    print("Parabéns, você é {}forte{} o suficiente para a próxima sala!".format(
+                        cores['amarelo'], cores['limpa']))
                     sleep(5)
                     relogio.minutos += 30
                     os.system('clear')

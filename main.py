@@ -17,53 +17,93 @@ pygame.mixer.music.play(-1)
 
 if (__name__ == "__main__"):
 
+    os.system('clear')
     print("{:^60}\n\n".format("RunAway"))
     print("{:^60}\n\n".format("[CADASTRO]"))
-
-    nome = input("Digite seu nome: ")
-    alt = float(input("Digite sua altura: "))
-    gen = input("Digite seu gênero: ").lower()
+    login = input("Ja tem uma conta? ")
     os.system('clear')
+    usuario1 = ''
+    senha1 = ''
+    gen = ''
+    while True:
+        print("{:^60}\n\n".format("RunAway"))
+        print("{:^60}\n\n".format("[CADASTRO]"))
+        if login == 'sim':
+            usuario = input('Usuário:')
+            senha = input('Senha: ')
+            if usuario != usuario1 or senha != senha1:
+                print("Usuário ou senha inválido\n")
+                cadastro = input('Deseja se cadastrar?')
+                os.system('clear')
+                while cadastro != 'sim' and cadastro != 'nao':
+                    print("{:^60}\n\n".format("RunAway"))
+                    print("{:^60}\n\n".format("[CADASTRO]"))
+                    cadastro = input('Deseja se cadastrar?')
+                    os.system('clear')
+                if cadastro == 'nao':
+                    print("{:^60}\n\n".format("RunAway"))
+                    print("{:^60}\n\n".format("[CADASTRO]"))
+                    print('Programa finalizado!')
+                    break
 
-    func = Funções(genero=gen)
-    tecla = func.teclando()
+                elif cadastro == 'sim':
+                    print("{:^60}\n\n".format("RunAway"))
+                    print("{:^60}\n\n".format("[CADASTRO]"))
+                    nome = input("Digite seu nome: ")
+                    alt = float(input("Digite sua altura: "))
+                    gen += input("Digite seu gênero: ").lower()
+                    usuario1 += input("Usuário: ")
+                    senha1 += input("Senha: ")
 
-    tecla.play(-1)
-    print(' '*25, end='')
-    bemVindo = f"Bem vind{func.generos()} {nome}\n\n"
-    func.animation(bemVindo)
-    print(' '*20, end='')
-    atributo = '»»»» Escolha um \033[33matributo\033[m ««««\n\n\n\n'
-    func.animation(atributo)
-    tecla.stop()
+        elif login == 'nao':
+            nome = input("Digite seu nome: ")
+            alt = float(input("Digite sua altura: "))
+            gen += input("Digite seu gênero: ").lower()
+            usuario1 += input("Usuário: ")
+            senha1 += input("Senha: ")
+        os.system('clear')
 
-    sleep(1)
-    print("Qual \033[33matributo\033[m você escolhe? \n\n",
-          '[1] - Força\n',
-          '[2] - Velocidade\n',
-          '[3] - Inteligência\n',
-          '[4] - Sorte\n\n')
-    sleep(.5)
+        func = Funções(genero=gen)
+        tecla = func.teclando()
 
-    opcao = int(input('»» '))
-    print()
+        tecla.play(-1)
+        print(' '*25, end='')
+        bemVindo = f"Bem vind{func.generos()} {nome}\n\n"
+        func.animation(bemVindo)
+        print(' '*20, end='')
+        atributo = '»»»» Escolha um \033[33matributo\033[m ««««\n\n\n\n'
+        func.animation(atributo)
+        tecla.stop()
 
-    if opcao == 1:
-        atributo = "Força"
-    elif opcao == 2:
-        atributo = "Velocidade"
-    elif opcao == 3:
-        atributo = 'Inteligência'
-    elif opcao == 4:
-        atributo = "Sorte"
+        sleep(1)
+        print("Qual \033[33matributo\033[m você escolhe? \n\n",
+              '[1] - Força\n',
+              '[2] - Velocidade\n',
+              '[3] - Inteligência\n',
+              '[4] - Sorte\n\n')
+        sleep(.5)
 
-    personagem = Personagem(nome, alt, atributo)
+        opcao = int(input('»» '))
+        print()
 
-    salas = salaVermelha(nome=nome, altura=alt, atributo = atributo, genero=gen)
+        if opcao == 1:
+            atributo = "Força"
+        elif opcao == 2:
+            atributo = "Velocidade"
+        elif opcao == 3:
+            atributo = 'Inteligência'
+        elif opcao == 4:
+            atributo = "Sorte"
 
-    sala2 = salaBranca(nome=nome, altura=alt, atributo=atributo, genero=gen)
-    personagem.escolhaAtributo()
+        personagem = Personagem(nome, alt, atributo)
 
-    # salas.acao()
+        salas = salaVermelha(nome=nome, altura=alt,
+                             atributo=atributo, genero=gen)
 
-    sala2.acao()
+        sala2 = salaBranca(nome=nome, altura=alt,
+                           atributo=atributo, genero=gen)
+        personagem.escolhaAtributo()
+
+        salas.acao()
+
+        sala2.acao()
