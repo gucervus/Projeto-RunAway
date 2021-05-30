@@ -5,6 +5,7 @@ from time import sleep
 from CORES import cores
 import os
 import pygame
+from IMG import Img
 
 
 class salaBranca(Funções, Personagem):
@@ -24,6 +25,7 @@ class salaBranca(Funções, Personagem):
     def acao(self):
 
         relogio = Relógio(30, self.nome, self.altura, self.atributo)
+        imagem = Img()
 
         numeroSala = False
 
@@ -129,16 +131,24 @@ class salaBranca(Funções, Personagem):
                     opcaoCadeira = int(input(">> "))
 
                     if opcaoCadeira == 1:
-                        relogio.corretempo(4)
+                        
+                        relogio.corretempo(2)
                         print()
-                        ler = input(
-                            "Você não encontrou uma carta grudada na cadeira, deseja ler? [sim/não]: ").upper()
-                        print()
+                        
+                        print("Você não encontrou uma carta grudada na cadeira, deseja ler? [sim/não]\n")
+                        ler = input('>> ').upper()
 
                         if ler == 'SIM':
-                            print('***Mensagem sobre a vida***')
-                            print(
-                                'Começamos bem, porém ainda não encontramos uma forma de sair daqui, vamos continuar')
+                            
+                            imagem.insertImage('_img/poerma3.jpg')
+                            imagem.showImage()
+                            
+                            continuar = input('Pressione Enter para continuar: ')
+                            if continuar == '':
+                                os.system('clear')
+                                relogio.corretempo(2)
+
+                            print('Começamos bem, porém ainda não encontramos uma forma de sair daqui, vamos continuar')
                             sleep(5)
                             os.system('clear')
                         else:
@@ -147,26 +157,25 @@ class salaBranca(Funções, Personagem):
                             os.system('clear')
 
                     elif opcaoCadeira == 2:
-                        print(
-                            "Você quebrou a cadeira na parede, mas um pedaço de farpa machucou seu braço")
-                        print('Você perdeu x minutos')
-                        sleep(5)
-                        os.system('clear')
-                        relogio.corretempo(3)
-
-                        ler = input(
-                            'Você percebeu que nos pedaços de madeira quebrados tem uma carta, deseja ler?').upper()
+                        
+                        relogio.corretempo(2)
+                        print("Você quebrou a cadeira na parede, mas um pedaço de farpa machucou seu braço\n",
+                              'Você percebeu que nos pedaços de madeira quebrados tem uma carta, deseja ler?\n')
+                        ler = input('>> ').upper()
+                        
                         sleep(5)
                         os.system('clear')
 
                         if ler == 'SIM':
+                            
                             print("Você está um pouco sonzo, e esta perdendo tempo lendo essa carta, vá enfaixar seu braço\n",
                                   "Caso contrário perderá mais tempo que o normal\n")
+                            
                             sleep(5)
                             os.system('clear')
-                            relogio.corretempo(5)
-
+                            relogio.corretempo(2)
                             sleep(1)
+                            
                             print("Qual item deseja vasculhar?\n\n",
                                   "[1] - Cadeira\n",
                                   "[2] - Espelho\n",
@@ -183,13 +192,15 @@ class salaBranca(Funções, Personagem):
                             if recuperaVida == 6:
                                 print("Boa escolha, dentro do estojo de remédios temos analgésicos e gaze para o seu machucado\n"
                                       "Pode continuar sem nenhum problema\n")
+                                
                                 sleep(5)
                                 os.system('clear')
+                                
                             else:
-                                # Decrementa 5 minutos a cada 10 minutos passados
-                                continue
-
+                                relogio.corretempo(7)
+                                
                     elif opcaoCadeira == 3:
+                        
                         print('Que situação maluca, descansar é sempre bom!\n',
                               'Você conseguiu enxergar o reflexo de alguma coisa\n')
 
@@ -215,27 +226,25 @@ class salaBranca(Funções, Personagem):
                             visualizar = int(input('>> '))
 
                             if visualizar != 3:
-                                print(
-                                    'Você está muito cansado, é impossível isso estar na sala, descanse 5 minutos')
+                                print('Você está muito cansado, é impossível isso estar na sala.\n',
+                                      'descanse 5 minutos!')
 
                                 relogio.corretempo(5)
                                 sleep(5)
                                 os.system('clear')
 
                             else:
-                                print(
-                                    'A sala realmente tem uma estatua, o que quer fazer?')
-                                print('[1] - Olhar a estatua\n',
+                                print('A sala realmente tem uma estatua, o que quer fazer?\n',
+                                      '[1] - Olhar a estatua\n',
                                       '[2] - Girar a estatua\n',
-                                      '[3] - Não fazer nada')
+                                      '[3] - Não fazer nada\n')
                                 
                                 estatua = int(input('>>> '))
                                 sleep(5)
                                 os.system('clear')
 
                                 if estatua == 1:
-                                    print(
-                                        'Nada de diferente aconteceu, talvez fosse apenas uma impressão sua...')
+                                    print('Nada de diferente aconteceu, talvez fosse apenas uma impressão sua...')
 
                                     relogio.corretempo(1)
                                     sleep(5)
@@ -246,7 +255,7 @@ class salaBranca(Funções, Personagem):
                                           'Um buraco se abre no peito da estátua\n',
                                           'lhe dando acesso a chave que abre a porta de saída ...')
 
-                                    self.chavePorta = True  # Como usar a chave da porta?
+                                    self.chavePorta = True  
                                     sleep(5)
                                     os.system('clear')
                                     
@@ -270,6 +279,7 @@ class salaBranca(Funções, Personagem):
                         relogio.corretempo(5)
 
                     elif visualizar == 2:
+                        
                         print('É um quadro lindo, deseja chegar mais perto? [sim/não]')
                         quadro = input(' ').upper()
 
@@ -279,6 +289,15 @@ class salaBranca(Funções, Personagem):
                         if quadro == 'SIM':
                             print('O quadro da sala é a Dama com Arminho de Leonardo da Vince\n',
                                   'Que linda peça!')
+                            
+                            imagem.insertImage('_img/DamaArminho.jpg')   
+                            imagem.showImage()
+                            
+                            continuar = input("Pressione enter para continuar: ")
+                            if continuar == '':
+                                os.system('clear')
+                                relogio.corretempo(2)
+                                 
 
                             print()
                             print('[1] - Vasculhar o quadro\n',
