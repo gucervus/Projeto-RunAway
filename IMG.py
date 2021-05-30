@@ -1,14 +1,15 @@
-from PIL import Image
-
-class Img():
+import matplotlib.pyplot as plt
+import matplotlib.image as img
+class Imagens:
     def __init__(self):
         self.imagem = True
-    
-    def insertImage(self, path):
-        self.imagem = Image.open(f'{path}')
-    
-    def showImage(self):
-        return self.imagem
+
+    def showImage(self,path):
+        image = img.imread(f'{path}')
+        plt.imshow(image)
+        plt.axis('off')
+        plt.show()
+
 
         
         

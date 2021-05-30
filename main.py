@@ -1,10 +1,11 @@
 from relogio import Relógio
 from personagem import Personagem
-from _salas import salaVermelha
-from _salas import salaBranca
+from primeiraSala import salaVermelha
+from segundaSala import salaBranca
 from funcoes import Funções
 from CORES import cores
 from time import sleep
+from IMG import Imagens
 import pygame
 import sys
 import os
@@ -13,7 +14,7 @@ import os
 
 pygame.init()
 pygame.mixer.music.load('trilhasuspensa.ogg')
-pygame.mixer.music.set_volume(0.1)
+pygame.mixer.music.set_volume(0.3)
 pygame.mixer.music.play(-1)
 
 if (__name__ == "__main__"):
