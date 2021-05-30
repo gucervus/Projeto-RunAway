@@ -8,12 +8,13 @@ from time import sleep
 import pygame
 import sys
 import os
-
+from PIL import Image
+from IMG import Img
 
 
 pygame.init()
 pygame.mixer.music.load('trilhasuspensa.ogg')
-pygame.mixer.music.set_volume(0.1)
+pygame.mixer.music.set_volume(0.2)
 pygame.mixer.music.play(-1)
 
 if (__name__ == "__main__"):

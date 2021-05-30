@@ -6,6 +6,8 @@ from CORES import cores
 import os
 import pygame
 from IMG import Img
+from PIL import Image
+from random import randint
 
 
 class salaBranca(Funções, Personagem):
@@ -126,7 +128,7 @@ class salaBranca(Funções, Personagem):
                     print("Você deseja: \n\n",
                           "[1] - Vasculhar cadeira\n",
                           "[2] - Quebrar a cadeira\n",
-                          "[3] - Subir na cadeira\n",)
+                          "[3] - Sentar na cadeira\n",)
 
                     opcaoCadeira = int(input(">> "))
 
@@ -169,7 +171,7 @@ class salaBranca(Funções, Personagem):
                         if ler == 'SIM':
                             
                             print("Você está um pouco sonzo, e esta perdendo tempo lendo essa carta, vá enfaixar seu braço\n",
-                                  "Caso contrário perderá mais tempo que o normal\n")
+                                  "Caso contrário perderá mais {}tempo{} que o normal\n".format(cores['red'],cores['limpa']))
                             
                             sleep(5)
                             os.system('clear')
@@ -190,8 +192,8 @@ class salaBranca(Funções, Personagem):
                             recuperaVida = int(input(">> "))
 
                             if recuperaVida == 6:
-                                print("Boa escolha, dentro do estojo de remédios temos analgésicos e gaze para o seu machucado\n"
-                                      "Pode continuar sem nenhum problema\n")
+                                print("{}Boa escolha, dentro do estojo de remédios temos analgésicos e gaze para o seu machucado{}\n"
+                                      "Pode continuar sem nenhum problema\n".format(cores['ciano'],cores['limpa']))
                                 
                                 sleep(5)
                                 os.system('clear')
@@ -207,7 +209,7 @@ class salaBranca(Funções, Personagem):
                         sleep(5)
                         os.system('clear')
 
-                        print("Qual item deseja vasculhar?\n\n",
+                        print("Para onde está olhando?\n\n",
                               "[1] - Cadeira\n",
                               "[2] - Espelho\n",
                               "[3] - Quadro\n",
@@ -218,20 +220,22 @@ class salaBranca(Funções, Personagem):
                         opcaoEspelho = int(input('>> '))
 
                         if opcaoEspelho == 2:
-                            print('O que você viu no espelho?\n',
-                                  '[1] - Dinossauro\n',
-                                  '[2] - guarda-roupa\n',
-                                  '[3] - Estatua')
+                            print('Você olha para o espelho e vê:\n')
 
-                            visualizar = int(input('>> '))
+                            visualizar = randint(1,3)
 
                             if visualizar != 3:
+                                print('Um Dinossauro')
+                                sleep(1)
                                 print('Você está muito cansado, é impossível isso estar na sala.\n',
                                       'descanse 5 minutos!')
 
                                 relogio.corretempo(5)
                                 sleep(5)
                                 os.system('clear')
+                            elif visualizar ==2:
+                                print('Um guarda-roupa?')
+                                
 
                             else:
                                 print('A sala realmente tem uma estatua, o que quer fazer?\n',
@@ -253,7 +257,7 @@ class salaBranca(Funções, Personagem):
                                 elif estatua == 2:  # =================\\ 1° FINAL //============================
                                     print('Boa escolha, você girou a estatua com delicadeza\n',
                                           'Um buraco se abre no peito da estátua\n',
-                                          'lhe dando acesso a chave que abre a porta de saída ...')
+                                          'lhe dando acesso a {}chave{} que abre a porta de saída ...'.format(cores['ciano'], cores['limpa']))
 
                                     self.chavePorta = True  
                                     sleep(5)
@@ -265,7 +269,7 @@ class salaBranca(Funções, Personagem):
                     
                     print('O que você viu no espelho?\n',
                           '[1] - Seu próprio reflexo\n',
-                          '[2] - Qudaro \n',
+                          '[2] - Quadro \n',
                           '[3] - Violão')
 
                     visualizar = int(input('>> '))
@@ -322,7 +326,7 @@ class salaBranca(Funções, Personagem):
                                 print('Que loucura rasgar um quadro tão lindo quanto esse...\n',
                                       'Da Vince acaba de se revirar no tumulo\n',
                                       'Porem situações desesperadas pedem medidas desesperadas\n',
-                                      'Você encontrou dentrou do quadro uma chave...')
+                                      'Você encontrou dentrou do quadro uma {}chave pequena{}...'.format(cores['mage'],cores['limpa']))
                                 self.chaveBau = True
 
                                 sleep(5)
@@ -342,7 +346,7 @@ class salaBranca(Funções, Personagem):
 
                                 if opcaoChaveBau == 4 and self.chaveBau == True:
 
-                                    print('Abrir o baú com a chave foi uma ótima escolha, nele se encontra uma foto\n',
+                                    print('Abrir o baú com a {}chave{} foi uma ótima escolha, nele se encontra uma foto\n'.format(cores['mage'], cores['limpa']),
                                           'Nela se encontra Rodin, ao lado de uma de suas obras mais famosas\n',
                                           'Porque alguém guardaria essa foto em um baú?')
 
@@ -373,13 +377,13 @@ class salaBranca(Funções, Personagem):
                                         if acaoEstatua == 2 and self.chaveBau == True:  # ===============\\ 2° FINAL //===================
                                             print('Boa escolha, você girou a estatua com delicadeza\n',
                                                   'Um buraco se abre no peito da estátua\n',
-                                                  'lhe dando acesso a chave que abre a porta de saída ...')
+                                                  'lhe dando acesso a {}chave{} que abre a porta de saída ...'.format(cores['red'], cores['limpa']))
 
                                             self.chavePorta = True
                                             sleep(5)
                                             os.system('clear')
                                         else:
-                                            print('Nada de diferente aconteceu, talvez fosse apenas uma impressão sua...\n')
+                                            print('Nada de diferente aconteceu, talvez fosse apenas uma {}impressão{} sua...\n'.format(cores['ciano'],cores['limpa']))
                 elif objetos == 3:
                     
                     print("Você deseja: \n\n",
@@ -425,7 +429,7 @@ class salaBranca(Funções, Personagem):
                         
                         print('Você quebrou um belo quadro, sem nem mesmo observar!\n\n',
                               'Você começa a se sentir cansado e sem forças\n',
-                              'Continuar agora sem descansar pode lhe trazer consequências\n\n',
+                              'Continuar agora sem descansar pode lhe trazer {}consequências{}\n\n'.format(cores['mage'],cores['limpa']),
                               'Deseja tomar um descanso?[sim/não]\n')
                         
                         descanso = input(">> ").upper()
@@ -435,7 +439,7 @@ class salaBranca(Funções, Personagem):
                             relogio.corretempo(2)  
                         
                         else:
-                            print('A vida é feita de escolhas...')
+                            print('A vida é feita de {}escolhas{}...'.format(cores['red'],cores['limpa']))
                             relogio.corretempo(10)
                     
                     elif acaoQuadro == 3:
@@ -506,7 +510,7 @@ class salaBranca(Funções, Personagem):
                     acaoBolsa = int(input('>> '))
                     
                     if acaoBolsa == 1:
-                        print("Você abre a bolsa e encontra o que aparentemente é a chave de um baú\n")
+                        print("Você abre a bolsa e encontra o que aparentemente é a {}chave de um baú{}\n".format(cores['mage'],cores['limpa']))
                         
                         self.chaveBau = True
 
@@ -564,7 +568,7 @@ class salaBranca(Funções, Personagem):
                                     sleep(5)
                                     os.system('clear')
                                 else:
-                                    print('Nada de diferente aconteceu, talvez fosse apenas uma impressão sua...\n')
+                                    print('Nada de diferente aconteceu, talvez fosse apenas uma {}impressão{} sua...\n'.format(cores['ciano'],cores['limpa']))
                     
                 elif objetos == 4:
                     
@@ -594,7 +598,7 @@ class salaBranca(Funções, Personagem):
                     
                     if acaoEstatua == 1:
                         
-                        print('Que bela estátua, é uma réplica da obra "O Pensador de Agusto Rodin\n',
+                        print('Que bela estátua, é uma réplica da obra "O {}Pensador{} de Agusto Rodin\n'.format(cores['amarelo'],cores['limpa']),
                               'é uma das mais famosas esculturas de bronze do escultor francês Auguste Rodin.\n',
                               'Retrata um homem em meditação soberba, lutando com uma poderosa força interna.\n',
                               'O Pensador originalmente procurava retratar Dante em frente dos Portões do Inferno,\n',
@@ -614,7 +618,7 @@ class salaBranca(Funções, Personagem):
                     acaoBolsa = int(input('>> '))
                     
                     if acaoBolsa == 1:
-                        print('Na bolsa temos analgésicos e gaze para uma eventual necessidade\n')
+                        print('{}Na bolsa temos analgésicos e gaze para uma eventual necessidade{}\n'.format(cores['azul'],cores['limpa']))
                     else: 
                         continue          
                             

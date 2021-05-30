@@ -1,5 +1,5 @@
 cores = {'limpa': '\033[m', 'azul': '\033[34;40m',
-         'fundoazul': '\033[7;36m', 'red': '\033[4;31m', 'amarelo':'\033[33m'}
+         'fundoazul': '\033[7;36m', 'red': '\033[4;31m', 'amarelo':'\033[33m', 'verde':'\033[32m', 'ciano':'\033[36m', 'Mage':'\033[35m'}
 # print(cores)
 
 '''print('\033[4;31;40m-*-\033[m'*30)

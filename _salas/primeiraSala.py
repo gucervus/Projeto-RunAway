@@ -19,6 +19,7 @@ class salaVermelha(Funções, Personagem):
         super().__init__(*args, genero=genero, **kwargs)
 
     def acao(self):
+        guitarQuebrada=False
         pygame.init()
         func = Funções(genero='')
         tecla = func.teclando()
@@ -27,18 +28,18 @@ class salaVermelha(Funções, Personagem):
 
         numeroSala = False
 
-        print(' '*20, end='')
-        print('', '__________________________')
-        print(' '*20, end='')
-        print('|', ' '*24, '|')
-        print(' '*20, end='')
-        print('|', ' '*7, ' SALA 1 ', ' '*7, '|')
-        print(' '*20, end='')
-        print('|__________________________|')
+        print('\033[4;31m '*21, end='')
+        print('', '___________________________')
+        print(' '*21, end='')
+        print('|', ' '*25, '|')
+        print(' '*21, end='')
+        print('|', ' '*4, ' SALA VERMELHA ', ' '*4, '|')
+        print(' '*21, end='')
+        print('|___________________________|\033[m')
         print('\n'*2)
 
         tecla.play(-1)
-        fraseAnimation = "Você acorda em uma sala com paredes vermelhas!\n\n"
+        fraseAnimation = "Você acorda em uma sala com \033[4;31mparedes vermelhas!\033[m\n\n"
         self.animation(fraseAnimation)
 
         fraseAnimation = f"Você consegue ver uma porta e em cima da porta, um {cores['red']}relógio {cores['limpa']}marcando {relogio.minutos} minutos,\n"
@@ -55,14 +56,14 @@ class salaVermelha(Funções, Personagem):
             if numeroSala == True:
 
                 tecla.play()
-                print(' '*20, end='')
-                print('', '__________________________')
-                print(' '*20, end='')
-                print('|', ' '*24, '|')
-                print(' '*20, end='')
-                print('|', ' '*7, ' SALA 1 ', ' '*7, '|')
-                print(' '*20, end='')
-                print('|__________________________|')
+                print('\033[4;31m '*21, end='')
+                print('', '___________________________')
+                print(' '*21, end='')
+                print('|', ' '*25, '|')
+                print(' '*21, end='')
+                print('|', ' '*4, ' SALA VERMELHA ', ' '*4, '|')
+                print(' '*21, end='')
+                print('|___________________________|\033[m')
                 print('\n'*2)
 
                 tecla.play(-1)
@@ -389,7 +390,7 @@ class salaVermelha(Funções, Personagem):
                             sleep(.5)
                             print('.')
                             tecla.play(-1)
-                            fraseAnimation = 'Uma chave caiu em sua cabeça!\n\n'
+                            fraseAnimation = 'Uma \033[4;31mchave\033[m caiu em sua cabeça!\n\n'
                             self.animation(fraseAnimation)
                             tecla.stop()
                             sleep(2)
@@ -427,7 +428,7 @@ class salaVermelha(Funções, Personagem):
                 if self.atributo == 'Força':
                     print()
                     tecla.play(-1)
-                    fraseAnimation = "A porta é de madeira e você conseguiu quebra-la! Mas uma farpa de madeira te machucou.\n\n"
+                    fraseAnimation = "A porta é de madeira e você conseguiu quebra-la! Mas uma farpa de madeira te {}machucou.{}\n\n".format(cores['red'],cores['limpa'])
                     self.animation(fraseAnimation)
                     fraseAnimation = "Parabéns, você é {}forte{} o suficiente para a próxima sala! Mas perderá mais tempo por estar machucado!\n\n".format(
                         cores['amarelo'], cores['limpa'])
