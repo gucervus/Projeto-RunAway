@@ -1,13 +1,14 @@
 from relogio import Relógio
 from personagem import Personagem
-from primeiraSala import salaVermelha
-from segundaSala import salaBranca
+from _salas import salaVermelha
+from _salas import salaBranca
 from funcoes import Funções
 from CORES import cores
 from time import sleep
 import pygame
 import sys
 import os
+
 
 
 pygame.init()
