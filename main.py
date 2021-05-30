@@ -10,6 +10,7 @@ import sys
 import os
 
 
+
 pygame.init()
 pygame.mixer.music.load('trilhasuspensa.ogg')
 pygame.mixer.music.set_volume(0.1)
