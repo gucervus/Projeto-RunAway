@@ -5,10 +5,8 @@ from time import sleep
 from CORES import cores
 import os
 import pygame
-from IMG import Img
-from PIL import Image
 from random import randint
-
+from IMG import Imagens
 
 class salaBranca(Funções, Personagem):
 
@@ -27,8 +25,7 @@ class salaBranca(Funções, Personagem):
     def acao(self):
 
         relogio = Relógio(30, self.nome, self.altura, self.atributo)
-        imagem = Img()
-
+        imagem = Imagens()
         numeroSala = False
 
         print(' '*20, end='')
@@ -47,7 +44,7 @@ class salaBranca(Funções, Personagem):
 
         fraseSala1 = f"Lembre-se que acima da porta há um {cores['red']}relógio {cores['limpa']},marcando agora {relogio.minutos} minutos,\n"
         self.animation(fraseSala1)
-        fraseSala2 = "Você consegue ver uma cadeira, um espelho, um quadro, um bau, uma estátua e uma bolsa de...\n\n"
+        fraseSala2 = "Você consegue ver uma cadeira, um espelho, um quadro, um bau, uma estátua e uma bolsa de remédios...\n\n"
         self.animation(fraseSala2)
         # tecla.stop()
         sleep(1)
@@ -141,9 +138,7 @@ class salaBranca(Funções, Personagem):
                         ler = input('>> ').upper()
 
                         if ler == 'SIM':
-                            
-                            imagem.insertImage('_img/poerma3.jpg')
-                            imagem.showImage()
+                            imagem.showImage('_img/poerma3.jpg')
                             
                             continuar = input('Pressione Enter para continuar: ')
                             if continuar == '':
@@ -621,6 +616,4 @@ class salaBranca(Funções, Personagem):
                         print('{}Na bolsa temos analgésicos e gaze para uma eventual necessidade{}\n'.format(cores['azul'],cores['limpa']))
                     else: 
                         continue          
-                            
-                                
-                            
+                                                   

@@ -19,7 +19,7 @@ class salaVermelha(Funções, Personagem):
         super().__init__(*args, genero=genero, **kwargs)
 
     def acao(self):
-        guitarQuebrada=False
+        guitarQuebrada = False
         pygame.init()
         func = Funções(genero='')
         tecla = func.teclando()
