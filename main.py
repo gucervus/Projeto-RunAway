@@ -1,11 +1,11 @@
 from personagem import Personagem
-from primeiraSala import salaVermelha
-from segundaSala import salaBranca
+from _firstroom.primeiraSala import salaVermelha
+from _secondrom.segundaSala  import salaBranca
 from funcoes import Funções
-from Imagem import Imagem
-from CORES import cores
+from . import Imagem
+from _color.colors import cores
 from time import sleep
-from clear import *
+from _clear.clear import *
 import pygame
 
 
@@ -129,6 +129,11 @@ if (__name__ == "__main__"):
         sala1.acao()
 
         if sala1.gameover() == True:
+            pygame.mixer.music.stop()
+            teste = pygame.mixer.Sound('gameo4.ogg')
+            teste.play()
+            print('Fim de jogo!')
+            sleep(5)
             break
         else:
             sala2.acao()

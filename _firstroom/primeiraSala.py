@@ -2,10 +2,9 @@ from personagem import Personagem
 from relogio import Relógio
 from funcoes import Funções
 from time import sleep
-from CORES import cores
-from Imagem import Imagem
-import sys
-import os
+from _color.colors import cores
+from _image.Imagem import Imagem
+from _clear.clear import *
 import pygame
 
 
@@ -26,8 +25,11 @@ class salaVermelha(Funções, Personagem):
 
         tecla = self.teclando()
         objeto = Imagem()
+        clear = Clear()
         relogio = Relógio(30, self.nome, self.altura, self.atributo)
-        os.system('clear')
+
+        clear.clearSystem()
+        clear.clearAll()
         bemvindo = '''
             ██████╗░███████╗███╗░░░███╗  ██╗░░░██╗██╗███╗░░██╗██████╗░░█████╗░  
             ██╔══██╗██╔════╝████╗░████║  ██║░░░██║██║████╗░██║██╔══██╗██╔══██╗  
@@ -72,6 +74,10 @@ class salaVermelha(Funções, Personagem):
         escrivaninhanaparede = False
         ima = False
         while True:
+            if relogio.minutos <= 0:
+
+                gameover = True
+                break
 
             if numeroSala == True:
 
@@ -103,14 +109,13 @@ class salaVermelha(Funções, Personagem):
 
             if opcao2 == 1:
                 tecla.play(-1)
-                relogio.corretempo(4)
+                relogio.corretempo(30)
                 fraseAnimation = "A porta está trancada...\n\n"
                 self.animation(fraseAnimation)
 
                 if self.chave == False:
 
-                    fraseAnimation = "Você não tem a {}chave!{} Vasculhe a sala para encontra-la\n\n".format(
-                        cores['red'], cores['limpa'])
+                    fraseAnimation = "Você não tem a {}chave!{} Vasculhe a sala para encontra-la\n\n".format(cores['red'],cores['limpa'])
                     self.animation(fraseAnimation)
                     tecla.stop()
                     print()
@@ -127,17 +132,16 @@ class salaVermelha(Funções, Personagem):
                         tempo = relogio.minutos
 
                         input("Aperte enter para prosseguir...")
-                        os.system('clear')
                         break
                     elif deseja == "nao":
                         tecla.play(-1)
-                        fraseAnimation = "Você achou melhor guardar a {}chave{}.\n\n".format(
-                            cores['red'], cores['limpa'])
+                        fraseAnimation = "Você achou melhor guardar a {}chave{}.\n\n".format(cores['red'],cores['limpa'])
                         self.animation(fraseAnimation)
                         tecla.stop()
 
                 sleep(2)
-                os.system('clear')
+                clear.clearSystem()
+                clear.clearAll()
 
             elif opcao2 == 2:
 
@@ -173,7 +177,8 @@ class salaVermelha(Funções, Personagem):
                         self.animation(fraseAnimation)
                         tecla.stop()
                         sleep(2)
-                        os.system('clear')
+                        clear.clearSystem()
+                        clear.clearAll()
                     elif opcEscrivaninha == 2:
                         relogio.corretempo(4)
                         print()
@@ -182,7 +187,8 @@ class salaVermelha(Funções, Personagem):
                         self.animation(fraseAnimation)
                         tecla.stop()
                         sleep(2)
-                        os.system('clear')
+                        clear.clearSystem()
+                        clear.clearAll()
                     elif opcEscrivaninha == 3:
                         relogio.corretempo(4)
 
@@ -194,7 +200,8 @@ class salaVermelha(Funções, Personagem):
                             tecla.stop()
                             sleep(2)
                             escrivaninhanaparede = True
-                            os.system('clear')
+                            clear.clearSystem()
+                            clear.clearAll()
                         else:
                             print()
                             tecla.play(-1)
@@ -203,7 +210,8 @@ class salaVermelha(Funções, Personagem):
                             tecla.stop()
                             print()
                             sleep(2)
-                            os.system('clear')
+                            clear.clearSystem()
+                            clear.clearAll()
                     elif opcEscrivaninha == 4:
 
                         if escrivaninhanaparede == True:
@@ -220,7 +228,8 @@ class salaVermelha(Funções, Personagem):
                                 print('Você alcança a saída, deseja subir?')
                                 janelinha = int(input('1-S / 0-N >>> '))
                                 if janelinha == 0:
-                                    os.system('clear')
+                                    clear.clearSystem()
+                                    clear.clearAll()
                                     break
                                 elif janelinha == 1:
                                     tecla.play(-1)
@@ -232,7 +241,8 @@ class salaVermelha(Funções, Personagem):
                                     self.animation(fraseAnimation)
                                     tecla.stop()
                                     sleep(2)
-                                    os.system('clear')
+                                    clear.clearSystem()
+                                    clear.clearAll()
 
                         else:
                             print()
@@ -242,7 +252,8 @@ class salaVermelha(Funções, Personagem):
                             tecla.stop()
                             sleep(2)
                             relogio.corretempo(4)
-                            os.system('clear')
+                            clear.clearSystem()
+                            clear.clearAll()
 
                 elif escolha == 2:
                     print('Você deseja:\n\n',
@@ -261,7 +272,8 @@ class salaVermelha(Funções, Personagem):
                         self.animation(fraseAnimation)
                         tecla.stop()
                         sleep(2)
-                        os.system('clear')
+                        clear.clearSystem()
+                        clear.clearAll()
                     elif escolhaTocaDisco == 2:
                         print()
                         tecla.play(-1)
@@ -270,7 +282,8 @@ class salaVermelha(Funções, Personagem):
                         tecla.stop()
                         sleep(2)
                         relogio.corretempo(4)
-                        os.system('clear')
+                        clear.clearSystem()
+                        clear.clearAll()
                     elif escolhaTocaDisco == 3:
                         relogio.corretempo(4)
                         if self.atributo == 'Inteligência':
@@ -289,7 +302,8 @@ class salaVermelha(Funções, Personagem):
                             tecla.stop()
                             sleep(2)
 
-                        os.system('clear')
+                        clear.clearSystem()
+                        clear.clearAll()
                 elif escolha == 3:
                     if ima == True:
                         print('Você deseja:\n\n',
@@ -310,13 +324,14 @@ class salaVermelha(Funções, Personagem):
                     if escolhaArm == 1:
                         print()
                         tecla.play(-1)
-                        fraseAnimation = 'Dentro do armário vc encontra um bilhete escrito: "{}Pare{} de {}perder {}tempo!{}\n\n'.format(cores['verde'], cores['Mage'], cores['fundoazul'],
-                                                                                                                                         cores['red'], cores['limpa'])
+                        fraseAnimation = 'Dentro do armário vc encontra um bilhete escrito: "{}Pare{} de {}perder {}tempo!{}\n\n'.format(cores['verde'],cores['Mage'],cores['fundoazul'],
+                            cores['red'], cores['limpa'])
                         self.animation(fraseAnimation)
                         tecla.stop()
                         sleep(2)
                         relogio.corretempo(4)
-                        os.system('clear')
+                        clear.clearSystem()
+                        clear.clearAll()
                     elif escolhaArm == 2:
                         print()
                         tecla.play(-1)
@@ -326,7 +341,8 @@ class salaVermelha(Funções, Personagem):
                         tecla.stop()
                         sleep(2)
                         relogio.corretempo(4)
-                        os.system('clear')
+                        clear.clearSystem()
+                        clear.clearAll()
                     elif escolhaArm == 3:
                         if self.atributo == 'Força':
                             print()
@@ -339,27 +355,28 @@ class salaVermelha(Funções, Personagem):
                             tecla.stop()
                             sleep(2)
                             relogio.corretempo(4)
-                            os.system('clear')
+                            clear.clearSystem()
+                            clear.clearAll()
+
                         else:
-                            tecla.play(-1)
-                            fraseAnimation = "Você não tem {}força{} para empurrar o Armário! Mas consegue olhar embaixo dele.\n\n".format(
-                                cores['amarelo'], cores['limpa'])
-                            self.animation(fraseAnimation)
-                            tecla.stop()
-                            os.system('clear')
-
-                    elif escolhaArm == 4 and ima == True:
-                        tecla.play(-1)
-                        fraseAnimation = "Você conseguiu pegar a {}chave{} com o {}imã!{}\n\n".format(
-                            cores['red'], cores['limpa'], cores['azul'], cores['limpa'])
-                        self.animation(fraseAnimation)
-
-                        tecla.stop()
-                        self.chave = True
-                        sleep(2)
-                        relogio.corretempo(4)
-                        os.system('clear')
-
+                            print()
+                            if ima == True:
+                                tecla.play(-1)
+                                fraseAnimation = "Você conseguiu pegar a {}chave{} com o {}imã!{}\n\n".format(
+                                    cores['red'], cores['limpa'], cores['azul'], cores['limpa'])
+                                self.animation(fraseAnimation)
+                                tecla.stop()
+                                self.chave = True
+                            else:
+                                tecla.play(-1)
+                                fraseAnimation = "Você não tem {}força{} para empurrar o Armário! Mas consegue olhar embaixo dele.\n\n".format(
+                                    cores['amarelo'], cores['limpa'])
+                                self.animation(fraseAnimation)
+                                tecla.stop()
+                            sleep(2)
+                            relogio.corretempo(4)
+                            clear.clearSystem()
+                            clear.clearAll()
                 elif escolha == 4:
                     print('É uma linda lespaul sunburn Stevie Ray signature 2001\n')
 
@@ -378,7 +395,8 @@ class salaVermelha(Funções, Personagem):
                         tecla.stop()
                         sleep(2)
                         relogio.corretempo(4)
-                        os.system('clear')
+                        clear.clearSystem()
+                        clear.clearAll()
                     elif escolhaGuitarra == 2:
                         print()
                         relogio.corretempo(8)
@@ -389,7 +407,8 @@ class salaVermelha(Funções, Personagem):
                         tecla.stop()
                         guitarQuebrada = True
                         sleep(2)
-                        os.system('clear')
+                        clear.clearSystem()
+                        clear.clearAll()
                     elif escolhaGuitarra == 3:
                         print()
                         relogio.corretempo(4)
@@ -429,7 +448,8 @@ class salaVermelha(Funções, Personagem):
                             pygame.mixer.music.play(-1)
                             sleep(2)
                             self.chave = True
-                        os.system('clear')
+                            clear.clearSystem()
+                            clear.clearAll()
                 elif escolha == 5:
                     print()
                     print('Tá com saudade do boteco né minha filha?\n')
@@ -456,7 +476,8 @@ class salaVermelha(Funções, Personagem):
                         relogio.corretempo(4)
                         sleep(2)
                         ima = True
-                    os.system('clear')
+                    clear.clearSystem()
+                    clear.clearAll()
 
             elif opcao2 == 3:
                 if self.atributo == 'Força':
@@ -471,7 +492,8 @@ class salaVermelha(Funções, Personagem):
                     tecla.stop()
                     tempo = relogio.minutos
                     input('Aperte enter para continuar...')
-                    os.system('clear')
+                    clear.clearSystem()
+                    clear.clearAll()
                     break
                 else:
                     tecla.play(-1)
@@ -481,47 +503,8 @@ class salaVermelha(Funções, Personagem):
                     tecla.stop()
                     sleep(2)
                     relogio.corretempo(4)
-                    os.system('clear')
-            if relogio.minutos <= 0:
-                pygame.mixer.music.stop()
-                teste = pygame.mixer.Sound('gameo4.ogg')
-                teste.play()
-                teste = 0
-
-                while teste < 5:
-                    frase = [
-                        '''
-                            ░██████╗░░█████╗░███╗░░░███╗███████╗░█████╗░██╗░░░██╗███████╗██████╗░
-                            ██╔════╝░██╔══██╗████╗░████║██╔════╝██╔══██╗██║░░░██║██╔════╝██╔══██╗
-                            ██║░░██╗░███████║██╔████╔██║█████╗░░██║░░██║╚██╗░██╔╝█████╗░░██████╔╝
-                            ██║░░╚██╗██╔══██║██║╚██╔╝██║██╔══╝░░██║░░██║░╚████╔╝░██╔══╝░░██╔══██╗
-                            ╚██████╔╝██║░░██║██║░╚═╝░██║███████╗╚█████╔╝░░╚██╔╝░░███████╗██║░░██║
-                            ░╚═════╝░╚═╝░░╚═╝╚═╝░░░░░╚═╝╚══════╝░╚════╝░░░░╚═╝░░░╚══════╝╚═╝░░╚═╝''', '''
-                            ░██████╗░░█████╗░███╗░░░███╗███████╗    ░█████╗░██╗░░░██╗███████╗██████╗░
-                            ██╔════╝░██╔══██╗████╗░████║██╔════╝    ██╔══██╗██║░░░██║██╔════╝██╔══██╗
-                            ██║░░██╗░███████║██╔████╔██║█████╗░░    ██║░░██║╚██╗░██╔╝█████╗░░██████╔╝
-                            ██║░░╚██╗██╔══██║██║╚██╔╝██║██╔══╝░░    ██║░░██║░╚████╔╝░██╔══╝░░██╔══██╗
-                            ╚██████╔╝██║░░██║██║░╚═╝░██║███████╗    ╚█████╔╝░░╚██╔╝░░███████╗██║░░██║
-                            ░╚═════╝░╚═╝░░╚═╝╚═╝░░░░░╚═╝╚══════╝    ░╚════╝░░░░╚═╝░░░╚══════╝╚═╝░░╚═╝''']
-                    teste += 1
-
-                    for i in frase:
-                        for cont in range(1):
-                            print(i)
-                            sleep(0.5)
-                            os.system('clear')
-                            sys.stdout.flush()
-
-                print('''
-                            ░██████╗░░█████╗░███╗░░░███╗███████╗░█████╗░██╗░░░██╗███████╗██████╗░
-                            ██╔════╝░██╔══██╗████╗░████║██╔════╝██╔══██╗██║░░░██║██╔════╝██╔══██╗
-                            ██║░░██╗░███████║██╔████╔██║█████╗░░██║░░██║╚██╗░██╔╝█████╗░░██████╔╝
-                            ██║░░╚██╗██╔══██║██║╚██╔╝██║██╔══╝░░██║░░██║░╚████╔╝░██╔══╝░░██╔══██╗
-                            ╚██████╔╝██║░░██║██║░╚═╝░██║███████╗╚█████╔╝░░╚██╔╝░░███████╗██║░░██║
-                            ░╚═════╝░╚═╝░░╚═╝╚═╝░░░░░╚═╝╚══════╝░╚════╝░░░░╚═╝░░░╚══════╝╚═╝░░╚═╝''')
-
-                gameover = True
-                break
+                    clear.clearSystem()
+                    clear.clearAll()
 
     def gameover(self):
         if gameover == True:
