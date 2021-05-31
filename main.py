@@ -1,3 +1,4 @@
+from PIL import Image
 from relogio import Relógio
 from personagem import Personagem
 from _salas.primeiraSala import salaVermelha
@@ -18,6 +19,7 @@ pygame.mixer.music.load('trilhasuspensa.ogg')
 pygame.mixer.music.set_volume(0.3)
 pygame.mixer.music.play(-1)
 
+
 if (__name__ == "__main__"):
 
     os.system('clear')
@@ -29,9 +31,9 @@ if (__name__ == "__main__"):
     senha1 = ''
     gen = ''
     while True:
-        print("{:^60}\n\n".format("RunAway"))
-        print("{:^60}\n\n".format("[CADASTRO]"))
         if login == 'sim':
+            print("{:^60}\n\n".format("RunAway"))
+            print("{:^60}\n\n".format("[LOGIN]"))
             usuario = input('Usuário:')
             senha = input('Senha: ')
             if usuario != usuario1 or senha != senha1:
@@ -40,12 +42,10 @@ if (__name__ == "__main__"):
                 os.system('clear')
                 while cadastro != 'sim' and cadastro != 'nao':
                     print("{:^60}\n\n".format("RunAway"))
-                    print("{:^60}\n\n".format("[CADASTRO]"))
+                    print("{:^60}\n\n".format("[LOGIN]"))
                     cadastro = input('Deseja se cadastrar?')
                     os.system('clear')
                 if cadastro == 'nao':
-                    print("{:^60}\n\n".format("RunAway"))
-                    print("{:^60}\n\n".format("[CADASTRO]"))
                     print('Programa finalizado!')
                     break
 
@@ -59,6 +59,8 @@ if (__name__ == "__main__"):
                     senha1 += input("Senha: ")
 
         elif login == 'nao':
+            print("{:^60}\n\n".format("RunAway"))
+            print("{:^60}\n\n".format("[CADASTRO]"))
             nome = input("Digite seu nome: ")
             alt = float(input("Digite sua altura: "))
             gen += input("Digite seu gênero: ").lower()
@@ -100,13 +102,14 @@ if (__name__ == "__main__"):
 
         personagem = Personagem(nome, alt, atributo)
 
-        salas = salaVermelha(nome=nome, altura=alt,
-                             atributo=atributo, genero=gen)
 
+        sala1 = salaVermelha(nome=nome, altura=alt,
+                             atributo=atributo, genero=gen)
         sala2 = salaBranca(nome=nome, altura=alt,
                            atributo=atributo, genero=gen)
         personagem.escolhaAtributo()
 
-        salas.acao()
+
+        sala1.acao()
 
         sala2.acao()
