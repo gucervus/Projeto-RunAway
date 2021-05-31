@@ -4,6 +4,7 @@ from funcoes import Funções
 from time import sleep
 from CORES import cores
 from Imagem import Imagem
+import sys
 import os
 import pygame
 
@@ -71,10 +72,6 @@ class salaVermelha(Funções, Personagem):
         escrivaninhanaparede = False
         ima = False
         while True:
-            if relogio.minutos <= 0:
-
-                gameover = True
-                break
 
             if numeroSala == True:
 
@@ -112,7 +109,8 @@ class salaVermelha(Funções, Personagem):
 
                 if self.chave == False:
 
-                    fraseAnimation = "Você não tem a {}chave!{} Vasculhe a sala para encontra-la\n\n".format(cores['red'],cores['limpa'])
+                    fraseAnimation = "Você não tem a {}chave!{} Vasculhe a sala para encontra-la\n\n".format(
+                        cores['red'], cores['limpa'])
                     self.animation(fraseAnimation)
                     tecla.stop()
                     print()
@@ -132,7 +130,8 @@ class salaVermelha(Funções, Personagem):
                         break
                     elif deseja == "nao":
                         tecla.play(-1)
-                        fraseAnimation = "Você achou melhor guardar a {}chave{}.\n\n".format(cores['red'],cores['limpa'])
+                        fraseAnimation = "Você achou melhor guardar a {}chave{}.\n\n".format(
+                            cores['red'], cores['limpa'])
                         self.animation(fraseAnimation)
                         tecla.stop()
 
@@ -310,8 +309,8 @@ class salaVermelha(Funções, Personagem):
                     if escolhaArm == 1:
                         print()
                         tecla.play(-1)
-                        fraseAnimation = 'Dentro do armário vc encontra um bilhete escrito: "{}Pare{} de {}perder {}tempo!{}\n\n'.format(cores['verde'],cores['Mage'],cores['fundoazul'],
-                            cores['red'], cores['limpa'])
+                        fraseAnimation = 'Dentro do armário vc encontra um bilhete escrito: "{}Pare{} de {}perder {}tempo!{}\n\n'.format(cores['verde'], cores['Mage'], cores['fundoazul'],
+                                                                                                                                         cores['red'], cores['limpa'])
                         self.animation(fraseAnimation)
                         tecla.stop()
                         sleep(2)
@@ -481,6 +480,46 @@ class salaVermelha(Funções, Personagem):
                     sleep(2)
                     relogio.corretempo(4)
                     os.system('clear')
+            if relogio.minutos <= 0:
+                pygame.mixer.music.stop()
+                teste = pygame.mixer.Sound('gameo4.ogg')
+                teste.play()
+                teste = 0
+
+                while teste < 5:
+                    frase = [
+                        '''
+                            ░██████╗░░█████╗░███╗░░░███╗███████╗░█████╗░██╗░░░██╗███████╗██████╗░
+                            ██╔════╝░██╔══██╗████╗░████║██╔════╝██╔══██╗██║░░░██║██╔════╝██╔══██╗
+                            ██║░░██╗░███████║██╔████╔██║█████╗░░██║░░██║╚██╗░██╔╝█████╗░░██████╔╝
+                            ██║░░╚██╗██╔══██║██║╚██╔╝██║██╔══╝░░██║░░██║░╚████╔╝░██╔══╝░░██╔══██╗
+                            ╚██████╔╝██║░░██║██║░╚═╝░██║███████╗╚█████╔╝░░╚██╔╝░░███████╗██║░░██║
+                            ░╚═════╝░╚═╝░░╚═╝╚═╝░░░░░╚═╝╚══════╝░╚════╝░░░░╚═╝░░░╚══════╝╚═╝░░╚═╝''', '''
+                            ░██████╗░░█████╗░███╗░░░███╗███████╗    ░█████╗░██╗░░░██╗███████╗██████╗░
+                            ██╔════╝░██╔══██╗████╗░████║██╔════╝    ██╔══██╗██║░░░██║██╔════╝██╔══██╗
+                            ██║░░██╗░███████║██╔████╔██║█████╗░░    ██║░░██║╚██╗░██╔╝█████╗░░██████╔╝
+                            ██║░░╚██╗██╔══██║██║╚██╔╝██║██╔══╝░░    ██║░░██║░╚████╔╝░██╔══╝░░██╔══██╗
+                            ╚██████╔╝██║░░██║██║░╚═╝░██║███████╗    ╚█████╔╝░░╚██╔╝░░███████╗██║░░██║
+                            ░╚═════╝░╚═╝░░╚═╝╚═╝░░░░░╚═╝╚══════╝    ░╚════╝░░░░╚═╝░░░╚══════╝╚═╝░░╚═╝''']
+                    teste += 1
+
+                    for i in frase:
+                        for cont in range(1):
+                            print(i)
+                            sleep(0.5)
+                            os.system('clear')
+                            sys.stdout.flush()
+
+                print('''
+                            ░██████╗░░█████╗░███╗░░░███╗███████╗░█████╗░██╗░░░██╗███████╗██████╗░
+                            ██╔════╝░██╔══██╗████╗░████║██╔════╝██╔══██╗██║░░░██║██╔════╝██╔══██╗
+                            ██║░░██╗░███████║██╔████╔██║█████╗░░██║░░██║╚██╗░██╔╝█████╗░░██████╔╝
+                            ██║░░╚██╗██╔══██║██║╚██╔╝██║██╔══╝░░██║░░██║░╚████╔╝░██╔══╝░░██╔══██╗
+                            ╚██████╔╝██║░░██║██║░╚═╝░██║███████╗╚█████╔╝░░╚██╔╝░░███████╗██║░░██║
+                            ░╚═════╝░╚═╝░░╚═╝╚═╝░░░░░╚═╝╚══════╝░╚════╝░░░░╚═╝░░░╚══════╝╚═╝░░╚═╝''')
+
+                gameover = True
+                break
 
     def gameover(self):
         if gameover == True:
