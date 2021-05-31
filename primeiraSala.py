@@ -112,7 +112,7 @@ class salaVermelha(Funções, Personagem):
 
                 if self.chave == False:
 
-                    fraseAnimation = "Você não tem a chave! Vasculhe a sala para encontra-la\n\n"
+                    fraseAnimation = "Você não tem a {}chave!{} Vasculhe a sala para encontra-la\n\n".format(cores['red'],cores['limpa'])
                     self.animation(fraseAnimation)
                     tecla.stop()
                     print()
@@ -132,7 +132,7 @@ class salaVermelha(Funções, Personagem):
                         break
                     elif deseja == "nao":
                         tecla.play(-1)
-                        fraseAnimation = "Você achou melhor guardar a chave.\n\n"
+                        fraseAnimation = "Você achou melhor guardar a {}chave{}.\n\n".format(cores['red'],cores['limpa'])
                         self.animation(fraseAnimation)
                         tecla.stop()
 
@@ -310,7 +310,7 @@ class salaVermelha(Funções, Personagem):
                     if escolhaArm == 1:
                         print()
                         tecla.play(-1)
-                        fraseAnimation = 'Dentro do armário vc encontra um bilhete escrito: "Pare de perder {}tempo!{}\n\n'.format(
+                        fraseAnimation = 'Dentro do armário vc encontra um bilhete escrito: "{}Pare{} de {}perder {}tempo!{}\n\n'.format(cores['verde'],cores['Mage'],cores['fundoazul'],
                             cores['red'], cores['limpa'])
                         self.animation(fraseAnimation)
                         tecla.stop()
