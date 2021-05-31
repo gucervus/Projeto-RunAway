@@ -12,7 +12,7 @@ class Funções:
         for cont in frase:
             print(cont, end='')
             sys.stdout.flush()
-            sleep(0.05)
+            sleep(0.1)
 
     def generos(self):
         if self.genero == 'masculino':

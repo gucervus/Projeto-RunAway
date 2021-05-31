@@ -6,8 +6,7 @@ from primeiraSala import salaVermelha
 from CORES import cores
 import os
 import pygame
-from random import randint
-from IMG import Imagens
+from imagem import Imagem
 
 
 class salaBranca(Funções, Personagem):
@@ -47,10 +46,10 @@ class salaBranca(Funções, Personagem):
         sala = "Você está em uma sala com paredes brancas!\n\n"
         self.animation(sala)
 
-        fraseAnimation = f"Lembre-se que acima da porta há um {cores['red']}relógio {cores['limpa']},marcando agora {relogio.minutos} minutos,\n"
-        self.animation(fraseAnimation)
-        fraseAnimation = "Você consegue ver uma cadeira, um espelho, um quadro, um bau, uma estátua e uma bolsa de remédios...\n\n"
-        self.animation(fraseAnimation)
+        fraseSala1 = f"Lembre-se que acima da porta há um {cores['red']}relógio {cores['limpa']},marcando agora {relogio.minutos} minutos,\n"
+        self.animation(fraseSala1)
+        fraseSala2 = "Você consegue ver uma cadeira, um espelho, um quadro, um bau, uma estátua e uma bolsa de remédios...\n\n"
+        self.animation(fraseSala2)
         # tecla.stop()
         sleep(1)
 
@@ -68,19 +67,19 @@ class salaBranca(Funções, Personagem):
             if numeroSala == True:
 
                 tecla.play()
-                print(' '*21, end='')
-                print('', '___________________________')
-                print(' '*21, end='')
-                print('|', ' '*25, '|')
-                print(' '*21, end='')
-                print('|', ' '*5, ' SALA BRANCA ', ' '*5, '|')
-                print(' '*21, end='')
-                print('|___________________________|')
+                print(' '*20, end='')
+                print('', '__________________________')
+                print(' '*20, end='')
+                print('|', ' '*24, '|')
+                print(' '*20, end='')
+                print('|', ' '*7, ' SALA BRANCA ', ' '*7, '|')
+                print(' '*20, end='')
+                print('|__________________________|')
                 print('\n'*2)
 
                 tecla.play(-1)
-                fraseAnimation = f"Restam {relogio.minutos} minutos para escapar da sala!\n\n"
-                self.animation(fraseAnimation)
+                contador = f"Restam {relogio.minutos} minutos para escapar da sala!\n\n"
+                self.animation(contador)
                 tecla.stop()
 
             numeroSala = True
@@ -96,20 +95,19 @@ class salaBranca(Funções, Personagem):
             if escolha == 1:
 
                 relogio.corretempo(4)
-                fraseAnimation = "A porta está trancada...\n\n"
-                self.animation(fraseAnimation)
+                print("A porta está trancada...")
 
                 if self.chavePorta == False:
-                    fraseAnimation = "Você não tem a chave! Vasculhe a sala para encontra-la\n\n"
-                    self.animation(fraseAnimation)
+                    print("Você não tem a chave! Vasculhe a sala para encontra-la")
                     print()
                 else:
                     escolha = input("Você deseja usar a chave[sim/não]? ")
 
                     if escolha == "sim":
-                        fraseAnimation = "Parabéns!! Jogo zerado!!\n\n"
-                        self.animation(fraseAnimation)
-                        sleep(2)
+                        print(
+                            "Parabéns!! Você abriu a porta e avançou para a próxima sala!")
+                        relogio.minutos += 30
+                        input("Aperte enter para prosseguir...")
                         break
                     elif escolha == "nao":
                         print("Você achou melhor guardar a chave.")
@@ -138,96 +136,112 @@ class salaBranca(Funções, Personagem):
                     print("Você deseja: \n\n",
                           "[1] - Vasculhar cadeira\n",
                           "[2] - Quebrar a cadeira\n",
-                          "[3] - Sentar na cadeira\n",)
+                          "[3] - Subir na cadeira\n",)
 
                     opcaoCadeira = int(input(">> "))
 
                     if opcaoCadeira == 1:
+
                         relogio.corretempo(2)
                         print()
 
                         print(
-                            "Você encontrou uma carta grudada na cadeira, deseja ler? [sim/não]\n")
+                            "Você não encontrou uma carta grudada na cadeira, deseja ler? [sim/não]\n")
                         ler = input('>> ').upper()
 
                         if ler == 'SIM':
-                            # imagem.showImage('_img/poerma3.jpg')
+                            imagem.createImagemCarta()
+                            imagem.showImagem()
 
-                            continuar = input(
-                                'Pressione Enter para continuar...')
+                            print('\nQual o significado desse simbolo?')
                             if continuar == '':
+                                os.system('clear')
                                 relogio.corretempo(2)
 
-                            fraseAnimation = 'Começamos bem, porém ainda não encontramos uma forma de sair daqui, vamos continuar'
-                            self.animation(fraseAnimation)
-                            sleep(2)
+                            print(
+                                'Começamos bem, porém ainda não encontramos uma forma de sair daqui, vamos continuar')
+                            sleep(5)
                             os.system('clear')
                         else:
-                            fraseAnimation = 'Ok, vamos continuar'
-                            self.animation(fraseAnimation)
-                            sleep(2)
+                            print('Ok, vamos continuar')
+                            sleep(5)
                             os.system('clear')
 
                     elif opcaoCadeira == 2:
 
                         relogio.corretempo(2)
-                        fraseAnimation = '''Você quebrou a cadeira na parede, mas um pedaço de farpa machucou seu braço
-Você percebeu que nos pedaços de madeira quebrados tem uma carta, deseja ler?\n\n'''
-                        self.animation(fraseAnimation)
+                        print("Você quebrou a cadeira na parede, mas um pedaço de farpa machucou seu braço\n",
+                              'Você percebeu que nos pedaços de madeira quebrados tem uma carta, deseja ler?\n')
                         ler = input('>> ').upper()
-                        sleep(2)
+
+                        sleep(5)
+                        os.system('clear')
 
                         if ler == 'SIM':
 
-                            fraseAnimation = '''Você está um pouco zonzo, e esta perdendo tempo lendo essa carta, vá enfaixar seu braço
-Caso contrário perderá mais {}tempo{} que o normal\n\n'''.format(cores['red'], cores['limpa'])
-                            self.animation(fraseAnimation)
-                            machucado = True
+                            print("Você está um pouco sonzo, e esta perdendo tempo lendo essa carta, vá enfaixar seu braço\n",
+                                  "Caso contrário perderá mais tempo que o normal\n")
 
-                            sleep(2)
+                            sleep(5)
                             os.system('clear')
                             relogio.corretempo(2)
-                        else:
-                            print('OK!')
-                            sleep(2)
-                            relogio.corretempo(2)
-                            os.system('clear')
+                            sleep(1)
+
+                            print("Qual item deseja vasculhar?\n\n",
+                                  "[1] - Cadeira\n",
+                                  "[2] - Espelho\n",
+                                  "[3] - Quadro\n",
+                                  "[4] - Bau\n",
+                                  "[5] - Estátua\n",
+                                  "[6] - Bolsa de remédios")
+
+                            sleep(1)
+                            print()
+
+                            recuperaVida = int(input(">> "))
+
+                            if recuperaVida == 6:
+                                print("Boa escolha, dentro do estojo de remédios temos analgésicos e gaze para o seu machucado\n"
+                                      "Pode continuar sem nenhum problema\n")
+
+                                sleep(5)
+                                os.system('clear')
+
+                            else:
+                                relogio.corretempo(7)
+
                     elif opcaoCadeira == 3:
 
                         print('Que situação maluca, descansar é sempre bom!\n',
                               'Você conseguiu enxergar o reflexo de alguma coisa\n')
 
-                        sleep(2)
+                        sleep(5)
+                        os.system('clear')
 
-                        print("Para onde está olhando?\n\n",
+                        print("Qual item deseja vasculhar?\n\n",
                               "[1] - Cadeira\n",
                               "[2] - Espelho\n",
                               "[3] - Quadro\n",
                               "[4] - Bau\n",
                               "[5] - Estátua\n",
-                              "[6] - Bolsa de remédios\n")
+                              "[6] - Bolsa de remédios")
 
                         opcaoEspelho = int(input('>> '))
 
                         if opcaoEspelho == 2:
-                            print('Você olha para o espelho e vê:\n')
+                            print('O que você viu no espelho?\n',
+                                  '[1] - Dinossauro\n',
+                                  '[2] - guarda-roupa\n',
+                                  '[3] - Estatua')
 
-                            visualizar = randint(1, 3)
+                            visualizar = int(input('>> '))
 
                             if visualizar != 3:
-                                print('Um Dinossauro')
-                                sleep(1)
-                                fraseAnimation = 'Você está muito cansado, é impossível isso estar na sala, descanse 5 minutos!\n\n'
-                                self.animation(fraseAnimation)
+                                print('Você está muito cansado, é impossível isso estar na sala.\n',
+                                      'descanse 5 minutos!')
 
                                 relogio.corretempo(5)
-                                sleep(2)
-                                os.system('clear')
-                            elif visualizar == 2:
-                                fraseAnimation = 'Um guarda-roupa?\n\n'
-                                self.animation(fraseAnimation)
-                                relogio.corretempo(4)
-                                sleep(2)
+                                sleep(5)
                                 os.system('clear')
 
                             else:
@@ -237,91 +251,66 @@ Caso contrário perderá mais {}tempo{} que o normal\n\n'''.format(cores['red'],
                                       '[3] - Não fazer nada\n')
 
                                 estatua = int(input('>>> '))
-                                sleep(2)
+                                sleep(5)
+                                os.system('clear')
 
                                 if estatua == 1:
-                                    fraseAnimation = 'Nada de diferente aconteceu, talvez fosse apenas uma impressão sua...\n\n'
-                                    self.animation(fraseAnimation)
+                                    print(
+                                        'Nada de diferente aconteceu, talvez fosse apenas uma impressão sua...')
 
                                     relogio.corretempo(1)
-                                    sleep(2)
+                                    sleep(5)
                                     os.system('clear')
 
                                 elif estatua == 2:  # =================\\ 1° FINAL //============================
-                                    fraseAnimation = '''Boa escolha, você girou a estatua com delicadeza
-Um buraco se abre no peito da estátua
-lhe dando acesso a {}chave{} que abre a porta de saída ...\n\n'''.format(cores['ciano'], cores['limpa'])
-                                    self.animation(fraseAnimation)
-                                    relogio.corretempo(4)
+                                    print('Boa escolha, você girou a estatua com delicadeza\n',
+                                          'Um buraco se abre no peito da estátua\n',
+                                          'lhe dando acesso a chave que abre a porta de saída ...')
+
                                     self.chavePorta = True
-                                    sleep(2)
+                                    sleep(5)
                                     os.system('clear')
 
                                 elif estatua == 3:
-                                    relogio.corretempo(4)
                                     continue
-                        else:
-                            print('OK!')
-                            relogio.corretempo(4)
-                            sleep(2)
-                            os.system('clear')
-                elif objetos == 2 and lembranca == True:
-
-                    print('O que você vê no espelho?\n',
-                          '[1] - Estátua\n',
-                          '[2] - Baú\n',
-                          '[3] - Seu reflexo')
-
-                    acaoEspelho = int(input(">> "))
-
-                    if acaoEspelho == 3:
-
-                        fraseAnimation = '''Ao se olhar você começa a se lembrar do que realmente aconteceu!
-Você estava em uma estrada com sua família e um caminhão entrou na pista
-Aparentemente o caminhoneiro estava embriagado e causou um acidente
-Você e sua familia vivenciaram um trauma muito grande, e nesse momento
-Você está em uma cama de hospital...\n\n'''
-                        self.animation(fraseAnimation)
-                        sleep(2)
-                        relogio.corretempo(3)
-                        os.system('clear')
-                    else:
-                        print('OK!')
-                        sleep(2)
-                        os.system('clear')
-
                 elif objetos == 2:
 
                     print('O que você viu no espelho?\n',
                           '[1] - Seu próprio reflexo\n',
-                          '[2] - Quadro \n',
+                          '[2] - Qudaro \n',
                           '[3] - Violão')
 
                     visualizar = int(input('>> '))
-                    sleep(2)
+                    sleep(5)
+                    os.system('clear')
 
                     if visualizar == 1:
 
-                        fraseAnimation = '''Você é uma pessoa muito bonita, porém
-já tem problemas o suficiente para ficar se olhando no espelho\n\n'''
-                        self.animation(fraseAnimation)
+                        print('Você é uma pessoa muito bonita, porém\n',
+                              'já tem problemas o suficiente para ficar se olhando no espelho')
                         relogio.corretempo(5)
-                        sleep(2)
-                        os.system('clear')
 
                     elif visualizar == 2:
 
-                        quadro = input(
-                            'É um quadro lindo, deseja chegar mais perto? [sim/não] ').upper()
-                        print()
-                        sleep(1)
+                        print('Deseja chegar mais perto? [sim/não]')
+                        quadro = input(' ').upper()
+
+                        sleep(5)
+                        os.system('clear')
 
                         if quadro == 'SIM':
-                            fraseAnimation = 'O quadro da sala é a Dama com Arminho de Leonardo da Vince. Que linda peça!\n\n'
-                            self.animation(fraseAnimation)
+                            print(
+                                'O quadro da sala é uma figura estranha, quem será?\n\n',)
 
-                            imagem.showImage('DamaArminho.jpg')
-                            sleep(2)
+                            imagem.createImageQuadro()
+                            imagem.showImagem()
+
+                            continuar = input(
+                                "\nPressione enter para continuar: ")
+
+                            if continuar == '':
+                                os.system('clear')
+                                relogio.corretempo(2)
 
                             print()
                             print('[1] - Vasculhar o quadro\n',
@@ -332,36 +321,79 @@ já tem problemas o suficiente para ficar se olhando no espelho\n\n'''
 
                             if acaoQuadro == 1:
 
-                                fraseAnimation = 'Você não encontrou nada...'
-                                self.animation(fraseAnimation)
-                                sleep(2)
+                                print('Você não encontrou nada...')
                                 relogio.corretempo(2)
-                                os.system('clear')
 
                             elif acaoQuadro == 2:
 
-                                fraseAnimation = '''Essa realmente é uma obra muito bonita, entendo você querer adimirá-la
-Porem seu tempo está correndo'''
-                                self.animation(fraseAnimation)
-                                sleep(2)
+                                print('Essa realmente é uma obra muito bonita, entendo você querer adimirá-la\n',
+                                      'Porem seu tempo está correndo')
                                 relogio.corretempo(5)
-                                os.system('clear')
 
                             elif acaoQuadro == 3:
 
-                                fraseAnimation = '''Que loucura rasgar um quadro tão lindo quanto esse...
-Da Vince acaba de se revirar no tumulo
-Porem situações desesperadas pedem medidas desesperadas
-Você encontrou dentro do quadro uma {}chave pequena{}...\n\n'''.format(cores['Mage'], cores['limpa'])
-                                self.animation(fraseAnimation)
+                                print('Que loucura rasgar um quadro tão lindo quanto esse...\n',
+                                      'Da Vince acaba de se revirar no tumulo\n',
+                                      'Porem situações desesperadas pedem medidas desesperadas\n',
+                                      'Você encontrou dentrou do quadro uma chave...')
                                 self.chaveBau = True
 
-                                sleep(2)
+                                sleep(5)
                                 os.system('clear')
-                        else:
-                            print('OK!')
-                            sleep(2)
-                            os.system('clear')
+
+                                print("Qual item deseja vasculhar?\n\n",
+                                      "[1] - Cadeira\n",
+                                      "[2] - Espelho\n",
+                                      "[3] - Quadro\n",
+                                      "[4] - Bau\n",
+                                      "[5] - Estátua\n",
+                                      "[6] - Bolsa de remédios")
+
+                                opcaoChaveBau = int(input('>> '))
+                                sleep(5)
+                                os.system('clear')
+
+                                if opcaoChaveBau == 4 and self.chaveBau == True:
+
+                                    print('Abrir o baú com a chave foi uma ótima escolha, nele se encontra uma foto\n',
+                                          'Nela se encontra Rodin, ao lado de uma de suas obras mais famosas\n',
+                                          'Porque alguém guardaria essa foto em um baú?')
+
+                                    print("Qual item deseja vasculhar?\n\n",
+                                          "[1] - Cadeira\n",
+                                          "[2] - Espelho\n",
+                                          "[3] - Quadro\n",
+                                          "[4] - Bau\n",
+                                          "[5] - Estátua\n",
+                                          "[6] - Bolsa de remédios")
+
+                                    estatua = int(input('>> '))
+                                    sleep(5)
+                                    os.system('clear')
+
+                                    if estatua == 5 and self.chaveBau == True:
+
+                                        print('Que bela estátua, é uma réplica da obra "O Pensador de Agusto Rodin"\n',
+                                              '[1] - Olhar a estatua\n',
+                                              '[2] - Girar a estatua\n',
+                                              '[3] - Não fazer nada')
+
+                                        acaoEstatua = int(input(">> "))
+
+                                        sleep(5)
+                                        os.system('clear')
+
+                                        if acaoEstatua == 2 and self.chaveBau == True:  # ===============\\ 2° FINAL //===================
+                                            print('Boa escolha, você girou a estatua com delicadeza\n',
+                                                  'Um buraco se abre no peito da estátua\n',
+                                                  'lhe dando acesso a chave que abre a porta de saída ...')
+
+                                            self.chavePorta = True
+                                            sleep(5)
+                                            os.system('clear')
+                                        else:
+                                            print(
+                                                'Nada de diferente aconteceu, talvez fosse apenas uma impressão sua...\n')
                 elif objetos == 3:
 
                     print("Você deseja: \n\n",
@@ -372,10 +404,9 @@ Você encontrou dentro do quadro uma {}chave pequena{}...\n\n'''.format(cores['M
                     acaoQuadro = int(input('>> '))
 
                     if acaoQuadro == 1:
-                        fraseAnimation = '''O quadro da sala é a Dama com Arminho de Leonardo da Vince!
-Ao vasculhar o quadro você encontrou uma bilhete de viagem
-Oque um bilhete de viagem faria atrás de um quadro?\n\n'''  # Conceito para a próxima versão
-                        self.animation(fraseAnimation)
+                        print('O quadro da sala é uma referência a JigSaw!\n\n',
+                              'Ao vasculhar o quadro você encontrou uma bilhete de viagem\n,'
+                              'Oque um bilhete de viagem faria atrás de um quadro?\n')  # Conceito para a próxima versão
 
                         bilhete = True
                         print('Você deseja: \n\n',
@@ -387,196 +418,95 @@ Oque um bilhete de viagem faria atrás de um quadro?\n\n'''  # Conceito para a p
 
                         if acaoBilhete == 1 and bilhete == True:
 
-                            fraseAnimation = '''Bilhete de onibus:
-Valor da passagem: R$5,50
-Destino: Praia do sono
-O que um bilhete de viagem faria aqui?\n\n'''  # Melhorar pergunta com o atributo inteligencia
-                            self.animation(fraseAnimation)
-                            sleep(2)
-                            os.system('clear')
+                            print('Bilhete de onibus: \n',
+                                  'Valor da passagem: R$5,50\n',
+                                  'Destino: Praia do sono\n\n',
+                                  'O que um bilhete de viagem faria aqui?')  # Melhorar pergunta com o atributo inteligencia
 
                         elif acaoBilhete == 2 and bilhete == True:
 
-                            fraseAnimation = 'Ele pode vir a ser útil em outro momento...\n\n'
-                            self.animation(fraseAnimation)
-                            sleep(2)
-                            os.system('clear')
+                            print('Ele pode vir a ser útil em outro momento...\n')
 
                         elif acaoBilhete == 3 and bilhete == True:
 
-                            fraseAnimation = '''Você nem se interessou em saber o que estava escrito
-provavelmente não tem intenção nenhuma de sair daqui\n'''
-                            self.animation(fraseAnimation)
-                            sleep(2)
+                            print('Você nem se interessou em saber o que estava escrito\n',
+                                  'provavelmente não tem intenção nenhuma de sair daqui\n')
+
                             relogio.corretempo(5)
                             bilhete = False
-                            os.system('clear')
 
                     elif acaoQuadro == 2:
 
-                        fraseAnimation = '''Você quebrou um belo quadro, sem nem mesmo observar!
-Você começa a se sentir cansado e sem forças
-Continuar agora sem descansar pode lhe trazer {}consequências{}
-Deseja tomar um descanso?[sim/não]\n\n'''.format(cores['Mage'], cores['limpa'])
-                        self.animation(fraseAnimation)
+                        print('Você quebrou um belo quadro, sem nem mesmo observar!\n\n',
+                              'Você começa a se sentir cansado e sem forças\n',
+                              'Continuar agora sem descansar pode lhe trazer consequências\n\n',
+                              'Deseja tomar um descanso?[sim/não]\n')
 
                         descanso = input(">> ").upper()
 
                         if descanso == 'SIM':
-                            fraseAnimation = 'Descanse um pouco...'
-                            self.animation(fraseAnimation)
+                            print('Descanse um pouco...')
                             relogio.corretempo(2)
-                            sleep(2)
-                            os.system('clear')
 
                         else:
-                            fraseAnimation = 'A vida é feita de {}escolhas{}...\n\n'.format(
-                                cores['red'], cores['limpa'])
-                            self.animation(fraseAnimation)
+                            print('A vida é feita de escolhas...')
                             relogio.corretempo(10)
-                            sleep(2)
-                            os.system('clear')
 
                     elif acaoQuadro == 3:
 
-                        fraseAnimation = '''O quadro da sala é a Dama com Arminho de Leonardo da Vince!
-Uma de suas grandes obras, hoje estimada em 350 Milhões de Euros...
-Essa era uma das obras preferidas da sua mãe
-Ela com certeza tinha um gosto refinado para quadros\n\n'''
-                        self.animation(fraseAnimation)
+                        imagem.createImageQuadro()
+                        imagem.showImagem()
 
-                        print('Uma pequena entrada se abre na lateral do quadro...\n',
+                        print('\nUma pequena entrada se abre na lateral do quadro...\n',
                               'Deseja entrar? [sim/não]\n')
 
                         entrar = input(">> ").upper()
-                        os.system('clear')
+
                         if entrar == 'SIM':
 
-                            fraseAnimation = "Você agora se encontra em uma casa...\n\n"
-                            self.animation(fraseAnimation)
-                            sleep(2)
+                            print("Você agora se encontra em uma casa...\n\n")
+
                             print(' '*20, end='')
                             print('', '__________________________')
                             print(' '*20, end='')
                             print('|', ' '*24, '|')
                             print(' '*20, end='')
-                            print('|', ' '*8, ' CASA ', ' '*8, '|')
+                            print('|', ' '*7, ' CASA ', ' '*7, '|')
                             print(' '*20, end='')
                             print('|__________________________|')
                             print('\n'*2)
 
                             print()
 
-                            fraseAnimation = '''Seus pais te chamam para uma volta de carro
-aparentemente estão indo visitar alguém.
-Você entra no carro e todos partem para viagem
-porém já na estrada você nota que esqueceu o celular\n\n'''
-                            self.animation(fraseAnimation)
-                            sleep(2)
+                            print("Seus pais te chamam para uma volta de carro\n",
+                                  'aparentemente estão indo visitar alguém.\n\n',
+                                  'Você entra no carro e todos partem para viagem\n',
+                                  'porém já na estrada você nota que esqueceu o celular\n',)
 
                             lembranca = True
                             relogio.corretempo(3)
-                            os.system('clear')
 
                         else:
                             continue
 
-                elif objetos == 4 and self.chaveBau == True:
-                    fraseAnimation = '''Abrir o baú com a {}chave{} foi uma ótima escolha, nele se encontra uma foto
-Nela se encontra Rodin, ao lado de uma de suas obras mais famosas
-Porque alguém guardaria essa foto em um baú?\n\n'''.format(cores['Mage'], cores['limpa'])
-                    self.animation(fraseAnimation)
-                    foto = True
+                elif objetos == 2 and lembranca == True:
 
-                elif objetos == 4:
+                    print('O que você vê no espelho?\n',
+                          '[1] - Estátua\n',
+                          '[2] - Baú\n',
+                          '[3] - Seu reflexo')
 
-                    print("Você deseja: \n\n",
-                          "[1] - Abrir o baú\n",
-                          "[2] - Vasculhar o baú\n",
-                          "[3] - Não fazer nada\n",)
+                    acaoEspelho = int(input(">> "))
 
-                    acaoBau = int(input('>> '))
-                    self.chaveBau = False
+                    if acaoEspelho == 3:
 
-                    if acaoBau == 1 and self.chaveBau == False:
-                        fraseAnimation = 'Você necessita de uma chave para abri-lo'
-                        self.animation(fraseAnimation)
-                        sleep(2)
-                        os.system('clear')
+                        print('Ao se ollhar você começa a se lembrar do que realmente aconteceu!\n\n',
+                              'Você estava em uma estrada com sua família e um caminhão entrou na pista\n',
+                              'Aparentemente o caminhoneiro estava embriagado e causou um acidente\n',
+                              'Você e sua familia vivenciaram um trauma muito grande, e nesse momento\n',
+                              'Você está em uma cama de hospital...\n\n')
 
-                    elif acaoBau == 2:
-                        fraseAnimation = 'Você não encontrou nada ao vasculhar o baú...'
-                        self.animation(fraseAnimation)
-                        sleep(2)
-                        os.system('clear')
-                    elif acaoBau == 3:
-                        os.system('clear')
-                        continue
-
-                elif objetos == 5 and foto == True:
-                    print('Que bela estátua, é uma réplica da obra "O Pensador de Agusto Rodin"\n',
-                          '[1] - Olhar a estatua\n',
-                          '[2] - Girar a estatua\n',
-                          '[3] - Não fazer nada')
-
-                    acaoEstatua = int(input(">> "))
-
-                    sleep(2)
-
-                    if acaoEstatua == 2:  # ===============\\ 2° e 3° FINAL //===================
-                        fraseAnimation = '''Boa escolha, você girou a estatua com delicadeza
-Um buraco se abre no peito da estátua
-lhe dando acesso a {}chave{} que abre a porta de saída ...\n\n'''.format(cores['red'], cores['limpa'])
-                        relogio.corretempo(4)
-                        self.chavePorta = True
-                        sleep(2)
-                        os.system('clear')
-                    else:
-                        fraseAnimation = 'Nada de diferente aconteceu, talvez fosse apenas uma {}impressão{} sua...\n\n'.format(
-                            cores['ciano'], cores['limpa'])
-                        self.animation(fraseAnimation)
-                        relogio.corretempo(4)
-                        sleep(2)
-                        os.system('clear')
-
-                elif objetos == 5:
-
-                    print("Você deseja: \n\n",
-                          "[1] - Admirar a estátua\n",
-                          "[2] - Não fazer nada\n",)
-
-                    acaoEstatua = int(input('>> '))
-
-                    if acaoEstatua == 1:
-
-                        fraseAnimation = '''Que bela estátua, é uma réplica da obra "O {}Pensador{} de Agusto Rodin.
-é uma das mais famosas esculturas de bronze do escultor francês Auguste Rodin.
-Retrata um homem em meditação soberba, lutando com uma poderosa força interna.
-O Pensador originalmente procurava retratar Dante em frente dos Portões do Inferno
-ponderando seu grande poema...\n\n'''.format(cores['amarelo'], cores['limpa'])
-                        self.animation(fraseAnimation)
-                        sleep(2)
-                        os.system('clear')
-
-                    else:
-                        continue
-
-                elif objetos == 6 and machucado == True:
-                    deseja = input(
-                        'Você deseja abrir a bolsa de remédios? ').lower()
-                    if deseja == 'sim':
-                        fraseAnimation = '''{}Boa escolha, dentro da bolsa de remédios temos analgésicos e gaze para o seu machucado{}
-Pode continuar sem nenhum problema\n\n'''.format(cores['ciano'], cores['limpa'])
-                        self.animation(fraseAnimation)
-                        relogio.corretempo(2)
-                        sleep(2)
-                        os.system('clear')
-                    else:
-                        fraseAnimation = 'Você está machucado e mesmo assim não quis abrir a bolsa de remédios, isso terá consequências!'
-                        self.animation(fraseAnimation)
-                        relogio.corretempo(7)
-                        sleep(2)
-                        os.system('clear')
+                        relogio.corretempo(3)
 
                 elif objetos == 6 and lembranca == True:
 
@@ -588,24 +518,108 @@ Pode continuar sem nenhum problema\n\n'''.format(cores['ciano'], cores['limpa'])
                     acaoBolsa = int(input('>> '))
 
                     if acaoBolsa == 1:
-                        fraseAnimation = "Você abre a bolsa e encontra o que aparentemente é a {}chave de um baú{}\n\n".format(
-                            cores['Mage'], cores['limpa'])
-                        self.animation(fraseAnimation)
+                        print(
+                            "Você abre a bolsa e encontra o que aparentemente é a chave de um baú\n")
 
                         self.chaveBau = True
 
-                        sleep(2)
+                        sleep(5)
                         os.system('clear')
-                    elif acaoBolsa == 2:
-                        print('*Jogando a bolsa no lixo..*')
-                    else:
+
+                        print("Qual item deseja vasculhar?\n\n",
+                              "[1] - Cadeira\n",
+                              "[2] - Espelho\n",
+                              "[3] - Quadro\n",
+                              "[4] - Bau\n",
+                              "[5] - Estátua\n",
+                              "[6] - Bolsa de remédios")
+
+                        opcaoChaveBau = int(input('>> '))
+                        sleep(5)
+                        os.system('clear')
+
+                        if opcaoChaveBau == 4 and self.chaveBau == True:
+
+                            print('Abrir o baú com a chave foi uma ótima escolha, nele se encontra uma foto\n',
+                                  'Nela se encontra Rodin, ao lado de uma de suas obras mais famosas\n',
+                                  'Porque alguém guardaria essa foto em um baú?')
+
+                            print("Qual item deseja vasculhar?\n\n",
+                                  "[1] - Cadeira\n",
+                                  "[2] - Espelho\n",
+                                  "[3] - Quadro\n",
+                                  "[4] - Bau\n",
+                                  "[5] - Estátua\n",
+                                  "[6] - Bolsa de remédios")
+
+                            estatua = int(input('>> '))
+                            sleep(5)
+                            os.system('clear')
+
+                            if estatua == 5 and self.chaveBau == True:
+
+                                print('Que bela estátua, é uma répica da obra "O Pensador de Agusto Rodin"\n',
+                                      '[1] - Olhar a estatua\n',
+                                      '[2] - Girar a estatua\n',
+                                      '[3] - Não fazer nada')
+
+                                acaoEstatua = int(input(">> "))
+
+                                sleep(5)
+                                os.system('clear')
+
+                                if acaoEstatua == 2 and self.chaveBau == True:  # ===============\\ 3° FINAL //===================
+                                    print('Boa escolha, você girou a estatua com delicadeza\n',
+                                          'Um buraco se abre no peito da estátua\n',
+                                          'lhe dando acesso a chave que abre a porta de saída ...')
+
+                                    self.chavePorta = True
+                                    sleep(5)
+                                    os.system('clear')
+                                else:
+                                    print(
+                                        'Nada de diferente aconteceu, talvez fosse apenas uma impressão sua...\n')
+
+                elif objetos == 4:
+
+                    print("Você deseja: \n\n",
+                          "[1] - Abrir o baú",
+                          "[2] - Vasculhar o baú\n",
+                          "[3] - Não fazer nada\n",)
+
+                    acaoBau = int(input('>> '))
+                    self.chaveBau = False
+
+                    if acaoBau == 1 and self.chaveBau == False:
+                        print('Você necessita de uma chave para abri-lo')
+
+                    elif acaoBau == 2:
+                        print('Você não encontrou nada ao vasculhar o baú...')
+                    elif acaoBau == 3:
                         continue
 
+                elif objetos == 5:
+
+                    print("Você deseja: \n\n",
+                          "[1] - Admirar a estátua\n",
+                          "[2] - Não fazer nada\n",)
+
+                    acaoEstatua = int(input('>> '))
+
+                    if acaoEstatua == 1:
+
+                        print('Que bela estátua, é uma réplica da obra "O Pensador de Agusto Rodin\n',
+                              'é uma das mais famosas esculturas de bronze do escultor francês Auguste Rodin.\n',
+                              'Retrata um homem em meditação soberba, lutando com uma poderosa força interna.\n',
+                              'O Pensador originalmente procurava retratar Dante em frente dos Portões do Inferno,\n',
+                              'ponderando seu grande poema...\n')
+
+                    else:
+                        continue
                 elif objetos == 6:
 
-                    fraseAnimation = '''Uma bolsa de remédios pode ser útil em momentos de necessidade
-'Fique atento caso precise de cuidados médicos\n'''
-                    self.animation(fraseAnimation)
+                    print('Uma bolsa de remédios pode ser útil em momentos de necessidade\n',
+                          'Fique atento caso precise de cuidados médicos\n')
 
                     print("Você deseja: \n\n",
                           "[1] - Abrir a bolsa\n",
@@ -614,20 +628,7 @@ Pode continuar sem nenhum problema\n\n'''.format(cores['ciano'], cores['limpa'])
                     acaoBolsa = int(input('>> '))
 
                     if acaoBolsa == 1:
-                        fraseAnimation = '{}Na bolsa temos analgésicos e gaze para uma eventual necessidade{}\n\n'.format(
-                            cores['azul'], cores['limpa'])
-                        self.animation(fraseAnimation)
+                        print(
+                            'Na bolsa temos analgésicos e gaze para uma eventual necessidade\n')
                     else:
                         continue
-            elif escolha == 3:
-                if self.atributo == 'Força':
-                    fraseAnimation = "A porta é de ferro e você esta machucado, dessa vez não poderá contar com sua força!"
-                    self.animation(fraseAnimation)
-                    sleep(2)
-                    os.system('clear')
-                else:
-                    fraseAnimation = "Você é frac{} demais para isso!".format(
-                        self.generos())
-                    self.animation(fraseAnimation)
-                    sleep(2)
-                    os.system('clear')
