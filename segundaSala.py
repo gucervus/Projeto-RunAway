@@ -2,11 +2,13 @@ from personagem import Personagem
 from relogio import Relógio
 from funcoes import Funções
 from time import sleep
+from primeiraSala import salaVermelha
 from CORES import cores
 import os
 import pygame
 from random import randint
 from IMG import Imagens
+
 
 class salaBranca(Funções, Personagem):
 
@@ -23,11 +25,13 @@ class salaBranca(Funções, Personagem):
         super().__init__(*args, genero=genero, **kwargs)
 
     def acao(self):
+        sala1 = salaVermelha(nome=self.nome, altura=self.altura,
+                             atributo=self.atributo, genero=self.genero)
+        tempo = sala1.retornaTempo()
+        relogio = Relógio(tempo, self.nome, self.altura, self.atributo)
 
-        relogio = Relógio(30, self.nome, self.altura, self.atributo)
         imagem = Imagens()
         numeroSala = False
-
 
         print(' '*21, end='')
         print('', '___________________________')
@@ -52,10 +56,15 @@ class salaBranca(Funções, Personagem):
 
         pygame.init()
         tecla = pygame.mixer.Sound('teclado.ogg')
+        global gameover
+        gameover = False
         machucado = False
         lembranca = False
         foto = False
         while True:
+            if relogio.minutos <= 0:
+                gameover = True
+                break
             if numeroSala == True:
 
                 tecla.play()
@@ -104,7 +113,6 @@ class salaBranca(Funções, Personagem):
                         break
                     elif escolha == "nao":
                         print("Você achou melhor guardar a chave.")
-
 
                 sleep(2)
                 os.system('clear')
@@ -312,7 +320,7 @@ já tem problemas o suficiente para ficar se olhando no espelho\n\n'''
                             fraseAnimation = 'O quadro da sala é a Dama com Arminho de Leonardo da Vince. Que linda peça!\n\n'
                             self.animation(fraseAnimation)
 
-                            # imagem.showImage('DamaArminho.jpg')
+                            imagem.showImage('DamaArminho.jpg')
                             sleep(2)
 
                             print()
