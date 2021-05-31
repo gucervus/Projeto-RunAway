@@ -23,8 +23,7 @@ class salaVermelha(Funções, Personagem):
         guitarQuebrada = False
         pygame.init()
 
-        func = Funções(genero='')
-        tecla = func.teclando()
+        tecla = self.teclando()
         objeto = Imagem()
         relogio = Relógio(30, self.nome, self.altura, self.atributo)
         os.system('clear')
@@ -47,13 +46,13 @@ class salaVermelha(Funções, Personagem):
 
         numeroSala = False
 
-        print('\033[4;31m '*21, end='')
+        print('\033[4;31m '*30, end='')
         print('', '___________________________')
-        print(' '*21, end='')
+        print(' '*30, end='')
         print('|', ' '*25, '|')
-        print(' '*21, end='')
+        print(' '*30, end='')
         print('|', ' '*4, ' SALA VERMELHA ', ' '*4, '|')
-        print(' '*21, end='')
+        print(' '*30, end='')
         print('|___________________________|\033[m')
         print('\n'*2)
 
