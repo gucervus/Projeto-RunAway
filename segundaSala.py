@@ -5,7 +5,7 @@ from time import sleep
 from CORES import cores
 import os
 import pygame
-from IMG import Imagens
+from imagem import Imagem
 
 
 class salaBranca(Funções, Personagem):
@@ -25,7 +25,7 @@ class salaBranca(Funções, Personagem):
     def acao(self):
 
         relogio = Relógio(30, self.nome, self.altura, self.atributo)
-        imagem = Imagens()
+        imagem = Imagem()
         numeroSala = False
 
         print(' '*20, end='')
@@ -138,9 +138,10 @@ class salaBranca(Funções, Personagem):
                         ler = input('>> ').upper()
 
                         if ler == 'SIM':
-                            imagem.showImage('_img/poerma3.jpg')
+                            imagem.createImagemCarta()
+                            imagem.showImagem()
                             
-                            continuar = input('Pressione Enter para continuar: ')
+                            print('\nQual o significado desse simbolo?')
                             if continuar == '':
                                 os.system('clear')
                                 relogio.corretempo(2)
@@ -277,20 +278,20 @@ class salaBranca(Funções, Personagem):
 
                     elif visualizar == 2:
                         
-                        print('É um quadro lindo, deseja chegar mais perto? [sim/não]')
+                        print('Deseja chegar mais perto? [sim/não]')
                         quadro = input(' ').upper()
 
                         sleep(5)
                         os.system('clear')
 
                         if quadro == 'SIM':
-                            print('O quadro da sala é a Dama com Arminho de Leonardo da Vince\n',
-                                  'Que linda peça!')
+                            print('O quadro da sala é uma figura estranha, quem será?\n\n',)
                             
-                            imagem.insertImage('_img/DamaArminho.jpg')   
-                            imagem.showImage()
+                            imagem.createImageQuadro()
+                            imagem.showImagem()
                             
-                            continuar = input("Pressione enter para continuar: ")
+                            continuar = input("\nPressione enter para continuar: ")
+                            
                             if continuar == '':
                                 os.system('clear')
                                 relogio.corretempo(2)
@@ -387,7 +388,7 @@ class salaBranca(Funções, Personagem):
                     acaoQuadro = int(input('>> '))
                     
                     if acaoQuadro == 1:
-                        print('O quadro da sala é a Dama com Arminho de Leonardo da Vince!\n\n',
+                        print('O quadro da sala é uma referência a JigSaw!\n\n',
                               'Ao vasculhar o quadro você encontrou uma bilhete de viagem\n,'
                               'Oque um bilhete de viagem faria atrás de um quadro?\n')  # Conceito para a próxima versão
                         
@@ -437,12 +438,10 @@ class salaBranca(Funções, Personagem):
                     
                     elif acaoQuadro == 3:
                         
-                        print('O quadro da sala é a Dama com Arminho de Leonardo da Vince!\n',
-                              'Uma de suas grandes obras, hoje estimada em 350 Milhões de Euros...\n\n',
-                              'Essa era uma das obras preferidas da sua mãe\n',
-                              'Ela com certeza tinha um gosto refinado para quadros\n',)
+                        imagem.createImageQuadro()
+                        imagem.showImagem()
                         
-                        print('Uma pequena entrada se abre na lateral do quadro...\n',
+                        print('\nUma pequena entrada se abre na lateral do quadro...\n',
                               'Deseja entrar? [sim/não]\n')
                         
                         entrar = input(">> ").upper()

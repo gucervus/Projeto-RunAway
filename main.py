@@ -5,7 +5,7 @@ from segundaSala import salaBranca
 from funcoes import Funções
 from CORES import cores
 from time import sleep
-from IMG import Imagem
+from imagem import Imagem
 import pygame
 import sys
 import os
@@ -16,11 +16,11 @@ pygame.init()
 pygame.mixer.music.load('trilhasuspensa.ogg')
 pygame.mixer.music.set_volume(0.3)
 pygame.mixer.music.play(-1)
-
+objeto = Imagem()
 if (__name__ == "__main__"):
 
     os.system('clear')
-    print("{:^60}\n\n".format("RunAway"))
+    print("{}\n\n".format(objeto.bemvindo()))
     print("{:^60}\n\n".format("[CADASTRO]"))
     login = input("Ja tem uma conta? ")
     os.system('clear')
@@ -28,7 +28,7 @@ if (__name__ == "__main__"):
     senha1 = ''
     gen = ''
     while True:
-        print("{:^60}\n\n".format("RunAway"))
+        print("{}\n\n".format(objeto.nome()))
         print("{:^60}\n\n".format("[CADASTRO]"))
         if login == 'sim':
             usuario = input('Usuário:')
@@ -38,18 +38,18 @@ if (__name__ == "__main__"):
                 cadastro = input('Deseja se cadastrar?')
                 os.system('clear')
                 while cadastro != 'sim' and cadastro != 'nao':
-                    print("{:^60}\n\n".format("RunAway"))
+                    print("{}\n\n".format(objeto.nome()))
                     print("{:^60}\n\n".format("[CADASTRO]"))
                     cadastro = input('Deseja se cadastrar?')
                     os.system('clear')
                 if cadastro == 'nao':
-                    print("{:^60}\n\n".format("RunAway"))
+                    print("{}\n\n".format(objeto.nome()))
                     print("{:^60}\n\n".format("[CADASTRO]"))
                     print('Programa finalizado!')
                     break
 
                 elif cadastro == 'sim':
-                    print("{:^60}\n\n".format("RunAway"))
+                    print("{}\n\n".format(objeto.nome()))
                     print("{:^60}\n\n".format("[CADASTRO]"))
                     nome = input("Digite seu nome: ")
                     alt = float(input("Digite sua altura: "))
@@ -58,7 +58,7 @@ if (__name__ == "__main__"):
                     senha1 += input("Senha: ")
 
         elif login == 'nao':
-            nome = input("Digite seu nome: ")
+            nom = input("Digite seu nome: ")
             alt = float(input("Digite sua altura: "))
             gen += input("Digite seu gênero: ").lower()
             usuario1 += input("Usuário: ")
@@ -70,7 +70,7 @@ if (__name__ == "__main__"):
 
         tecla.play(-1)
         print(' '*25, end='')
-        bemVindo = f"Bem vind{func.generos()} {nome}\n\n"
+        bemVindo = f"Bem vind{func.generos()} {nom}\n\n"
         func.animation(bemVindo)
         print(' '*20, end='')
         atributo = '»»»» Escolha um \033[33matributo\033[m ««««\n\n\n\n'

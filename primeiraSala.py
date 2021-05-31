@@ -1,10 +1,9 @@
-from IMG import Imagem
 from personagem import Personagem
 from relogio import Relógio
 from funcoes import Funções
 from time import sleep
 from CORES import cores
-from IMG import Imagem
+from imagem import Imagem
 import os
 import pygame
 
