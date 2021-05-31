@@ -1,8 +1,10 @@
+from IMG import Imagem
 from personagem import Personagem
 from relogio import Relógio
 from funcoes import Funções
 from time import sleep
 from CORES import cores
+from IMG import Imagem
 import os
 import pygame
 
@@ -25,6 +27,7 @@ class salaVermelha(Funções, Personagem):
         tecla = func.teclando()
 
         relogio = Relógio(30, self.nome, self.altura, self.atributo)
+        imagem = Imagem()
 
         numeroSala = False
 
@@ -130,7 +133,8 @@ class salaVermelha(Funções, Personagem):
                 print()
 
                 if escolha == 1:
-
+                    imagem.createImage('DamaArminho.jpg')
+                    imagem.showImage()
                     print("Você deseja: \n\n",
                           "[1] - Vasculhar Escrivaninha\n",
                           "[2] - Olhar Escrivaninha\n",
@@ -138,7 +142,7 @@ class salaVermelha(Funções, Personagem):
                           "[4] - Subir na Escrivaninha\n",)
 
                     opcEscrivaninha = int(input(">> "))
-
+                    
                     if opcEscrivaninha == 1:
                         relogio.corretempo(4)
                         print()

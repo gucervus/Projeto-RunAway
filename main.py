@@ -5,7 +5,7 @@ from segundaSala import salaBranca
 from funcoes import Funções
 from CORES import cores
 from time import sleep
-from IMG import Imagens
+from IMG import Imagem
 import pygame
 import sys
 import os
