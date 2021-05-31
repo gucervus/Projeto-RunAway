@@ -25,7 +25,7 @@ if (__name__ == "__main__"):
         █▀█ █░█ █▄ █ ▄▀█ █ █ █ ▄▀█ █▄█
         █▀▄ █▄█ █ ▀█ █▀█ ▀▄▀▄▀ █▀█  █ \n\n'''
 
-        objeto.nome(nome)
+        objeto.animation(nome)
         print('\n\n')
         print(' [1] - Login\n',
               '[2] - Cadastro\n\n')
@@ -123,7 +123,11 @@ if (__name__ == "__main__"):
         sala1.acao()
 
         if sala1.gameover() == True:
+            pygame.mixer.music.stop()
+            teste = pygame.mixer.Sound('gameo4.ogg')
+            teste.play()
             print('Fim de jogo!')
+            sleep(5)
             break
         else:
             sala2.acao()
