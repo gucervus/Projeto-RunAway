@@ -1,5 +1,6 @@
 import sys
 from time import sleep
+import pygame
 
 
 class Funções:
@@ -20,3 +21,7 @@ class Funções:
             return 'a'
         else:
             return 'e'
+
+    def teclando(self):
+        tecla = pygame.mixer.Sound('teclado.ogg')
+        return tecla

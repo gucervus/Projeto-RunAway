@@ -5,6 +5,13 @@ class Timer:
         self.start = time.time()
         self.set(value)
 
+    def start(self, args):
+        self.timer = Timer(10)
+
+    def update(self):
+        print(self.timer.get())
+
+        
     def set(self, value : float):
         self.start = time.time() - value
 

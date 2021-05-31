@@ -428,8 +428,7 @@ class salaVermelha(Funções, Personagem):
                 if self.atributo == 'Força':
                     print()
                     tecla.play(-1)
-                    fraseAnimation = "A porta é de madeira e você conseguiu quebra-la! Mas uma farpa de madeira te {}machucou.{}\n\n".format(
-                        cores['red'], cores['limpa'])
+                    fraseAnimation = "A porta é de madeira e você conseguiu quebra-la! Mas uma farpa de madeira te {}machucou.{}\n\n".format(cores['red'],cores['limpa'])
                     self.animation(fraseAnimation)
                     fraseAnimation = "Parabéns, você é {}forte{} o suficiente para a próxima sala! Mas perderá mais tempo por estar machucado!\n\n".format(
                         cores['amarelo'], cores['limpa'])

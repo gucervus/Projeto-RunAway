@@ -1,25 +1,28 @@
 from PIL import Image
 from relogio import Relógio
 from personagem import Personagem
-from primeiraSala import salaVermelha
-from segundaSala import salaBranca
+from _salas.primeiraSala import salaVermelha
+from _salas.segundaSala import salaBranca
 from funcoes import Funções
 from CORES import cores
 from time import sleep
+from IMG import Imagens
 import pygame
 import sys
 import os
+from PIL import Image
+from IMG import Img
 
 
 pygame.init()
-tecla = pygame.mixer.Sound('teclado.ogg')
 pygame.mixer.music.load('trilhasuspensa.ogg')
-pygame.mixer.music.set_volume(0.1)
+pygame.mixer.music.set_volume(0.3)
 pygame.mixer.music.play(-1)
 
 
 if (__name__ == "__main__"):
 
+    os.system('clear')
     print("{:^60}\n\n".format("RunAway"))
     print("{:^60}\n\n".format("[CADASTRO]"))
     login = input("Ja tem uma conta? ")
@@ -43,7 +46,6 @@ if (__name__ == "__main__"):
                     cadastro = input('Deseja se cadastrar?')
                     os.system('clear')
                 if cadastro == 'nao':
-
                     print('Programa finalizado!')
                     break
 
@@ -100,13 +102,14 @@ if (__name__ == "__main__"):
 
         personagem = Personagem(nome, alt, atributo)
 
+
         sala1 = salaVermelha(nome=nome, altura=alt,
                              atributo=atributo, genero=gen)
-
         sala2 = salaBranca(nome=nome, altura=alt,
                            atributo=atributo, genero=gen)
         personagem.escolhaAtributo()
 
-        # sala1.acao()
+
+        sala1.acao()
 
         sala2.acao()

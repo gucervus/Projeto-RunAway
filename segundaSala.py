@@ -8,7 +8,6 @@ import pygame
 from random import randint
 from IMG import Imagens
 
-
 class salaBranca(Funções, Personagem):
 
     def __init__(self, *args, genero, **kwargs):
@@ -17,12 +16,18 @@ class salaBranca(Funções, Personagem):
         self.quadro = False
         self.bau = False
         self.estatua = True
+        self.bolsaRemedios = False
+        self.chaveBau = False
+        self.chavePorta = False
+
+        super().__init__(*args, genero=genero, **kwargs)
 
     def acao(self):
 
         relogio = Relógio(30, self.nome, self.altura, self.atributo)
         imagem = Imagens()
         numeroSala = False
+
 
         print(' '*21, end='')
         print('', '___________________________')
@@ -100,6 +105,7 @@ class salaBranca(Funções, Personagem):
                     elif escolha == "nao":
                         print("Você achou melhor guardar a chave.")
 
+
                 sleep(2)
                 os.system('clear')
 
@@ -129,7 +135,6 @@ class salaBranca(Funções, Personagem):
                     opcaoCadeira = int(input(">> "))
 
                     if opcaoCadeira == 1:
-
                         relogio.corretempo(2)
                         print()
 
@@ -442,7 +447,6 @@ Ela com certeza tinha um gosto refinado para quadros\n\n'''
                             fraseAnimation = "Você agora se encontra em uma casa...\n\n"
                             self.animation(fraseAnimation)
                             sleep(2)
-
                             print(' '*20, end='')
                             print('', '__________________________')
                             print(' '*20, end='')
