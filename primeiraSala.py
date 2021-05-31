@@ -106,7 +106,7 @@ class salaVermelha(Funções, Personagem):
 
             if opcao2 == 1:
                 tecla.play(-1)
-                relogio.corretempo(4)
+                relogio.corretempo(30)
                 fraseAnimation = "A porta está trancada...\n\n"
                 self.animation(fraseAnimation)
 

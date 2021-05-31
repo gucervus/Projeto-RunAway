@@ -7,4 +7,4 @@ class Imagem:
         for c in imagem:
             print(c, end='')
             sys.stdout.flush()
-            sleep(0.01)
+            sleep(0.008)

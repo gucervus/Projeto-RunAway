@@ -29,7 +29,6 @@ class salaBranca(Funções, Personagem):
                              atributo=self.atributo, genero=self.genero)
         tempo = sala1.retornaTempo()
         relogio = Relógio(tempo, self.nome, self.altura, self.atributo)
-        imagem = Imagem()
         tecla = self.teclando()
         numeroSala = False
 
