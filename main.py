@@ -2,6 +2,7 @@ from personagem import Personagem
 from primeiraSala import salaVermelha
 from segundaSala import salaBranca
 from funcoes import Funções
+from Imagem import Imagem
 from CORES import cores
 from time import sleep
 import pygame
@@ -13,13 +14,19 @@ pygame.mixer.music.load('trilhasuspensa.ogg')
 pygame.mixer.music.set_volume(0.3)
 pygame.mixer.music.play(-1)
 
+objeto = Imagem()
 
 if (__name__ == "__main__"):
 
     os.system('clear')
     while True:
-        print("{:^60}\n\n".format("RunAway"))
 
+        nome = '''
+        █▀█ █░█ █▄ █ ▄▀█ █ █ █ ▄▀█ █▄█
+        █▀▄ █▄█ █ ▀█ █▀█ ▀▄▀▄▀ █▀█  █ \n\n'''
+
+        objeto.nome(nome)
+        print('\n\n')
         print(' [1] - Login\n',
               '[2] - Cadastro\n\n')
         escolha = input('>> ')
@@ -36,8 +43,8 @@ if (__name__ == "__main__"):
     gen = ''
     while True:
         if escolha == '1':
-            print("{:^60}\n\n".format("RunAway"))
-            print("{:^60}\n\n".format("[LOGIN]"))
+            print(nome)
+            print("{:^45}\n\n".format("[LOGIN]"))
             usuario = input('Usuário:')
             senha = input('Senha: ')
             if usuario != usuario1 or senha != senha1:
@@ -45,17 +52,18 @@ if (__name__ == "__main__"):
                 cadastro = input('Deseja se cadastrar?')
                 os.system('clear')
                 while cadastro != 'sim' and cadastro != 'nao':
-                    print("{:^60}\n\n".format("RunAway"))
-                    print("{:^60}\n\n".format("[LOGIN]"))
+                    print(nome)
+                    print("{:^45}\n\n".format("[LOGIN]"))
                     cadastro = input('Deseja se cadastrar?')
                     os.system('clear')
                 if cadastro == 'nao':
+                    print(nome)
                     print('Programa finalizado!')
                     break
 
                 elif cadastro == 'sim':
-                    print("{:^60}\n\n".format("RunAway"))
-                    print("{:^60}\n\n".format("[CADASTRO]"))
+                    print(nome)
+                    print("{:^45}\n\n".format("[CADASTRO]"))
                     nome = input("Digite seu nome: ")
                     alt = float(input("Digite sua altura: "))
                     gen += input("Digite seu gênero: ").lower()
@@ -63,7 +71,7 @@ if (__name__ == "__main__"):
                     senha1 = input("Senha: ")
 
         elif escolha == '2':
-            print("{:^60}\n\n".format("RunAway"))
+            print(nome)
             print("{:^60}\n\n".format("[CADASTRO]"))
             nome = input("Digite seu nome: ")
             alt = float(input("Digite sua altura: "))

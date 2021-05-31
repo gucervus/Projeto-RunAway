@@ -1,3 +1,4 @@
+from Imagem import Imagem
 from personagem import Personagem
 from relogio import Relógio
 from funcoes import Funções
@@ -7,7 +8,6 @@ from CORES import cores
 import os
 import pygame
 from random import randint
-from IMG import Imagens
 
 
 class salaBranca(Funções, Personagem):
@@ -30,7 +30,7 @@ class salaBranca(Funções, Personagem):
         tempo = sala1.retornaTempo()
         relogio = Relógio(tempo, self.nome, self.altura, self.atributo)
 
-        imagem = Imagens()
+        imagem = Imagem()
         numeroSala = False
 
         print(' '*21, end='')

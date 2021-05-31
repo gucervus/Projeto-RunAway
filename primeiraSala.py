@@ -3,6 +3,7 @@ from relogio import Relógio
 from funcoes import Funções
 from time import sleep
 from CORES import cores
+from Imagem import Imagem
 import os
 import pygame
 
@@ -26,6 +27,7 @@ class salaVermelha(Funções, Personagem):
         tecla = func.teclando()
 
         relogio = Relógio(30, self.nome, self.altura, self.atributo)
+        imagem = Imagem()
         global tempo
         tempo = relogio.minutos
 
