@@ -22,8 +22,8 @@ if (__name__ == "__main__"):
     while True:
 
         nome = '''
-        █▀█ █░█ █▄░█ ▄▀█ █░█░█ ▄▀█ █▄█
-        █▀▄ █▄█ █░▀█ █▀█ ▀▄▀▄▀ █▀█ ░█░\n\n'''
+                █▀█ █░█ █▄░█ ▄▀█ █░█░█ ▄▀█ █▄█
+                █▀▄ █▄█ █░▀█ █▀█ ▀▄▀▄▀ █▀█ ░█░\n\n'''
 
         objeto.animation(nome)
         print('\n\n')
@@ -44,7 +44,7 @@ if (__name__ == "__main__"):
     while True:
         if escolha == '1':
             print(nome)
-            print("{:^45}\n\n".format("[LOGIN]"))
+            print("{:^60}\n\n".format("[LOGIN]"))
             usuario = input('Usuário:')
             senha = input('Senha: ')
             if usuario != usuario1 or senha != senha1:
@@ -53,7 +53,7 @@ if (__name__ == "__main__"):
                 os.system('clear')
                 while cadastro != 'sim' and cadastro != 'nao':
                     print(nome)
-                    print("{:^45}\n\n".format("[LOGIN]"))
+                    print("{:^60}\n\n".format("[LOGIN]"))
                     cadastro = input('Deseja se cadastrar [sim/não]? ').lower()
                     os.system('clear')
                 if cadastro == 'nao':
@@ -63,7 +63,7 @@ if (__name__ == "__main__"):
 
                 elif cadastro == 'sim':
                     print(nome)
-                    print("{:^45}\n\n".format("[CADASTRO]"))
+                    print("{:^60}\n\n".format("[CADASTRO]"))
                     nome = input("Digite seu nome: ")
                     alt = float(input("Digite sua altura: "))
                     gen += input("Digite seu gênero: ").lower()
@@ -72,7 +72,7 @@ if (__name__ == "__main__"):
 
         elif escolha == '2':
             print(nome)
-            print("{:^45}\n\n".format("[CADASTRO]"))
+            print("{:^60}\n\n".format("[CADASTRO]"))
             nome = input("Digite seu nome: ")
             alt = float(input("Digite sua altura: "))
             gen += input("Digite seu gênero: ").lower()
