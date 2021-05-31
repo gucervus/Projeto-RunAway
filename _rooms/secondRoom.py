@@ -1,10 +1,10 @@
-from Imagem import Imagem
-from personagem import Personagem
-from relogio import Relógio
-from funcoes import Funções
+from _functions.imagem import *
+from _person.person import *
+from _time.clock import *
+from _functions.functions import *
+from . import firstRoom
+from _color.colors import *
 from time import sleep
-from primeiraSala import salaVermelha
-from CORES import cores
 import os
 import pygame
 from random import randint
@@ -25,8 +25,8 @@ class salaBranca(Funções, Personagem):
         super().__init__(*args, genero=genero, **kwargs)
 
     def acao(self):
-        sala1 = salaVermelha(nome=self.nome, altura=self.altura,
-                             atributo=self.atributo, genero=self.genero)
+        sala1 = firstRoom.salaVermelha(nome=self.nome, altura=self.altura,
+                                       atributo=self.atributo, genero=self.genero)
         tempo = sala1.retornaTempo()
         relogio = Relógio(tempo, self.nome, self.altura, self.atributo)
         tecla = self.teclando()
@@ -389,13 +389,13 @@ já tem problemas o suficiente para ficar se olhando no espelho\n\n'''
             ─██─────────████──────────██─
             ─██─────────████──────────██─
             ────────────████─────────────
-            ─────────────██──────────────{}'''.format(cores['ciano'],cores['limpa'])
+            ─────────────██──────────────{}'''.format(cores['ciano'], cores['limpa'])
                             print(quadr)
                             print()
-                            if self.atributo=='Sorte':
-                                  print('[1] - Vasculhar o quadro\n',
+                            if self.atributo == 'Sorte':
+                                print('[1] - Vasculhar o quadro\n',
                                       '[2] - Admirar o quadro\n',
-                                      '[3] -{}Rasgar o quadro{}'.format(cores['red'],cores['limpa']))
+                                      '[3] -{}Rasgar o quadro{}'.format(cores['red'], cores['limpa']))
 
                             else:
                                 print('[1] - Vasculhar o quadro\n',
@@ -415,7 +415,7 @@ já tem problemas o suficiente para ficar se olhando no espelho\n\n'''
                             elif acaoQuadro == 2:
 
                                 fraseAnimation = '''Essa realmente é uma obra muito bonita, entendo você querer adimirá-la
-Porem seu {}tempo{} está {}correndo{}'''.format(cores['mage'],cores['limpa'],cores['amarelo'],cores['limpa'])
+Porem seu {}tempo{} está {}correndo{}'''.format(cores['mage'], cores['limpa'], cores['amarelo'], cores['limpa'])
                                 self.animation(fraseAnimation)
                                 sleep(2)
                                 relogio.corretempo(5)
@@ -457,7 +457,7 @@ O que um bilhete de viagem faria atrás de um quadro?\n\n'''  # Conceito para a 
                               '[1] - Ler o bilhete\n',
                               '[2] - Guardar o bilhete\n',
                               '[3] - Rasgar o bilhete?\n')
-                              
+
                         acaoBilhete = int(input(">> "))
 
                         if acaoBilhete == 1 and bilhete == True:
@@ -564,7 +564,7 @@ Deseja tomar um descanso?[sim/não]\n\n'''.format(cores['Mage'], cores['limpa'])
             ─██─────────████──────────██─
             ─██─────────████──────────██─
             ────────────████─────────────
-            ─────────────██──────────────{}\n\n'''.format(cores['verde'],cores['limpa'])
+            ─────────────██──────────────{}\n\n'''.format(cores['verde'], cores['limpa'])
                         print(quadr)
                         print('Uma pequena entrada se abre na lateral do quadro...\n',
                               'Deseja entrar? [sim/não]\n')
@@ -633,7 +633,7 @@ Porque alguém guardaria essa foto em um baú?\n\n'''.format(cores['Mage'], core
                         self.animation(fraseAnimation)
                         sleep(2)
                         os.system('clear')
-                    elif acaoBau == 2 and self.atributo== 'Sorte':
+                    elif acaoBau == 2 and self.atributo == 'Sorte':
                         relogio.corretempo(2)
                         fraseAnimation = 'Você não encontrou nada ao verificar o baú...'
                         self.animation(fraseAnimation)

@@ -1,10 +1,10 @@
-from personagem import Personagem
-from relogio import Relógio
-from funcoes import Funções
+from _person.person import *
+from _time.clock import *
+from _functions.functions import *
+from _color.colors import *
+from _functions.imagem import *
+from _functions.clear import *
 from time import sleep
-from _color.colors import cores
-from _image.Imagem import Imagem
-from _clear.clear import *
 import pygame
 
 
@@ -115,7 +115,8 @@ class salaVermelha(Funções, Personagem):
 
                 if self.chave == False:
 
-                    fraseAnimation = "Você não tem a {}chave!{} Vasculhe a sala para encontra-la\n\n".format(cores['red'],cores['limpa'])
+                    fraseAnimation = "Você não tem a {}chave!{} Vasculhe a sala para encontra-la\n\n".format(
+                        cores['red'], cores['limpa'])
                     self.animation(fraseAnimation)
                     tecla.stop()
                     print()
@@ -135,7 +136,8 @@ class salaVermelha(Funções, Personagem):
                         break
                     elif deseja == "nao":
                         tecla.play(-1)
-                        fraseAnimation = "Você achou melhor guardar a {}chave{}.\n\n".format(cores['red'],cores['limpa'])
+                        fraseAnimation = "Você achou melhor guardar a {}chave{}.\n\n".format(
+                            cores['red'], cores['limpa'])
                         self.animation(fraseAnimation)
                         tecla.stop()
 
@@ -324,8 +326,8 @@ class salaVermelha(Funções, Personagem):
                     if escolhaArm == 1:
                         print()
                         tecla.play(-1)
-                        fraseAnimation = 'Dentro do armário vc encontra um bilhete escrito: "{}Pare{} de {}perder {}tempo!{}\n\n'.format(cores['verde'],cores['Mage'],cores['fundoazul'],
-                            cores['red'], cores['limpa'])
+                        fraseAnimation = 'Dentro do armário vc encontra um bilhete escrito: "{}Pare{} de {}perder {}tempo!{}\n\n'.format(cores['verde'], cores['Mage'], cores['fundoazul'],
+                                                                                                                                         cores['red'], cores['limpa'])
                         self.animation(fraseAnimation)
                         tecla.stop()
                         sleep(2)

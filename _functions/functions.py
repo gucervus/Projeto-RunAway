@@ -23,5 +23,5 @@ class Funções:
             return 'e'
 
     def teclando(self):
-        tecla = pygame.mixer.Sound('teclado.ogg')
+        tecla = pygame.mixer.Sound('_music/teclado.ogg')
         return tecla
