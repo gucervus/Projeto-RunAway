@@ -29,8 +29,8 @@ class salaBranca(Funções, Personagem):
                              atributo=self.atributo, genero=self.genero)
         tempo = sala1.retornaTempo()
         relogio = Relógio(tempo, self.nome, self.altura, self.atributo)
-
         imagem = Imagem()
+        tecla = self.teclando()
         numeroSala = False
 
         print(' '*21, end='')
@@ -43,7 +43,7 @@ class salaBranca(Funções, Personagem):
         print('|___________________________|')
         print('\n'*2)
 
-        # tecla.play(-1)
+        tecla.play(-1)
         sala = "Você está em uma sala com paredes brancas!\n\n"
         self.animation(sala)
 
@@ -51,7 +51,7 @@ class salaBranca(Funções, Personagem):
         self.animation(fraseAnimation)
         fraseAnimation = "Você consegue ver uma cadeira, um espelho, um quadro, um bau, uma estátua e uma bolsa de remédios...\n\n"
         self.animation(fraseAnimation)
-        # tecla.stop()
+        tecla.stop()
         sleep(1)
 
         pygame.init()
@@ -151,13 +151,30 @@ class salaBranca(Funções, Personagem):
                         ler = input('>> ').upper()
 
                         if ler == 'SIM':
-                            # imagem.showImage('_img/poerma3.jpg')
-
-                            continuar = input(
-                                'Pressione Enter para continuar...')
-                            if continuar == '':
-                                relogio.corretempo(2)
-
+                            carta = '''
+        ────────────────────────────────────────
+        ─────────────▄▄██████████▄▄─────────────
+        ─────────────▀▀▀───██───▀▀▀─────────────
+        ─────▄██▄───▄▄████████████▄▄───▄██▄─────
+        ───▄███▀──▄████▀▀▀────▀▀▀████▄──▀███▄───
+        ──████▄─▄███▀──────────────▀███▄─▄████──
+        ─███▀█████▀▄████▄──────▄████▄▀█████▀███─
+        ─██▀──███▀─██████──────██████─▀███──▀██─
+        ──▀──▄██▀──▀████▀──▄▄──▀████▀──▀██▄──▀──
+        ─────███───────────▀▀───────────███─────
+        ─────██████████████████████████████─────
+        ─▄█──▀██──███───██────██───███──██▀──█▄─
+        ─███──███─███───██────██───███▄███──███─
+        ─▀██▄████████───██────██───████████▄██▀─
+        ──▀███▀─▀████───██────██───████▀─▀███▀──
+        ───▀███▄──▀███████────███████▀──▄███▀───
+        ─────▀███────▀▀██████████▀▀▀───███▀─────
+        ───────▀─────▄▄▄───██───▄▄▄──────▀──────
+        ──────────── ▀▀███████████▀▀ ────────────
+        ────────────────────────────────────────\n\n'''
+                            print(carta)
+                            fraseAnimation = '\nQual o significado desse simbolo?'
+                            self.animation(fraseAnimation)
                             fraseAnimation = 'Começamos bem, porém ainda não encontramos uma forma de sair daqui, vamos continuar'
                             self.animation(fraseAnimation)
                             sleep(2)
@@ -312,17 +329,65 @@ já tem problemas o suficiente para ficar se olhando no espelho\n\n'''
                     elif visualizar == 2:
 
                         quadro = input(
-                            'É um quadro lindo, deseja chegar mais perto? [sim/não] ').upper()
+                            'Deseja chegar mais perto? [sim/não]').upper()
                         print()
                         sleep(1)
 
                         if quadro == 'SIM':
-                            fraseAnimation = 'O quadro da sala é a Dama com Arminho de Leonardo da Vince. Que linda peça!\n\n'
+                            fraseAnimation = 'O quadro da sala é uma figura estranha, quem será?\n\n'
                             self.animation(fraseAnimation)
 
-                            imagem.showImage('DamaArminho.jpg')
-                            sleep(2)
-
+                            quadr = '''
+            ─────▄██▀▀▀▀▀▀▀▀▀▀▀▀▀██▄─────
+            ────███───────────────███────
+            ───███─────────────────███───
+            ──███───▄▀▀▄─────▄▀▀▄───███──
+            ─████─▄▀────▀▄─▄▀────▀▄─████─
+            ─████──▄████─────████▄──█████
+            █████─██▓▓▓██───██▓▓▓██─█████
+            █████─██▓█▓██───██▓█▓██─█████
+            █████─██▓▓▓█▀─▄─▀█▓▓▓██─█████
+            ████▀──▀▀▀▀▀─▄█▄─▀▀▀▀▀──▀████
+            ███─▄▀▀▀▄────███────▄▀▀▀▄─███
+            ███──▄▀▄─█──█████──█─▄▀▄──███
+            ███─█──█─█──█████──█─█──█─███
+            ███─█─▀──█─▄█████▄─█──▀─█─███
+            ███▄─▀▀▀▀──█─▀█▀─█──▀▀▀▀─▄███
+            ████─────────────────────████
+            ─███───▀█████████████▀───████
+            ─███───────█─────█───────████
+            ─████─────█───────█─────█████
+            ───███▄──█────█────█──▄█████─
+            ─────▀█████▄▄███▄▄█████▀─────
+            ──────────█▄─────▄█──────────
+            ──────────▄█─────█▄──────────
+            ───────▄████─────████▄───────
+            ─────▄███████───███████▄─────
+            ───▄█████████████████████▄───
+            ─▄███▀───███████████───▀███▄─
+            ███▀─────███████████─────▀███
+            ▌▌▌▌▒▒───███████████───▒▒▐▐▐▐
+            ─────▒▒──███████████──▒▒─────
+            ──────▒▒─███████████─▒▒──────
+            ───────▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒───────
+            ─────────████░░█████─────────
+            ────────█████░░██████────────
+            ──────███████░░███████───────
+            ─────█████──█░░█──█████──────
+            ─────█████──████──█████──────
+            ──────████──████──████───────
+            ──────████──████──████───────
+            ──────████───██───████───────
+            ──────████───██───████───────
+            ──────████──████──████───────
+            ─██────██───████───██─────██─
+            ─██───████──████──████────██─
+            ─███████████████████████████─
+            ─██─────────████──────────██─
+            ─██─────────████──────────██─
+            ────────────████─────────────
+            ─────────────██──────────────'''
+                            print(quadr)
                             print()
                             print('[1] - Vasculhar o quadro\n',
                                   '[2] - Admirar o quadro\n',
@@ -350,7 +415,6 @@ Porem seu tempo está correndo'''
                             elif acaoQuadro == 3:
 
                                 fraseAnimation = '''Que loucura rasgar um quadro tão lindo quanto esse...
-Da Vince acaba de se revirar no tumulo
 Porem situações desesperadas pedem medidas desesperadas
 Você encontrou dentro do quadro uma {}chave pequena{}...\n\n'''.format(cores['Mage'], cores['limpa'])
                                 self.animation(fraseAnimation)
@@ -372,7 +436,7 @@ Você encontrou dentro do quadro uma {}chave pequena{}...\n\n'''.format(cores['M
                     acaoQuadro = int(input('>> '))
 
                     if acaoQuadro == 1:
-                        fraseAnimation = '''O quadro da sala é a Dama com Arminho de Leonardo da Vince!
+                        fraseAnimation = '''O quadro da sala é uma referência a JigSaw!
 Ao vasculhar o quadro você encontrou uma bilhete de viagem
 Oque um bilhete de viagem faria atrás de um quadro?\n\n'''  # Conceito para a próxima versão
                         self.animation(fraseAnimation)
@@ -439,11 +503,57 @@ Deseja tomar um descanso?[sim/não]\n\n'''.format(cores['Mage'], cores['limpa'])
 
                     elif acaoQuadro == 3:
 
-                        fraseAnimation = '''O quadro da sala é a Dama com Arminho de Leonardo da Vince!
-Uma de suas grandes obras, hoje estimada em 350 Milhões de Euros...
-Essa era uma das obras preferidas da sua mãe
-Ela com certeza tinha um gosto refinado para quadros\n\n'''
-                        self.animation(fraseAnimation)
+                        quadr = '''
+            ─────▄██▀▀▀▀▀▀▀▀▀▀▀▀▀██▄─────
+            ────███───────────────███────
+            ───███─────────────────███───
+            ──███───▄▀▀▄─────▄▀▀▄───███──
+            ─████─▄▀────▀▄─▄▀────▀▄─████─
+            ─████──▄████─────████▄──█████
+            █████─██▓▓▓██───██▓▓▓██─█████
+            █████─██▓█▓██───██▓█▓██─█████
+            █████─██▓▓▓█▀─▄─▀█▓▓▓██─█████
+            ████▀──▀▀▀▀▀─▄█▄─▀▀▀▀▀──▀████
+            ███─▄▀▀▀▄────███────▄▀▀▀▄─███
+            ███──▄▀▄─█──█████──█─▄▀▄──███
+            ███─█──█─█──█████──█─█──█─███
+            ███─█─▀──█─▄█████▄─█──▀─█─███
+            ███▄─▀▀▀▀──█─▀█▀─█──▀▀▀▀─▄███
+            ████─────────────────────████
+            ─███───▀█████████████▀───████
+            ─███───────█─────█───────████
+            ─████─────█───────█─────█████
+            ───███▄──█────█────█──▄█████─
+            ─────▀█████▄▄███▄▄█████▀─────
+            ──────────█▄─────▄█──────────
+            ──────────▄█─────█▄──────────
+            ───────▄████─────████▄───────
+            ─────▄███████───███████▄─────
+            ───▄█████████████████████▄───
+            ─▄███▀───███████████───▀███▄─
+            ███▀─────███████████─────▀███
+            ▌▌▌▌▒▒───███████████───▒▒▐▐▐▐
+            ─────▒▒──███████████──▒▒─────
+            ──────▒▒─███████████─▒▒──────
+            ───────▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒───────
+            ─────────████░░█████─────────
+            ────────█████░░██████────────
+            ──────███████░░███████───────
+            ─────█████──█░░█──█████──────
+            ─────█████──████──█████──────
+            ──────████──████──████───────
+            ──────████──████──████───────
+            ──────████───██───████───────
+            ──────████───██───████───────
+            ──────████──████──████───────
+            ─██────██───████───██─────██─
+            ─██───████──████──████────██─
+            ─███████████████████████████─
+            ─██─────────████──────────██─
+            ─██─────────████──────────██─
+            ────────────████─────────────
+            ─────────────██──────────────\n\n'''
+                        print(quadr)
 
                         print('Uma pequena entrada se abre na lateral do quadro...\n',
                               'Deseja entrar? [sim/não]\n')

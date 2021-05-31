@@ -23,8 +23,7 @@ class salaVermelha(Funções, Personagem):
         guitarQuebrada = False
         pygame.init()
 
-        func = Funções(genero='')
-        tecla = func.teclando()
+        tecla = self.teclando()
         objeto = Imagem()
         relogio = Relógio(30, self.nome, self.altura, self.atributo)
         os.system('clear')
