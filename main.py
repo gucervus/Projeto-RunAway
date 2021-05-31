@@ -5,9 +5,8 @@ from funcoes import Funções
 from Imagem import Imagem
 from CORES import cores
 from time import sleep
-import sys
+from clear import *
 import pygame
-import os
 
 
 pygame.mixer.init()
@@ -16,10 +15,12 @@ pygame.mixer.music.set_volume(0.3)
 pygame.mixer.music.play(-1)
 
 objeto = Imagem()
-
+clear = Clear()
 if (__name__ == "__main__"):
 
-    os.system('clear')
+    clear.clearSystem()
+    clear.clearAll()
+
     while True:
 
         nome = '''
@@ -37,7 +38,8 @@ if (__name__ == "__main__"):
             escolha = input('>> ')
         if escolha == '1' or escolha == '2':
             break
-    os.system('clear')
+    clear.clearSystem()
+    clear.clearAll()
 
     usuario1 = ''
     senha1 = ''
@@ -51,12 +53,14 @@ if (__name__ == "__main__"):
             if usuario != usuario1 or senha != senha1:
                 print("Usuário ou senha inválido\n")
                 cadastro = input('Deseja se cadastrar [sim/não]? ').lower()
-                os.system('clear')
+                clear.clearSystem()
+                clear.clearAll()
                 while cadastro != 'sim' and cadastro != 'nao':
                     print(nome)
                     print("{:^60}\n\n".format("[LOGIN]"))
                     cadastro = input('Deseja se cadastrar [sim/não]? ').lower()
-                    os.system('clear')
+                    clear.clearSystem()
+                    clear.clearAll()
                 if cadastro == 'nao':
                     print(nome)
                     print('Programa finalizado!')
@@ -79,7 +83,8 @@ if (__name__ == "__main__"):
             gen += input("Digite seu gênero: ").lower()
             usuario1 += input("Usuário: ")
             senha1 += input("Senha: ")
-        os.system('clear')
+            clear.clearSystem()
+            clear.clearAll()
 
         func = Funções(genero=gen)
         tecla = func.teclando()
@@ -127,41 +132,9 @@ if (__name__ == "__main__"):
             pygame.mixer.music.stop()
             teste = pygame.mixer.Sound('gameo4.ogg')
             teste.play()
-            teste = 0
-
-            while teste < 5:
-                frase = [
-                    '''
-                        ░██████╗░░█████╗░███╗░░░███╗███████╗  ░█████╗░██╗░░░██╗███████╗██████╗░
-                        ██╔════╝░██╔══██╗████╗░████║██╔════╝  ██╔══██╗██║░░░██║██╔════╝██╔══██╗
-                        ██║░░██╗░███████║██╔████╔██║█████╗░░  ██║░░██║╚██╗░██╔╝█████╗░░██████╔╝
-                        ██║░░╚██╗██╔══██║██║╚██╔╝██║██╔══╝░░  ██║░░██║░╚████╔╝░██╔══╝░░██╔══██╗
-                        ╚██████╔╝██║░░██║██║░╚═╝░██║███████╗  ╚█████╔╝░░╚██╔╝░░███████╗██║░░██║
-                        ░╚═════╝░╚═╝░░╚═╝╚═╝░░░░░╚═╝╚══════╝  ░╚════╝░░░░╚═╝░░░╚══════╝╚═╝░░╚═╝''',    '''
-                        ░██████╗░░█████╗░███╗░░░███╗███████╗░█████╗░██╗░░░██╗███████╗██████╗░
-                        ██╔════╝░██╔══██╗████╗░████║██╔════╝██╔══██╗██║░░░██║██╔════╝██╔══██╗
-                        ██║░░██╗░███████║██╔████╔██║█████╗░░██║░░██║╚██╗░██╔╝█████╗░░██████╔╝
-                        ██║░░╚██╗██╔══██║██║╚██╔╝██║██╔══╝░░██║░░██║░╚████╔╝░██╔══╝░░██╔══██╗
-                        ╚██████╔╝██║░░██║██║░╚═╝░██║███████╗╚█████╔╝░░╚██╔╝░░███████╗██║░░██║
-                        ░╚═════╝░╚═╝░░╚═╝╚═╝░░░░░╚═╝╚══════╝░╚════╝░░░░╚═╝░░░╚══════╝╚═╝░░╚═╝''']
-                teste += 1
-
-                for i in frase:
-                    for cont in range(1):
-                        print(i)
-                        sleep(0.5)
-                        os.system('clear')
-                        sys.stdout.flush()
-
-            print('''
-            ░██████╗░░█████╗░███╗░░░███╗███████╗  ░█████╗░██╗░░░██╗███████╗██████╗░
-            ██╔════╝░██╔══██╗████╗░████║██╔════╝  ██╔══██╗██║░░░██║██╔════╝██╔══██╗
-            ██║░░██╗░███████║██╔████╔██║█████╗░░  ██║░░██║╚██╗░██╔╝█████╗░░██████╔╝
-            ██║░░╚██╗██╔══██║██║╚██╔╝██║██╔══╝░░  ██║░░██║░╚████╔╝░██╔══╝░░██╔══██╗
-            ╚██████╔╝██║░░██║██║░╚═╝░██║███████╗  ╚█████╔╝░░╚██╔╝░░███████╗██║░░██║
-            ░╚═════╝░╚═╝░░╚═╝╚═╝░░░░░╚═╝╚══════╝  ░╚════╝░░░░╚═╝░░░╚══════╝╚═╝░░╚═╝''')
-
+            print('Fim de jogo!')
             sleep(5)
             break
         else:
             sala2.acao()
+
