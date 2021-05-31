@@ -1,16 +1,12 @@
-from relogio import Relógio
 from personagem import Personagem
 from primeiraSala import salaVermelha
 from segundaSala import salaBranca
 from funcoes import Funções
+from Imagem import Imagem
 from CORES import cores
 from time import sleep
-from IMG import Imagens
 import pygame
-import sys
 import os
-from PIL import Image
-from IMG import Img
 
 
 pygame.init()
@@ -18,20 +14,37 @@ pygame.mixer.music.load('trilhasuspensa.ogg')
 pygame.mixer.music.set_volume(0.3)
 pygame.mixer.music.play(-1)
 
+objeto = Imagem()
+
 if (__name__ == "__main__"):
 
     os.system('clear')
-    print("{:^60}\n\n".format("RunAway"))
-    print("{:^60}\n\n".format("[CADASTRO]"))
-    login = input("Ja tem uma conta? ")
+    while True:
+
+        nome = '''
+        █▀█ █░█ █▄ █ ▄▀█ █ █ █ ▄▀█ █▄█
+        █▀▄ █▄█ █ ▀█ █▀█ ▀▄▀▄▀ █▀█  █ \n\n'''
+
+        objeto.nome(nome)
+        print('\n\n')
+        print(' [1] - Login\n',
+              '[2] - Cadastro\n\n')
+        escolha = input('>> ')
+
+        while escolha != '1' and escolha != '2':
+            print('Opção inválida! tente novamente.')
+            escolha = input('>> ')
+        if escolha == '1' or escolha == '2':
+            break
     os.system('clear')
+
     usuario1 = ''
     senha1 = ''
     gen = ''
     while True:
-        print("{:^60}\n\n".format("RunAway"))
-        print("{:^60}\n\n".format("[CADASTRO]"))
-        if login == 'sim':
+        if escolha == '1':
+            print(nome)
+            print("{:^45}\n\n".format("[LOGIN]"))
             usuario = input('Usuário:')
             senha = input('Senha: ')
             if usuario != usuario1 or senha != senha1:
@@ -39,26 +52,27 @@ if (__name__ == "__main__"):
                 cadastro = input('Deseja se cadastrar?')
                 os.system('clear')
                 while cadastro != 'sim' and cadastro != 'nao':
-                    print("{:^60}\n\n".format("RunAway"))
-                    print("{:^60}\n\n".format("[CADASTRO]"))
+                    print(nome)
+                    print("{:^45}\n\n".format("[LOGIN]"))
                     cadastro = input('Deseja se cadastrar?')
                     os.system('clear')
                 if cadastro == 'nao':
-                    print("{:^60}\n\n".format("RunAway"))
-                    print("{:^60}\n\n".format("[CADASTRO]"))
+                    print(nome)
                     print('Programa finalizado!')
                     break
 
                 elif cadastro == 'sim':
-                    print("{:^60}\n\n".format("RunAway"))
-                    print("{:^60}\n\n".format("[CADASTRO]"))
+                    print(nome)
+                    print("{:^45}\n\n".format("[CADASTRO]"))
                     nome = input("Digite seu nome: ")
                     alt = float(input("Digite sua altura: "))
                     gen += input("Digite seu gênero: ").lower()
                     usuario1 += input("Usuário: ")
-                    senha1 += input("Senha: ")
+                    senha1 = input("Senha: ")
 
-        elif login == 'nao':
+        elif escolha == '2':
+            print(nome)
+            print("{:^60}\n\n".format("[CADASTRO]"))
             nome = input("Digite seu nome: ")
             alt = float(input("Digite sua altura: "))
             gen += input("Digite seu gênero: ").lower()
@@ -71,7 +85,7 @@ if (__name__ == "__main__"):
 
         tecla.play(-1)
         print(' '*25, end='')
-        bemVindo = f"Bem vind{func.generos()} {nome}\n\n"
+        bemVindo = f"Bem vind{func.generos()} {usuario1}\n\n"
         func.animation(bemVindo)
         print(' '*20, end='')
         atributo = '»»»» Escolha um \033[33matributo\033[m ««««\n\n\n\n'
@@ -100,13 +114,16 @@ if (__name__ == "__main__"):
 
         personagem = Personagem(nome, alt, atributo)
 
-        salas = salaVermelha(nome=nome, altura=alt,
+        sala1 = salaVermelha(nome=nome, altura=alt,
                              atributo=atributo, genero=gen)
-
         sala2 = salaBranca(nome=nome, altura=alt,
                            atributo=atributo, genero=gen)
         personagem.escolhaAtributo()
 
-        salas.acao()
+        sala1.acao()
 
-        sala2.acao()
+        if sala1.gameover() == True:
+            print('Fim de jogo!')
+            break
+        else:
+            sala2.acao()

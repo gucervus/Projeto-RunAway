@@ -3,6 +3,7 @@ from relogio import Relógio
 from funcoes import Funções
 from time import sleep
 from CORES import cores
+from Imagem import Imagem
 import os
 import pygame
 
@@ -21,10 +22,14 @@ class salaVermelha(Funções, Personagem):
     def acao(self):
         guitarQuebrada = False
         pygame.init()
+
         func = Funções(genero='')
         tecla = func.teclando()
 
         relogio = Relógio(30, self.nome, self.altura, self.atributo)
+        imagem = Imagem()
+        global tempo
+        tempo = relogio.minutos
 
         numeroSala = False
 
@@ -48,10 +53,14 @@ class salaVermelha(Funções, Personagem):
         self.animation(fraseAnimation)
         tecla.stop()
         sleep(1)
-
+        global gameover
+        gameover = False
         escrivaninhanaparede = False
         ima = False
         while True:
+            if relogio.minutos <= 0:
+                gameover = True
+                break
 
             if numeroSala == True:
 
@@ -102,7 +111,9 @@ class salaVermelha(Funções, Personagem):
                         fraseAnimation = "Parabéns!! Você abriu a porta e avançou para a próxima sala!\n\n"
                         self.animation(fraseAnimation)
                         tecla.stop()
-                        relogio.minutos += 30
+
+                        tempo = relogio.minutos
+
                         input("Aperte enter para prosseguir...")
                         break
                     elif deseja == "nao":
@@ -225,9 +236,9 @@ class salaVermelha(Funções, Personagem):
                           '[2] - Olhar toca disco\n',
                           '[3] - Tocar o disco\n\n')
 
-                    escolhaEstante = int(input('>> '))
+                    escolhaTocaDisco = int(input('>> '))
 
-                    if escolhaEstante == 1:
+                    if escolhaTocaDisco == 1:
                         print()
                         relogio.corretempo(4)
                         tecla.play(-1)
@@ -237,7 +248,7 @@ class salaVermelha(Funções, Personagem):
                         tecla.stop()
                         sleep(2)
                         os.system('clear')
-                    elif escolhaEstante == 2:
+                    elif escolhaTocaDisco == 2:
                         print()
                         tecla.play(-1)
                         fraseAnimation = 'Econtrou um vinil,esta em ótimo estado, sera que o toca disco funciona?\n\n '
@@ -246,7 +257,7 @@ class salaVermelha(Funções, Personagem):
                         sleep(2)
                         relogio.corretempo(4)
                         os.system('clear')
-                    elif escolhaEstante == 3:
+                    elif escolhaTocaDisco == 3:
                         relogio.corretempo(4)
                         if self.atributo == 'Inteligência':
                             tecla.play(-1)
@@ -375,6 +386,8 @@ class salaVermelha(Funções, Personagem):
                             tecla.stop()
                             sleep(2)
                         else:
+                            pygame.mixer.music.load('guitar.ogg')
+                            pygame.mixer.music.play()
                             tecla.play(-1)
                             fraseAnimation = 'Que música linda! Os deuses do rock estão satisfeitos...\n\n'
                             self.animation(fraseAnimation)
@@ -389,10 +402,16 @@ class salaVermelha(Funções, Personagem):
                             print('.')
                             sleep(.5)
                             print('.')
+                            sleep(.5)
+                            print('.')
                             tecla.play(-1)
                             fraseAnimation = 'Uma \033[4;31mchave\033[m caiu em sua cabeça!\n\n'
                             self.animation(fraseAnimation)
                             tecla.stop()
+                            pygame.event.wait()
+                            pygame.mixer.music.load('trilhasuspensa.ogg')
+                            pygame.mixer.music.set_volume(0.3)
+                            pygame.mixer.music.play(-1)
                             sleep(2)
                             self.chave = True
                         os.system('clear')
@@ -428,13 +447,14 @@ class salaVermelha(Funções, Personagem):
                 if self.atributo == 'Força':
                     print()
                     tecla.play(-1)
-                    fraseAnimation = "A porta é de madeira e você conseguiu quebra-la! Mas uma farpa de madeira te {}machucou.{}\n\n".format(cores['red'],cores['limpa'])
+                    fraseAnimation = "A porta é de madeira e você conseguiu quebra-la! Mas uma farpa de madeira te {}machucou.{}\n\n".format(
+                        cores['red'], cores['limpa'])
                     self.animation(fraseAnimation)
                     fraseAnimation = "Parabéns, você é {}forte{} o suficiente para a próxima sala! Mas perderá mais tempo por estar machucado!\n\n".format(
                         cores['amarelo'], cores['limpa'])
                     self.animation(fraseAnimation)
                     tecla.stop()
-                    relogio.minutos += 30
+                    tempo = relogio.minutos
                     input('Aperte enter para continuar...')
                     os.system('clear')
                     break
@@ -447,3 +467,13 @@ class salaVermelha(Funções, Personagem):
                     sleep(2)
                     relogio.corretempo(4)
                     os.system('clear')
+
+    def gameover(self):
+        if gameover == True:
+            return True
+        else:
+            return False
+
+    def retornaTempo(self):
+        total = tempo + 30
+        return total
