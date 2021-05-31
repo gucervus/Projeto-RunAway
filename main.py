@@ -1,8 +1,8 @@
 from PIL import Image
 from relogio import Relógio
 from personagem import Personagem
-from _salas.primeiraSala import salaVermelha
-from _salas.segundaSala import salaBranca
+from primeiraSala import salaVermelha
+from segundaSala import salaBranca
 from funcoes import Funções
 from CORES import cores
 from time import sleep
@@ -10,8 +10,6 @@ from IMG import Imagens
 import pygame
 import sys
 import os
-from PIL import Image
-from IMG import Img
 
 
 pygame.init()
@@ -102,13 +100,11 @@ if (__name__ == "__main__"):
 
         personagem = Personagem(nome, alt, atributo)
 
-
         sala1 = salaVermelha(nome=nome, altura=alt,
                              atributo=atributo, genero=gen)
         sala2 = salaBranca(nome=nome, altura=alt,
                            atributo=atributo, genero=gen)
         personagem.escolhaAtributo()
-
 
         sala1.acao()
 
