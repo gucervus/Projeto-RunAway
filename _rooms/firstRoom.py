@@ -109,7 +109,7 @@ class salaVermelha(Funções, Personagem):
 
             if opcao2 == 1:
                 tecla.play(-1)
-                relogio.corretempo(30)
+                relogio.corretempo(4)
                 fraseAnimation = "A porta está trancada...\n\n"
                 self.animation(fraseAnimation)
 
@@ -133,6 +133,9 @@ class salaVermelha(Funções, Personagem):
                         tempo = relogio.minutos
 
                         input("Aperte enter para prosseguir...")
+
+                        clear.clearSystem()
+                        clear.clearAll()
                         break
                     elif deseja == "nao":
                         tecla.play(-1)
@@ -230,9 +233,10 @@ class salaVermelha(Funções, Personagem):
                                 print('Você alcança a saída, deseja subir?')
                                 janelinha = int(input('1-S / 0-N >>> '))
                                 if janelinha == 0:
+
                                     clear.clearSystem()
                                     clear.clearAll()
-                                    break
+
                                 elif janelinha == 1:
                                     tecla.play(-1)
                                     fraseAnimation = 'Você pode se pendurar na janela, mas não tem {}força{} para passar para o outro lado, na parede do lado oposto está escrita a seguinte mensagem:\n\n'.format(
@@ -359,26 +363,30 @@ class salaVermelha(Funções, Personagem):
                             relogio.corretempo(4)
                             clear.clearSystem()
                             clear.clearAll()
-
                         else:
-                            print()
-                            if ima == True:
-                                tecla.play(-1)
-                                fraseAnimation = "Você conseguiu pegar a {}chave{} com o {}imã!{}\n\n".format(
-                                    cores['red'], cores['limpa'], cores['azul'], cores['limpa'])
-                                self.animation(fraseAnimation)
-                                tecla.stop()
-                                self.chave = True
-                            else:
-                                tecla.play(-1)
-                                fraseAnimation = "Você não tem {}força{} para empurrar o Armário! Mas consegue olhar embaixo dele.\n\n".format(
-                                    cores['amarelo'], cores['limpa'])
-                                self.animation(fraseAnimation)
-                                tecla.stop()
+                            tecla.play(-1)
+                            fraseAnimation = "Você não tem {}força{} para empurrar o Armário! Mas consegue olhar embaixo dele.\n\n".format(
+                                cores['amarelo'], cores['limpa'])
+                            self.animation(fraseAnimation)
+                            tecla.stop()
                             sleep(2)
                             relogio.corretempo(4)
                             clear.clearSystem()
                             clear.clearAll()
+                    elif escolhaArm == 4 and ima == True:
+                        print()
+                        if ima == True:
+                            tecla.play(-1)
+                            fraseAnimation = "Você conseguiu pegar a {}chave{} com o {}imã!{}\n\n".format(
+                                cores['red'], cores['limpa'], cores['azul'], cores['limpa'])
+                            self.animation(fraseAnimation)
+                            tecla.stop()
+                            sleep(2)
+                            self.chave = True
+                            relogio.corretempo(4)
+                            clear.clearSystem()
+                            clear.clearAll()
+
                 elif escolha == 4:
                     print('É uma linda lespaul sunburn Stevie Ray signature 2001\n')
 
@@ -401,12 +409,20 @@ class salaVermelha(Funções, Personagem):
                         clear.clearAll()
                     elif escolhaGuitarra == 2:
                         print()
-                        relogio.corretempo(8)
-                        tecla.play(-1)
-                        fraseAnimation = 'Você quebrou a guitarra e a {}chave{} caiu embaixo do armário, procure algo para pegá-la, voce perdeu {}8 minutos{}\n\n'.format(
-                            cores['red'], cores['limpa'], cores['red'], cores['limpa'])
-                        self.animation(fraseAnimation)
-                        tecla.stop()
+                        if self.atributo == 'Velocidade':
+                            relogio.corretempo(8)
+                            tecla.play(-1)
+                            fraseAnimation = 'Você quebrou a guitarra e a {}chave{} caiu embaixo do armário, procure algo para pegá-la, voce perdeu {}4 minutos{}\n\n'.format(
+                                cores['red'], cores['limpa'], cores['red'], cores['limpa'])
+                            self.animation(fraseAnimation)
+                            tecla.stop()
+                        else:
+                            relogio.corretempo(8)
+                            tecla.play(-1)
+                            fraseAnimation = 'Você quebrou a guitarra e a {}chave{} caiu embaixo do armário, procure algo para pegá-la, voce perdeu {}8 minutos{}\n\n'.format(
+                                cores['red'], cores['limpa'], cores['red'], cores['limpa'])
+                            self.animation(fraseAnimation)
+                            tecla.stop()
                         guitarQuebrada = True
                         sleep(2)
                         clear.clearSystem()
@@ -415,14 +431,27 @@ class salaVermelha(Funções, Personagem):
                         print()
                         relogio.corretempo(4)
                         if guitarQuebrada == True:
-                            tecla.play(-1)
-                            fraseAnimation = "Você tentou tocar uma guitarra quebrada, e perdeu {}10 minutos{}\n\n".format(
-                                cores['red'], cores['limpa'])
-                            self.animation(fraseAnimation)
-                            tecla.stop()
+                            if self.atributo == 'Velocidade':
+                                tecla.play(-1)
+                                relogio.corretempo(10)
+                                fraseAnimation = "Você tentou tocar uma guitarra quebrada, e perdeu {}5 minutos{}\n\n".format(
+                                    cores['red'], cores['limpa'])
+                                self.animation(fraseAnimation)
+                                tecla.stop()
+                            else:
+                                tecla.play(-1)
+                                relogio.corretempo(10)
+                                fraseAnimation = "Você tentou tocar uma guitarra quebrada, e perdeu {}10 minutos{}\n\n".format(
+                                    cores['red'], cores['limpa'])
+                                self.animation(fraseAnimation)
+                                tecla.stop()
+
                             sleep(2)
+                            clear.clearSystem()
+                            clear.clearAll()
                         else:
-                            pygame.mixer.music.load('guitar.ogg')
+                            pygame.mixer.music.stop()
+                            pygame.mixer.music.load('_music/guitar.ogg')
                             pygame.mixer.music.play()
                             tecla.play(-1)
                             fraseAnimation = 'Que música linda! Os deuses do rock estão satisfeitos...\n\n'
@@ -445,7 +474,8 @@ class salaVermelha(Funções, Personagem):
                             self.animation(fraseAnimation)
                             tecla.stop()
                             pygame.event.wait()
-                            pygame.mixer.music.load('trilhasuspensa.ogg')
+                            pygame.mixer.music.load(
+                                '_music/trilhasuspensa.ogg')
                             pygame.mixer.music.set_volume(0.3)
                             pygame.mixer.music.play(-1)
                             sleep(2)
@@ -462,13 +492,22 @@ class salaVermelha(Funções, Personagem):
                     opcMesa = int(input('>> '))
 
                     if opcMesa == 1:
-                        tecla.play(-1)
-                        fraseAnimation = 'Você decidiu jogar bilhar e perdeu {}5 minutos{}\n\n'.format(
-                            cores['red'], cores['limpa'])
-                        self.animation(fraseAnimation)
-                        tecla.stop()
-                        relogio.corretempo(5)
-                        sleep(2)
+                        if self.atributo == 'Velocidade':
+                            tecla.play(-1)
+                            fraseAnimation = 'Você decidiu jogar bilhar e perdeu {}5 minutos{}\n\n'.format(
+                                cores['red'], cores['limpa'])
+                            self.animation(fraseAnimation)
+                            tecla.stop()
+                            relogio.corretempo(10)
+                            sleep(2)
+                        else:
+                            tecla.play(-1)
+                            fraseAnimation = 'Você decidiu jogar bilhar e perdeu {}5 minutos{}\n\n'.format(
+                                cores['red'], cores['limpa'])
+                            self.animation(fraseAnimation)
+                            tecla.stop()
+                            relogio.corretempo(5)
+                            sleep(2)
                     elif opcMesa == 2:
                         tecla.play(-1)
                         fraseAnimation = "Você encontrou um {}imã{}, agora consegue atrair metal\n\n".format(
@@ -510,6 +549,42 @@ class salaVermelha(Funções, Personagem):
 
     def gameover(self):
         if gameover == True:
+            pygame.mixer.music.stop()
+            musicGameOver = pygame.mixer.Sound('_music/gameo4.ogg')
+            musicGameOver.play()
+            teste = 0
+
+            while teste < 5:
+                frase = [
+                    '''
+                        ░██████╗░░█████╗░███╗░░░███╗███████╗░█████╗░██╗░░░██╗███████╗██████╗░
+                        ██╔════╝░██╔══██╗████╗░████║██╔════╝██╔══██╗██║░░░██║██╔════╝██╔══██╗
+                        ██║░░██╗░███████║██╔████╔██║█████╗░░██║░░██║╚██╗░██╔╝█████╗░░██████╔╝
+                        ██║░░╚██╗██╔══██║██║╚██╔╝██║██╔══╝░░██║░░██║░╚████╔╝░██╔══╝░░██╔══██╗
+                        ╚██████╔╝██║░░██║██║░╚═╝░██║███████╗╚█████╔╝░░╚██╔╝░░███████╗██║░░██║
+                        ░╚═════╝░╚═╝░░╚═╝╚═╝░░░░░╚═╝╚══════╝░╚════╝░░░░╚═╝░░░╚══════╝╚═╝░░╚═╝''', '''
+                        ░██████╗░░█████╗░███╗░░░███╗███████╗    ░█████╗░██╗░░░██╗███████╗██████╗░
+                        ██╔════╝░██╔══██╗████╗░████║██╔════╝    ██╔══██╗██║░░░██║██╔════╝██╔══██╗
+                        ██║░░██╗░███████║██╔████╔██║█████╗░░    ██║░░██║╚██╗░██╔╝█████╗░░██████╔╝
+                        ██║░░╚██╗██╔══██║██║╚██╔╝██║██╔══╝░░    ██║░░██║░╚████╔╝░██╔══╝░░██╔══██╗
+                        ╚██████╔╝██║░░██║██║░╚═╝░██║███████╗    ╚█████╔╝░░╚██╔╝░░███████╗██║░░██║
+                        ░╚═════╝░╚═╝░░╚═╝╚═╝░░░░░╚═╝╚══════╝    ░╚════╝░░░░╚═╝░░░╚══════╝╚═╝░░╚═╝''']
+                teste += 1
+
+                for i in frase:
+                    for cont in range(1):
+                        print(i)
+                        sleep(0.5)
+                        os.system('clear')
+                        sys.stdout.flush()
+
+            print('''
+                        ░██████╗░░█████╗░███╗░░░███╗███████╗░█████╗░██╗░░░██╗███████╗██████╗░
+                        ██╔════╝░██╔══██╗████╗░████║██╔════╝██╔══██╗██║░░░██║██╔════╝██╔══██╗
+                        ██║░░██╗░███████║██╔████╔██║█████╗░░██║░░██║╚██╗░██╔╝█████╗░░██████╔╝
+                        ██║░░╚██╗██╔══██║██║╚██╔╝██║██╔══╝░░██║░░██║░╚████╔╝░██╔══╝░░██╔══██╗
+                        ╚██████╔╝██║░░██║██║░╚═╝░██║███████╗╚█████╔╝░░╚██╔╝░░███████╗██║░░██║
+                        ░╚═════╝░╚═╝░░╚═╝╚═╝░░░░░╚═╝╚══════╝░╚════╝░░░░╚═╝░░░╚══════╝╚═╝░░╚═╝''')
             return True
         else:
             return False

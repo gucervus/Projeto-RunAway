@@ -2,6 +2,7 @@ from _functions.imagem import *
 from _person.person import *
 from _time.clock import *
 from _functions.functions import *
+from _functions.clear import Clear
 from . import firstRoom
 from _color.colors import *
 from time import sleep
@@ -29,6 +30,8 @@ class salaBranca(Funções, Personagem):
                                        atributo=self.atributo, genero=self.genero)
         tempo = sala1.retornaTempo()
         relogio = Relógio(tempo, self.nome, self.altura, self.atributo)
+        clear = Clear()
+        pygame.init()
         tecla = self.teclando()
         numeroSala = False
 
@@ -53,8 +56,6 @@ class salaBranca(Funções, Personagem):
         tecla.stop()
         sleep(1)
 
-        pygame.init()
-        tecla = pygame.mixer.Sound('teclado.ogg')
         global gameover
         gameover = False
         machucado = False
@@ -114,7 +115,8 @@ class salaBranca(Funções, Personagem):
                         print("Você achou melhor guardar a chave.")
 
                 sleep(2)
-                os.system('clear')
+                clear.clearSystem()
+                clear.clearAll()
 
             elif escolha == 2:
 
@@ -172,18 +174,20 @@ class salaBranca(Funções, Personagem):
         ──────────── ▀▀███████████▀▀ ────────────
         ────────────────────────────────────────\033[m\n\n'''
                             print(carta)
-                            fraseAnimation = '\nQual o significado desse simbolo?'
+                            fraseAnimation = '\nQual o significado desse simbolo?\n\n'
                             self.animation(fraseAnimation)
                             fraseAnimation = 'Começamos bem, porém ainda não encontramos uma forma de sair daqui, vamos continuar'
                             self.animation(fraseAnimation)
                             sleep(2)
-                            os.system('clear')
+                            clear.clearSystem()
+                            clear.clearAll()
                             relogio.corretempo(2)
                         else:
                             fraseAnimation = 'Ok, vamos continuar'
                             self.animation(fraseAnimation)
                             sleep(2)
-                            os.system('clear')
+                            clear.clearSystem()
+                            clear.clearAll()
                             relogio.corretempo(2)
 
                     elif opcaoCadeira == 2:
@@ -203,13 +207,15 @@ Caso contrário perderá mais {}tempo{} que o normal\n\n'''.format(cores['red'],
                             machucado = True
 
                             sleep(2)
-                            os.system('clear')
+                            clear.clearSystem()
+                            clear.clearAll()
                             relogio.corretempo(2)
                         else:
                             print('OK!')
                             sleep(2)
                             relogio.corretempo(2)
-                            os.system('clear')
+                            clear.clearSystem()
+                            clear.clearAll()
                     elif opcaoCadeira == 3:
                         relogio.corretempo(2)
 
@@ -241,13 +247,15 @@ Caso contrário perderá mais {}tempo{} que o normal\n\n'''.format(cores['red'],
 
                                 relogio.corretempo(5)
                                 sleep(2)
-                                os.system('clear')
+                                clear.clearSystem()
+                                clear.clearAll()
                             elif visualizar == 2:
                                 fraseAnimation = 'Um guarda-roupa?\n\n'
                                 self.animation(fraseAnimation)
                                 relogio.corretempo(4)
                                 sleep(2)
-                                os.system('clear')
+                                clear.clearSystem()
+                                clear.clearAll()
 
                             else:
                                 print('A sala realmente tem uma estatua, o que quer fazer?\n',
@@ -264,7 +272,8 @@ Caso contrário perderá mais {}tempo{} que o normal\n\n'''.format(cores['red'],
 
                                     relogio.corretempo(1)
                                     sleep(2)
-                                    os.system('clear')
+                                    clear.clearSystem()
+                                    clear.clearAll()
 
                                 elif estatua == 2:  # =================\\ 1° FINAL //============================
                                     fraseAnimation = '''Boa escolha, você girou a estatua com delicadeza
@@ -274,7 +283,8 @@ lhe dando acesso a {}chave{} que abre a porta de saída ...\n\n'''.format(cores[
                                     relogio.corretempo(4)
                                     self.chavePorta = True
                                     sleep(2)
-                                    os.system('clear')
+                                    clear.clearSystem()
+                                    clear.clearAll()
 
                                 elif estatua == 3:
                                     relogio.corretempo(4)
@@ -283,7 +293,8 @@ lhe dando acesso a {}chave{} que abre a porta de saída ...\n\n'''.format(cores[
                             print('OK!')
                             relogio.corretempo(4)
                             sleep(2)
-                            os.system('clear')
+                            clear.clearSystem()
+                            clear.clearAll()
                 elif objetos == 2 and lembranca == True:
 
                     print('O que você vê no espelho?\n',
@@ -303,11 +314,13 @@ Você está em uma cama de hospital...\n\n'''
                         self.animation(fraseAnimation)
                         sleep(2)
                         relogio.corretempo(3)
-                        os.system('clear')
+                        clear.clearSystem()
+                        clear.clearAll()
                     else:
                         print('OK!')
                         sleep(2)
-                        os.system('clear')
+                        clear.clearSystem()
+                        clear.clearAll()
 
                 elif objetos == 2:
 
@@ -326,7 +339,8 @@ já tem problemas o suficiente para ficar se olhando no espelho\n\n'''
                         self.animation(fraseAnimation)
                         relogio.corretempo(5)
                         sleep(2)
-                        os.system('clear')
+                        clear.clearSystem()
+                        clear.clearAll()
 
                     elif visualizar == 2:
 
@@ -410,16 +424,18 @@ já tem problemas o suficiente para ficar se olhando no espelho\n\n'''
                                 self.animation(fraseAnimation)
                                 sleep(2)
                                 relogio.corretempo(2)
-                                os.system('clear')
+                                clear.clearSystem()
+                                clear.clearAll()
 
                             elif acaoQuadro == 2:
 
                                 fraseAnimation = '''Essa realmente é uma obra muito bonita, entendo você querer adimirá-la
-Porem seu {}tempo{} está {}correndo{}'''.format(cores['mage'], cores['limpa'], cores['amarelo'], cores['limpa'])
+Porem seu {}tempo{} está {}correndo{}'''.format(cores['Mage'], cores['limpa'], cores['amarelo'], cores['limpa'])
                                 self.animation(fraseAnimation)
                                 sleep(2)
                                 relogio.corretempo(5)
-                                os.system('clear')
+                                clear.clearSystem()
+                                clear.clearAll()
 
                             elif acaoQuadro == 3:
 
@@ -430,12 +446,14 @@ Você encontrou dentro do quadro uma {}chave pequena{}...\n\n'''.format(cores['M
                                 self.chaveBau = True
 
                                 sleep(2)
-                                os.system('clear')
+                                clear.clearSystem()
+                                clear.clearAll()
                         else:
                             print('OK!')
                             relogio.corretempo(2)
                             sleep(2)
-                            os.system('clear')
+                            clear.clearSystem()
+                            clear.clearAll()
                 elif objetos == 3:
 
                     print("Você deseja: \n\n",
@@ -469,7 +487,8 @@ O que um bilhete de viagem faria aqui?\n\n'''  # Melhorar pergunta com o atribut
                             self.animation(fraseAnimation)
                             relogio.corretempo(2)
                             sleep(2)
-                            os.system('clear')
+                            clear.clearSystem()
+                            clear.clearAll()
 
                         elif acaoBilhete == 2 and bilhete == True:
 
@@ -477,7 +496,8 @@ O que um bilhete de viagem faria aqui?\n\n'''  # Melhorar pergunta com o atribut
                             self.animation(fraseAnimation)
                             sleep(2)
                             relogio.corretempo(2)
-                            os.system('clear')
+                            clear.clearSystem()
+                            clear.clearAll()
 
                         elif acaoBilhete == 3 and bilhete == True:
 
@@ -487,7 +507,8 @@ provavelmente não tem intenção nenhuma de sair daqui\n'''
                             sleep(2)
                             relogio.corretempo(5)
                             bilhete = False
-                            os.system('clear')
+                            clear.clearSystem()
+                            clear.clearAll()
 
                     elif acaoQuadro == 2:
 
@@ -504,7 +525,8 @@ Deseja tomar um descanso?[sim/não]\n\n'''.format(cores['Mage'], cores['limpa'])
                             self.animation(fraseAnimation)
                             relogio.corretempo(2)
                             sleep(2)
-                            os.system('clear')
+                            clear.clearSystem()
+                            clear.clearAll()
 
                         else:
                             fraseAnimation = 'A vida é feita de {}escolhas{}...\n\n'.format(
@@ -512,7 +534,8 @@ Deseja tomar um descanso?[sim/não]\n\n'''.format(cores['Mage'], cores['limpa'])
                             self.animation(fraseAnimation)
                             relogio.corretempo(10)
                             sleep(2)
-                            os.system('clear')
+                            clear.clearSystem()
+                            clear.clearAll()
 
                     elif acaoQuadro == 3:
                         quadr = '''{}
@@ -571,7 +594,8 @@ Deseja tomar um descanso?[sim/não]\n\n'''.format(cores['Mage'], cores['limpa'])
 
                         entrar = input(">> ").upper()
                         relogio.corretempo(2)
-                        os.system('clear')
+                        clear.clearSystem()
+                        clear.clearAll()
                         if entrar == 'SIM':
 
                             fraseAnimation = "Você agora se encontra em uma casa...\n\n"
@@ -598,7 +622,8 @@ porém já na estrada você nota que esqueceu o celular\n\n'''
 
                             lembranca = True
                             relogio.corretempo(3)
-                            os.system('clear')
+                            clear.clearSystem()
+                            clear.clearAll()
 
                         else:
                             continue
@@ -626,21 +651,25 @@ Porque alguém guardaria essa foto em um baú?\n\n'''.format(cores['Mage'], core
                         fraseAnimation = 'Você necessita de uma chave para abri-lo'
                         self.animation(fraseAnimation)
                         sleep(2)
-                        os.system('clear')
+                        clear.clearSystem()
+                        clear.clearAll()
 
                     elif acaoBau == 2:
                         fraseAnimation = 'Você não encontrou nada ao verificar o baú...'
                         self.animation(fraseAnimation)
                         sleep(2)
-                        os.system('clear')
+                        clear.clearSystem()
+                        clear.clearAll()
                     elif acaoBau == 2 and self.atributo == 'Sorte':
                         relogio.corretempo(2)
                         fraseAnimation = 'Você não encontrou nada ao verificar o baú...'
                         self.animation(fraseAnimation)
                         sleep(2)
-                        os.system('clear')
+                        clear.clearSystem()
+                        clear.clearAll()
                     elif acaoBau == 3:
-                        os.system('clear')
+                        clear.clearSystem()
+                        clear.clearAll()
                         continue
 
                 elif objetos == 5 and foto == True:
@@ -662,14 +691,16 @@ lhe dando acesso a {}chave{} que abre a porta de saída ...\n\n'''.format(cores[
                         relogio.corretempo(4)
                         self.chavePorta = True
                         sleep(2)
-                        os.system('clear')
+                        clear.clearSystem()
+                        clear.clearAll()
                     else:
                         fraseAnimation = 'Nada de diferente aconteceu, talvez fosse apenas uma {}impressão{} sua...\n\n'.format(
                             cores['ciano'], cores['limpa'])
                         self.animation(fraseAnimation)
                         relogio.corretempo(4)
                         sleep(2)
-                        os.system('clear')
+                        clear.clearSystem()
+                        clear.clearAll()
 
                 elif objetos == 5:
 
@@ -689,7 +720,8 @@ O Pensador originalmente procurava retratar Dante em frente dos Portões do Infe
 ponderando seu grande poema...\n\n'''.format(cores['amarelo'], cores['limpa'])
                         self.animation(fraseAnimation)
                         sleep(2)
-                        os.system('clear')
+                        clear.clearSystem()
+                        clear.clearAll()
 
                     else:
                         continue
@@ -703,13 +735,15 @@ Pode continuar sem nenhum problema\n\n'''.format(cores['ciano'], cores['limpa'])
                         self.animation(fraseAnimation)
                         relogio.corretempo(2)
                         sleep(2)
-                        os.system('clear')
+                        clear.clearSystem()
+                        clear.clearAll()
                     else:
                         fraseAnimation = 'Você está machucado e mesmo assim não quis abrir a bolsa de remédios, isso terá consequências!'
                         self.animation(fraseAnimation)
                         relogio.corretempo(7)
                         sleep(2)
-                        os.system('clear')
+                        clear.clearSystem()
+                        clear.clearAll()
 
                 elif objetos == 6 and lembranca == True:
 
@@ -729,7 +763,8 @@ Pode continuar sem nenhum problema\n\n'''.format(cores['ciano'], cores['limpa'])
                         self.chaveBau = True
 
                         sleep(2)
-                        os.system('clear')
+                        clear.clearSystem()
+                        clear.clearAll()
                     elif acaoBolsa == 2:
                         print('*Jogando a bolsa no lixo..*')
                     else:
@@ -758,11 +793,15 @@ Pode continuar sem nenhum problema\n\n'''.format(cores['ciano'], cores['limpa'])
                 if self.atributo == 'Força':
                     fraseAnimation = "A porta é de ferro e você esta machucado, dessa vez não poderá contar com sua força!"
                     self.animation(fraseAnimation)
+                    relogio.corretempo(2)
                     sleep(2)
-                    os.system('clear')
+                    clear.clearSystem()
+                    clear.clearAll()
                 else:
                     fraseAnimation = "Você é frac{} demais para isso!".format(
                         self.generos())
                     self.animation(fraseAnimation)
+                    relogio.corretempo(2)
                     sleep(2)
-                    os.system('clear')
+                    clear.clearSystem()
+                    clear.clearAll()
