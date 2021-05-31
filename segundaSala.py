@@ -389,10 +389,17 @@ já tem problemas o suficiente para ficar se olhando no espelho\n\n'''
             ─────────────██──────────────{}'''.format(cores['ciano'],cores['limpa'])
                             print(quadr)
                             print()
+<<<<<<< Updated upstream:segundaSala.py
                             if self.atributo=='Sorte':
                                   print('[1] - Vasculhar o quadro\n',
                                       '[2] - Admirar o quadro\n',
                                       '[3] -{}Rasgar o quadro{}'.format(cores['red'],cores['limpa']))
+=======
+                            if self.atributo == 'Sorte':
+                                print(' [1] - Vasculhar o quadro\n',
+                                      '[2] - Admirar o quadro\n',
+                                      '[3] - {}Rasgar o quadro{}'.format(cores['red'], cores['limpa']))
+>>>>>>> Stashed changes:_rooms/secondRoom.py
 
                             else:
                                 print('[1] - Vasculhar o quadro\n',
@@ -411,8 +418,13 @@ já tem problemas o suficiente para ficar se olhando no espelho\n\n'''
 
                             elif acaoQuadro == 2:
 
+<<<<<<< Updated upstream:segundaSala.py
                                 fraseAnimation = '''Essa realmente é uma obra muito bonita, entendo você querer adimirá-la
 Porem seu {}tempo{} está {}correndo{}'''.format(cores['mage'],cores['limpa'],cores['amarelo'],cores['limpa'])
+=======
+                                fraseAnimation = '''Essa realmente é uma obra muito bonita, entendo você querer admirá-la
+Porem seu {}tempo{} está {}correndo{}'''.format(cores['Mage'], cores['limpa'], cores['amarelo'], cores['limpa'])
+>>>>>>> Stashed changes:_rooms/secondRoom.py
                                 self.animation(fraseAnimation)
                                 sleep(2)
                                 relogio.corretempo(5)
