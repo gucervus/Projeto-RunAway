@@ -39,9 +39,9 @@ if (__name__ == "__main__"):
             break
     os.system('clear')
 
-    usuario1 = 'juno'
-    senha1 = '123'
-    gen = 'nem'
+    usuario1 = ''
+    senha1 = ''
+    gen = ''
     while True:
         if escolha == '1':
             print(nome)

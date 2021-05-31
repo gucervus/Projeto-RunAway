@@ -103,7 +103,7 @@ class salaVermelha(Funções, Personagem):
 
             if opcao2 == 1:
                 tecla.play(-1)
-                relogio.corretempo(30)
+                relogio.corretempo(4)
                 fraseAnimation = "A porta está trancada...\n\n"
                 self.animation(fraseAnimation)
 
@@ -127,6 +127,7 @@ class salaVermelha(Funções, Personagem):
                         tempo = relogio.minutos
 
                         input("Aperte enter para prosseguir...")
+                        os.system('clear')
                         break
                     elif deseja == "nao":
                         tecla.play(-1)
@@ -339,25 +340,26 @@ class salaVermelha(Funções, Personagem):
                             sleep(2)
                             relogio.corretempo(4)
                             os.system('clear')
-
                         else:
-                            print()
-                            if ima == True:
-                                tecla.play(-1)
-                                fraseAnimation = "Você conseguiu pegar a {}chave{} com o {}imã!{}\n\n".format(
-                                    cores['red'], cores['limpa'], cores['azul'], cores['limpa'])
-                                self.animation(fraseAnimation)
-                                tecla.stop()
-                                self.chave = True
-                            else:
-                                tecla.play(-1)
-                                fraseAnimation = "Você não tem {}força{} para empurrar o Armário! Mas consegue olhar embaixo dele.\n\n".format(
-                                    cores['amarelo'], cores['limpa'])
-                                self.animation(fraseAnimation)
-                                tecla.stop()
-                            sleep(2)
-                            relogio.corretempo(4)
+                            tecla.play(-1)
+                            fraseAnimation = "Você não tem {}força{} para empurrar o Armário! Mas consegue olhar embaixo dele.\n\n".format(
+                                cores['amarelo'], cores['limpa'])
+                            self.animation(fraseAnimation)
+                            tecla.stop()
                             os.system('clear')
+
+                    elif escolhaArm == 4 and ima == True:
+                        tecla.play(-1)
+                        fraseAnimation = "Você conseguiu pegar a {}chave{} com o {}imã!{}\n\n".format(
+                            cores['red'], cores['limpa'], cores['azul'], cores['limpa'])
+                        self.animation(fraseAnimation)
+
+                        tecla.stop()
+                        self.chave = True
+                        sleep(2)
+                        relogio.corretempo(4)
+                        os.system('clear')
+
                 elif escolha == 4:
                     print('É uma linda lespaul sunburn Stevie Ray signature 2001\n')
 
