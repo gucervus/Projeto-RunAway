@@ -1,9 +1,9 @@
-from personagem import *
-from relogio import *
-from funcoes import *
+from personagem import Personagem
+from relogio import Relógio
+from funcoes import Funções
 from time import sleep
 from colors import cores
-from imagem import *
+from imagem import Imagem
 from clear import *
 import pygame
 
