@@ -151,7 +151,7 @@ class salaBranca(Funções, Personagem):
                         ler = input('>> ').upper()
 
                         if ler == 'SIM':
-                            carta = '''
+                            carta = '''\033[32m
         ────────────────────────────────────────
         ─────────────▄▄██████████▄▄─────────────
         ─────────────▀▀▀───██───▀▀▀─────────────
@@ -171,7 +171,7 @@ class salaBranca(Funções, Personagem):
         ─────▀███────▀▀██████████▀▀▀───███▀─────
         ───────▀─────▄▄▄───██───▄▄▄──────▀──────
         ──────────── ▀▀███████████▀▀ ────────────
-        ────────────────────────────────────────\n\n'''
+        ────────────────────────────────────────\033[m\n\n'''
                             print(carta)
                             fraseAnimation = '\nQual o significado desse simbolo?'
                             self.animation(fraseAnimation)
@@ -179,11 +179,13 @@ class salaBranca(Funções, Personagem):
                             self.animation(fraseAnimation)
                             sleep(2)
                             os.system('clear')
+                            relogio.corretempo(2)
                         else:
                             fraseAnimation = 'Ok, vamos continuar'
                             self.animation(fraseAnimation)
                             sleep(2)
                             os.system('clear')
+                            relogio.corretempo(2)
 
                     elif opcaoCadeira == 2:
 
@@ -210,6 +212,7 @@ Caso contrário perderá mais {}tempo{} que o normal\n\n'''.format(cores['red'],
                             relogio.corretempo(2)
                             os.system('clear')
                     elif opcaoCadeira == 3:
+                        relogio.corretempo(2)
 
                         print('Que situação maluca, descansar é sempre bom!\n',
                               'Você conseguiu enxergar o reflexo de alguma coisa\n')
