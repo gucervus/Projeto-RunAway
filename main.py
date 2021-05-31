@@ -1,16 +1,17 @@
-from personagem import Personagem
-from _firstroom.primeiraSala import salaVermelha
-from _secondrom.segundaSala  import salaBranca
-from funcoes import Funções
-from . import Imagem
-from _color.colors import cores
+from _person.person import *
+from _rooms.firstRoom import salaVermelha
+from _rooms.seconRoom import salaBranca
+from _functions.clear import *
+from _functions.functions import *
+from _functions.imagem import *
+from _color.colors import *
+from _time.clock import *
 from time import sleep
-from _clear.clear import *
 import pygame
 
 
 pygame.mixer.init()
-pygame.mixer.music.load('trilhasuspensa.ogg')
+pygame.mixer.music.load('_music/trilhasuspensa.ogg')
 pygame.mixer.music.set_volume(0.3)
 pygame.mixer.music.play(-1)
 
@@ -129,11 +130,6 @@ if (__name__ == "__main__"):
         sala1.acao()
 
         if sala1.gameover() == True:
-            pygame.mixer.music.stop()
-            teste = pygame.mixer.Sound('gameo4.ogg')
-            teste.play()
-            print('Fim de jogo!')
-            sleep(5)
             break
         else:
             sala2.acao()

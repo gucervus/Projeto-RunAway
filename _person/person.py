@@ -1,4 +1,4 @@
-from funcoes import Funções
+from _functions.functions import *
 import os
 
 
