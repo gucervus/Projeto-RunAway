@@ -829,7 +829,8 @@ Pode continuar sem nenhum problema\n\n'''.format(cores['ciano'], cores['limpa'])
                         for cont in range(1):
                             print(i)
                             sleep(0.5)
-                            os.system('clear')
+                            clear.clearSystem()
+                            clear.clearAll()
                             sys.stdout.flush()
 
                 print('''

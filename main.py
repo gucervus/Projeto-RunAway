@@ -1,6 +1,6 @@
 from _person.person import *
 from _rooms.firstRoom import salaVermelha
-from _rooms.secondRoom import salaBranca
+from _rooms.seconRoom import salaBranca
 from _functions.clear import *
 from _functions.functions import *
 from _functions.imagem import *
@@ -75,6 +75,8 @@ if (__name__ == "__main__"):
                     gen += input("Digite seu gênero: ").lower()
                     usuario1 += input("Usuário: ")
                     senha1 = input("Senha: ")
+                    clear.clearSystem()
+                    clear.clearAll()
 
         elif escolha == '2':
             print(nome)
