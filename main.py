@@ -75,6 +75,8 @@ if (__name__ == "__main__"):
                     gen += input("Digite seu gênero: ").lower()
                     usuario1 += input("Usuário: ")
                     senha1 = input("Senha: ")
+                    clear.clearSystem()
+                    clear.clearAll()
 
         elif escolha == '2':
             print(nome)
