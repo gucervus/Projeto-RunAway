@@ -11,8 +11,7 @@ Foram utilizados os seguintes recursos:
 
 O projeto necessita instalar algumas bibliotecas.
 
- * Pygame
-    Utilizando o seu terminal executa o seguinte código:
+ * Pygame utilizando o seu terminal(cmd,prompt de comando) executa o seguinte código:
      `pip install pygame`
  * OS-Sys
     `pip install os-sys`
