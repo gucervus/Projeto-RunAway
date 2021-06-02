@@ -22,6 +22,7 @@ if (__name__ == "__main__"):
     clear.clearSystem()
     clear.clearAll()
 
+
     while True:
 
         nome = '''
